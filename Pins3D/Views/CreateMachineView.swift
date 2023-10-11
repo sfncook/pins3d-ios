@@ -7,7 +7,7 @@ struct CreateMachineView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            NavigationLink(destination: ThirdDetailView(), isActive: $isShowingNewView) {
+            NavigationLink(destination: ScanningMachineView(), isActive: $isShowingNewView) {
                 EmptyView()
             }.opacity(0)
             

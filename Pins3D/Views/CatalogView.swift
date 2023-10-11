@@ -58,9 +58,7 @@ struct CatalogView: View {
             
             List {
                 ForEach(machines) { machine in
-                    NavigationLink {
-                        Text(machine.name!)
-                    } label: {
+                    NavigationLink(destination: ScanningMachineView()) {
                         Text(machine.name!)
                     }
                 }
@@ -165,6 +163,6 @@ private let itemFormatter: DateFormatter = {
     return formatter
 }()
 
-#Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-}
+//#Preview {
+//    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//}
