@@ -17,6 +17,7 @@
 		D4DE515E2AD64606008E1F3C /* FirstDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515D2AD64606008E1F3C /* FirstDetailView.swift */; };
 		D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */; };
 		D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */; };
+		D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51632AD647C0008E1F3C /* CatalogView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		D4DE515D2AD64606008E1F3C /* FirstDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDetailView.swift; sourceTree = "<group>"; };
 		D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDetailView.swift; sourceTree = "<group>"; };
 		D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdDetailView.swift; sourceTree = "<group>"; };
+		D4DE51632AD647C0008E1F3C /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				D4DE515D2AD64606008E1F3C /* FirstDetailView.swift */,
 				D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */,
 				D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */,
+				D4DE51632AD647C0008E1F3C /* CatalogView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DE515E2AD64606008E1F3C /* FirstDetailView.swift in Sources */,
+				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */,
 				D4DE513C2AD63C9C008E1F3C /* ContentView.swift in Sources */,
 				D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */,

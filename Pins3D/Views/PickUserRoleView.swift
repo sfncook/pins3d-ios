@@ -20,21 +20,21 @@ struct PickUserRoleView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                NavigationLink(destination: FirstDetailView()) {
-                    Text("Go to First Detail View")
+                NavigationLink(destination: CatalogView(title: "All Modules")) {
+                    Text("Producer Role")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.green)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
                 .padding(.horizontal)
-
-                NavigationLink(destination: SecondDetailView()) {
-                    Text("Go to Second Detail View")
+                
+                NavigationLink(destination: FirstDetailView()) {
+                    Text("Consumer Role")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.green)
+                        .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
