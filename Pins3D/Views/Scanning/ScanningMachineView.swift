@@ -3,11 +3,10 @@ import ARKit
 
 struct ScanningMachineView: View {
     @Environment(\.presentationMode) var presentationMode
-    
-    @State private var cameraTrackingState: ARCamera.TrackingState?
+    @ObservedObject var viewModel = ScanningMachineViewModel()
     
     var contentBasedOnState: Text {
-        switch cameraTrackingState {
+        switch $viewModel.cameraTrackingState.wrappedValue {
         case nil:
             return Text("Initializing")
         case .notAvailable:
@@ -145,7 +144,7 @@ struct ScanningMachineView: View {
     
     var body: some View {
         ZStack {
-            ARViewContainer(cameraTrackingState: $cameraTrackingState)
+            ARViewContainer()
 
             VStack {
                 contentBasedOnState
