@@ -8,21 +8,12 @@
 import SwiftUI
 
 struct PickUserRoleView: View {
-    // Define an enum for our navigation state
-    enum NavigationTarget {
-        case first
-        case second
-    }
-
-    // State to determine which detail view to show
-    @State private var navigationTarget: NavigationTarget? = nil
-
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
                 NavigationLink(destination: CatalogView(title: "All Modules")) {
                     Text("Producer Role")
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding()
                         .background(Color.green)
                         .foregroundColor(.white)
@@ -32,7 +23,7 @@ struct PickUserRoleView: View {
                 
                 NavigationLink(destination: FirstDetailView()) {
                     Text("Consumer Role")
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)

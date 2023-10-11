@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct PickModuleTypeView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    
     var body: some View {
         VStack(spacing: 20) {
             NavigationLink(destination: ThirdDetailView()) {
@@ -15,7 +13,7 @@ struct PickModuleTypeView: View {
             }
             .padding(.horizontal)
             
-            NavigationLink(destination: ThirdDetailView()) {
+            NavigationLink(destination: CreateMachineView()) {
                 Text("Machine Scan")
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -36,6 +34,8 @@ struct PickModuleTypeView: View {
             .padding(.horizontal)
             
             .navigationBarTitle("Module type?", displayMode: .inline)
+            
+            Spacer()
         }
         .padding(.vertical)
     }

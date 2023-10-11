@@ -22,6 +22,11 @@ struct CatalogView: View {
     private var facilities: FetchedResults<Facility>
 
     @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Machine.name, ascending: true)],
+        animation: .default)
+    private var machines: FetchedResults<Machine>
+
+    @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Procedure.name, ascending: true)],
         animation: .default)
     private var procedures: FetchedResults<Procedure>
@@ -36,7 +41,6 @@ struct CatalogView: View {
     
     var body: some View {
         VStack {
-            // Invisible NavigationLink
             NavigationLink(destination: PickModuleTypeView(), isActive: $isShowingNewView) {
                 EmptyView()
             }.opacity(0)
@@ -47,6 +51,17 @@ struct CatalogView: View {
                         Text(facility.name!)
                     } label: {
                         Text(facility.name!)
+                    }
+                }
+                .onDelete(perform: deleteItems)
+            }
+            
+            List {
+                ForEach(machines) { machine in
+                    NavigationLink {
+                        Text(machine.name!)
+                    } label: {
+                        Text(machine.name!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -75,6 +90,8 @@ struct CatalogView: View {
                     }
                 }
             }
+            
+            Spacer()
         }
     }
 
