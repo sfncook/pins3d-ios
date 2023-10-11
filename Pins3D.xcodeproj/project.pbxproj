@@ -11,6 +11,9 @@
 		D4DE513C2AD63C9C008E1F3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE513B2AD63C9C008E1F3C /* ContentView.swift */; };
 		D4DE513E2AD63C9C008E1F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */; };
 		D4DE51412AD63C9C008E1F3C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DE51402AD63C9C008E1F3C /* Preview Assets.xcassets */; };
+		D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */; };
+		D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51582AD64291008E1F3C /* Model.xcdatamodeld */; };
+		D4DE515C2AD64332008E1F3C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515B2AD64332008E1F3C /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		D4DE513B2AD63C9C008E1F3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4DE51402AD63C9C008E1F3C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserRoleView.swift; sourceTree = "<group>"; };
+		D4DE51592AD64291008E1F3C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		D4DE515B2AD64332008E1F3C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,8 @@
 		D4DE51382AD63C9C008E1F3C /* Pins3D */ = {
 			isa = PBXGroup;
 			children = (
+				D4DE514A2AD63E2E008E1F3C /* Data */,
+				D4DE51472AD63D8D008E1F3C /* Views */,
 				D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */,
 				D4DE513B2AD63C9C008E1F3C /* ContentView.swift */,
 				D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */,
@@ -65,6 +73,23 @@
 				D4DE51402AD63C9C008E1F3C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D4DE51472AD63D8D008E1F3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D4DE514A2AD63E2E008E1F3C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D4DE51582AD64291008E1F3C /* Model.xcdatamodeld */,
+				D4DE515B2AD64332008E1F3C /* Persistence.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +163,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DE513C2AD63C9C008E1F3C /* ContentView.swift in Sources */,
+				D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */,
 				D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */,
+				D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */,
+				D4DE515C2AD64332008E1F3C /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +376,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D4DE51582AD64291008E1F3C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D4DE51592AD64291008E1F3C /* Model.xcdatamodel */,
+			);
+			currentVersion = D4DE51592AD64291008E1F3C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D4DE512E2AD63C9C008E1F3C /* Project object */;
 }
