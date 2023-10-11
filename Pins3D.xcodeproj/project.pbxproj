@@ -12,6 +12,7 @@
 		D4B22D6C2AD7010400F3882B /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */; };
 		D4B22D712AD750FF00F3882B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D702AD750FF00F3882B /* Coordinator.swift */; };
 		D4B22D732AD7559000F3882B /* ScanningMachineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */; };
+		D4B22D752AD75BC500F3882B /* Coordinator+ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */; };
 		D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */; };
 		D4DE513C2AD63C9C008E1F3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE513B2AD63C9C008E1F3C /* ContentView.swift */; };
 		D4DE513E2AD63C9C008E1F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		D4B22D702AD750FF00F3882B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningMachineViewModel.swift; sourceTree = "<group>"; };
+		D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+ApplicationState.swift"; sourceTree = "<group>"; };
 		D4DE51362AD63C9C008E1F3C /* Pins3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pins3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DE513B2AD63C9C008E1F3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */,
 				D4B22D702AD750FF00F3882B /* Coordinator.swift */,
 				D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */,
+				D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */,
 			);
 			path = Scanning;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */,
+				D4B22D752AD75BC500F3882B /* Coordinator+ApplicationState.swift in Sources */,
 				D4B22D732AD7559000F3882B /* ScanningMachineViewModel.swift in Sources */,
 				D4DE513C2AD63C9C008E1F3C /* ContentView.swift in Sources */,
 				D4B22D712AD750FF00F3882B /* Coordinator.swift in Sources */,

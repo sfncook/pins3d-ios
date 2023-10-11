@@ -12,7 +12,7 @@ struct ARViewContainer: UIViewRepresentable {
         let arSCNView = ARSCNView(frame: .zero)
         arSCNView.delegate = context.coordinator
         arSCNView.session.delegate = context.coordinator
-        context.coordinator.arSCNView = arSCNView
+        context.coordinator.sceneView = arSCNView
         
         // Start AR session with horizontal plane detection
         let configuration = ARObjectScanningConfiguration()
