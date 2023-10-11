@@ -54,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D4B22D6D2AD717A600F3882B /* Scanning */ = {
+			isa = PBXGroup;
+			children = (
+				D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */,
+				D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */,
+			);
+			path = Scanning;
+			sourceTree = "<group>";
+		};
 		D4DE512D2AD63C9C008E1F3C = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +103,7 @@
 		D4DE51472AD63D8D008E1F3C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4B22D6D2AD717A600F3882B /* Scanning */,
 				D4DE51632AD647C0008E1F3C /* CatalogView.swift */,
 				D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */,
 				D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */,
@@ -101,8 +111,6 @@
 				D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */,
 				D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */,
 				D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */,
-				D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */,
-				D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
