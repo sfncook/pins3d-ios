@@ -15,6 +15,16 @@ struct CatalogView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \MyItem.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<MyItem>
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Facility.name, ascending: true)],
+        animation: .default)
+    private var facilities: FetchedResults<Facility>
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Procedure.name, ascending: true)],
+        animation: .default)
+    private var procedures: FetchedResults<Procedure>
     
     private var title: String
     
@@ -25,14 +35,24 @@ struct CatalogView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(items) { item in
+                ForEach(facilities) { facility in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text(facility.name!)
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(facility.name!)
                     }
                 }
                 .onDelete(perform: deleteItems)
+            }
+            List {
+                ForEach(procedures) { procedure in
+                    NavigationLink {
+                        Text(procedure.name!)
+                    } label: {
+                        Text(procedure.name!)
+                    }
+                }
+                .onDelete(perform: deleteProcedures)
             }
             .navigationBarTitle(self.title, displayMode: .inline)
             .toolbar {
@@ -44,6 +64,37 @@ struct CatalogView: View {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
+            }
+        }
+    }
+
+    private func addProcedure() {
+        withAnimation {
+            let newProcedure = Procedure(context: viewContext)
+            newProcedure.name = "Testing"
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+
+    private func deleteProcedures(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { procedures[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }

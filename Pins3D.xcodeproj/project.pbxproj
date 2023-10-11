@@ -18,6 +18,7 @@
 		D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */; };
 		D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */; };
 		D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51632AD647C0008E1F3C /* CatalogView.swift */; };
+		D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDetailView.swift; sourceTree = "<group>"; };
 		D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdDetailView.swift; sourceTree = "<group>"; };
 		D4DE51632AD647C0008E1F3C /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
+		D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickModuleTypeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */,
 				D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */,
 				D4DE51632AD647C0008E1F3C /* CatalogView.swift */,
+				D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */,
 				D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */,
 				D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */,
+				D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */,
 				D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */,
 				D4DE515C2AD64332008E1F3C /* Persistence.swift in Sources */,
 			);
