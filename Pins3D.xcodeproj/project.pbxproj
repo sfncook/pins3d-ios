@@ -13,6 +13,20 @@
 		D4B22D712AD750FF00F3882B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D702AD750FF00F3882B /* Coordinator.swift */; };
 		D4B22D732AD7559000F3882B /* ScanningMachineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */; };
 		D4B22D752AD75BC500F3882B /* Coordinator+ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */; };
+		D4B22D872AD75E9800F3882B /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D792AD75E9800F3882B /* Wireframe.swift */; };
+		D4B22D882AD75E9800F3882B /* CubeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D7A2AD75E9800F3882B /* CubeNode.swift */; };
+		D4B22D892AD75E9800F3882B /* ObjectOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D7B2AD75E9800F3882B /* ObjectOrigin.swift */; };
+		D4B22D8A2AD75E9800F3882B /* DetectedPointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D7C2AD75E9800F3882B /* DetectedPointCloud.swift */; };
+		D4B22D8B2AD75E9800F3882B /* ScannedPointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D7D2AD75E9800F3882B /* ScannedPointCloud.swift */; };
+		D4B22D8C2AD75E9800F3882B /* DetectedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D7E2AD75E9800F3882B /* DetectedObject.swift */; };
+		D4B22D8D2AD75E9800F3882B /* ObjectOriginAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D7F2AD75E9800F3882B /* ObjectOriginAxis.swift */; };
+		D4B22D8E2AD75E9800F3882B /* BoundingBoxSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D802AD75E9800F3882B /* BoundingBoxSide.swift */; };
+		D4B22D8F2AD75E9800F3882B /* Snapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D812AD75E9800F3882B /* Snapping.swift */; };
+		D4B22D902AD75E9800F3882B /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D822AD75E9800F3882B /* BoundingBox.swift */; };
+		D4B22D912AD75E9800F3882B /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D832AD75E9800F3882B /* Tile.swift */; };
+		D4B22D922AD75E9800F3882B /* ScannedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D842AD75E9800F3882B /* ScannedObject.swift */; };
+		D4B22D932AD75E9800F3882B /* DetectedBoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D852AD75E9800F3882B /* DetectedBoundingBox.swift */; };
+		D4B22D942AD75E9800F3882B /* PointCloud+CreateVisualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D862AD75E9800F3882B /* PointCloud+CreateVisualization.swift */; };
 		D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */; };
 		D4DE513C2AD63C9C008E1F3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE513B2AD63C9C008E1F3C /* ContentView.swift */; };
 		D4DE513E2AD63C9C008E1F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */; };
@@ -34,6 +48,20 @@
 		D4B22D702AD750FF00F3882B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningMachineViewModel.swift; sourceTree = "<group>"; };
 		D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+ApplicationState.swift"; sourceTree = "<group>"; };
+		D4B22D792AD75E9800F3882B /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
+		D4B22D7A2AD75E9800F3882B /* CubeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeNode.swift; sourceTree = "<group>"; };
+		D4B22D7B2AD75E9800F3882B /* ObjectOrigin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectOrigin.swift; sourceTree = "<group>"; };
+		D4B22D7C2AD75E9800F3882B /* DetectedPointCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectedPointCloud.swift; sourceTree = "<group>"; };
+		D4B22D7D2AD75E9800F3882B /* ScannedPointCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannedPointCloud.swift; sourceTree = "<group>"; };
+		D4B22D7E2AD75E9800F3882B /* DetectedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectedObject.swift; sourceTree = "<group>"; };
+		D4B22D7F2AD75E9800F3882B /* ObjectOriginAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectOriginAxis.swift; sourceTree = "<group>"; };
+		D4B22D802AD75E9800F3882B /* BoundingBoxSide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxSide.swift; sourceTree = "<group>"; };
+		D4B22D812AD75E9800F3882B /* Snapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snapping.swift; sourceTree = "<group>"; };
+		D4B22D822AD75E9800F3882B /* BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
+		D4B22D832AD75E9800F3882B /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		D4B22D842AD75E9800F3882B /* ScannedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannedObject.swift; sourceTree = "<group>"; };
+		D4B22D852AD75E9800F3882B /* DetectedBoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectedBoundingBox.swift; sourceTree = "<group>"; };
+		D4B22D862AD75E9800F3882B /* PointCloud+CreateVisualization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PointCloud+CreateVisualization.swift"; sourceTree = "<group>"; };
 		D4DE51362AD63C9C008E1F3C /* Pins3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pins3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DE513B2AD63C9C008E1F3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +100,27 @@
 			path = Scanning;
 			sourceTree = "<group>";
 		};
+		D4B22D782AD75E6B00F3882B /* 3DVisualizations */ = {
+			isa = PBXGroup;
+			children = (
+				D4B22D822AD75E9800F3882B /* BoundingBox.swift */,
+				D4B22D802AD75E9800F3882B /* BoundingBoxSide.swift */,
+				D4B22D7A2AD75E9800F3882B /* CubeNode.swift */,
+				D4B22D852AD75E9800F3882B /* DetectedBoundingBox.swift */,
+				D4B22D7E2AD75E9800F3882B /* DetectedObject.swift */,
+				D4B22D7C2AD75E9800F3882B /* DetectedPointCloud.swift */,
+				D4B22D7B2AD75E9800F3882B /* ObjectOrigin.swift */,
+				D4B22D7F2AD75E9800F3882B /* ObjectOriginAxis.swift */,
+				D4B22D862AD75E9800F3882B /* PointCloud+CreateVisualization.swift */,
+				D4B22D842AD75E9800F3882B /* ScannedObject.swift */,
+				D4B22D7D2AD75E9800F3882B /* ScannedPointCloud.swift */,
+				D4B22D812AD75E9800F3882B /* Snapping.swift */,
+				D4B22D832AD75E9800F3882B /* Tile.swift */,
+				D4B22D792AD75E9800F3882B /* Wireframe.swift */,
+			);
+			path = 3DVisualizations;
+			sourceTree = "<group>";
+		};
 		D4DE512D2AD63C9C008E1F3C = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +140,7 @@
 		D4DE51382AD63C9C008E1F3C /* Pins3D */ = {
 			isa = PBXGroup;
 			children = (
+				D4B22D782AD75E6B00F3882B /* 3DVisualizations */,
 				D4DE514A2AD63E2E008E1F3C /* Data */,
 				D4DE51472AD63D8D008E1F3C /* Views */,
 				D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */,
@@ -203,22 +253,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B22D872AD75E9800F3882B /* Wireframe.swift in Sources */,
+				D4B22D932AD75E9800F3882B /* DetectedBoundingBox.swift in Sources */,
 				D4DE515E2AD64606008E1F3C /* FirstDetailView.swift in Sources */,
 				D4B22D6A2AD6FF8700F3882B /* ScanningMachineView.swift in Sources */,
 				D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */,
+				D4B22D882AD75E9800F3882B /* CubeNode.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */,
 				D4B22D752AD75BC500F3882B /* Coordinator+ApplicationState.swift in Sources */,
+				D4B22D8C2AD75E9800F3882B /* DetectedObject.swift in Sources */,
+				D4B22D922AD75E9800F3882B /* ScannedObject.swift in Sources */,
+				D4B22D8B2AD75E9800F3882B /* ScannedPointCloud.swift in Sources */,
 				D4B22D732AD7559000F3882B /* ScanningMachineViewModel.swift in Sources */,
+				D4B22D902AD75E9800F3882B /* BoundingBox.swift in Sources */,
 				D4DE513C2AD63C9C008E1F3C /* ContentView.swift in Sources */,
+				D4B22D8F2AD75E9800F3882B /* Snapping.swift in Sources */,
 				D4B22D712AD750FF00F3882B /* Coordinator.swift in Sources */,
+				D4B22D912AD75E9800F3882B /* Tile.swift in Sources */,
+				D4B22D8D2AD75E9800F3882B /* ObjectOriginAxis.swift in Sources */,
 				D4B22D6C2AD7010400F3882B /* ARViewContainer.swift in Sources */,
 				D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */,
 				D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */,
 				D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */,
+				D4B22D942AD75E9800F3882B /* PointCloud+CreateVisualization.swift in Sources */,
 				D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */,
 				D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */,
+				D4B22D8E2AD75E9800F3882B /* BoundingBoxSide.swift in Sources */,
 				D4DE515C2AD64332008E1F3C /* Persistence.swift in Sources */,
+				D4B22D8A2AD75E9800F3882B /* DetectedPointCloud.swift in Sources */,
+				D4B22D892AD75E9800F3882B /* ObjectOrigin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
