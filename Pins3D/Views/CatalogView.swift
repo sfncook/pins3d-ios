@@ -28,12 +28,19 @@ struct CatalogView: View {
     
     private var title: String
     
+    @State private var isShowingNewView = false
+    
     init(title: String) {
         self.title = title
     }
-
+    
     var body: some View {
         VStack {
+            // Invisible NavigationLink
+            NavigationLink(destination: PickModuleTypeView(), isActive: $isShowingNewView) {
+                EmptyView()
+            }.opacity(0)
+            
             List {
                 ForEach(facilities) { facility in
                     NavigationLink {
@@ -60,7 +67,10 @@ struct CatalogView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: {
+                        // 4. Trigger navigation when the button is pressed
+                        self.isShowingNewView = true
+                    }) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
