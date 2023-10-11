@@ -37,6 +37,8 @@ struct CatalogView: View {
     
     init(title: String) {
         self.title = title
+        
+//        print(machines.map { $0.name ?? "nil" })
     }
     
     var body: some View {
@@ -62,7 +64,7 @@ struct CatalogView: View {
                         Text(machine.name!)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteMachines)
             }
             List {
                 ForEach(procedures) { procedure in
@@ -93,10 +95,9 @@ struct CatalogView: View {
         }
     }
 
-    private func addProcedure() {
+    private func deleteMachines(offsets: IndexSet) {
         withAnimation {
-            let newProcedure = Procedure(context: viewContext)
-            newProcedure.name = "Testing"
+            offsets.map { machines[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()

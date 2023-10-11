@@ -40,6 +40,7 @@ struct CreateMachineView: View {
     private func saveNewMachine() {
         withAnimation {
             let newMachine = Machine(context: viewContext)
+            newMachine.id = UUID()
             newMachine.name = self.machineName
 
             do {
