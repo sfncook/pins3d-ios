@@ -31,9 +31,27 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
                                                object: nil)
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         guard let frame = sceneView?.session.currentFrame else { return }
         Coordinator.scan?.updateOnEveryFrame(frame)
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        /*if let objectAnchor = anchor as? ARObjectAnchor {
+            if let testRun = self.testRun, objectAnchor.referenceObject == testRun.referenceObject {
+                testRun.successfulDetection(objectAnchor)
+//                let messageText = """
+//                    Object successfully detected from this angle.
+//
+//                    """ + testRun.statistics
+//                displayMessage(messageText, expirationTime: testRun.resultDisplayDuration)
+            }
+        } else */ if state == .scanning, let planeAnchor = anchor as? ARPlaneAnchor {
+            Coordinator.scan?.scannedObject.tryToAlignWithPlanes([planeAnchor])
+            
+            // After a plane was found, disable plane detection for performance reasons.
+            sceneView?.stopPlaneDetection()
+        }
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {

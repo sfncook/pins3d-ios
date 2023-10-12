@@ -340,7 +340,7 @@ class Scan {
     }
     
     func updateOnEveryFrame(_ frame: ARFrame) {
-        print("updateOnEveryFrame \(state)")
+//        print("updateOnEveryFrame \(state)")
         if state == .ready || state == .defineBoundingBox {
             if let points = frame.rawFeaturePoints {
                 // Automatically adjust the size of the bounding box.
