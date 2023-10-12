@@ -44,6 +44,7 @@
 		D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */; };
 		D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */; };
 		D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51632AD647C0008E1F3C /* CatalogView.swift */; };
+		D4E826372AD79E43006E472A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E826362AD79E43006E472A /* art.scnassets */; };
 		D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDetailView.swift; sourceTree = "<group>"; };
 		D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdDetailView.swift; sourceTree = "<group>"; };
 		D4DE51632AD647C0008E1F3C /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
+		D4E826362AD79E43006E472A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickModuleTypeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 				D4DE513B2AD63C9C008E1F3C /* ContentView.swift */,
 				D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */,
 				D4DE513F2AD63C9C008E1F3C /* Preview Content */,
+				D4E826362AD79E43006E472A /* art.scnassets */,
 			);
 			path = Pins3D;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			files = (
 				D4DE51412AD63C9C008E1F3C /* Preview Assets.xcassets in Resources */,
 				D4DE513E2AD63C9C008E1F3C /* Assets.xcassets in Resources */,
+				D4E826372AD79E43006E472A /* art.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
