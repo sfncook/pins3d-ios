@@ -20,7 +20,7 @@ class DetectedPointCloud: SCNNode, PointCloud {
     private let INCHES_5: Float = 0.127
     private let INCHES_3: Float = 0.0762
     private var manyAnnotations = 0
-    var viewCtl: ViewController?
+//    var viewCtl: ViewController?
     
     private let innerCubesColor: UIColor = UIColor.clear
     
@@ -205,14 +205,14 @@ class DetectedPointCloud: SCNNode, PointCloud {
 
             if let textNode = textNode {
                 print("User clicked preexisting annotation")
-                let alertController = UIAlertController(title: "Delete this step?", message: nil, preferredStyle: .alert)
-                let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-                    textNode.removeFromParentNode()
-                }
-                let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-                alertController.addAction(yesAction)
-                alertController.addAction(noAction)
-                viewCtl?.present(alertController, animated: true, completion: nil)
+//                let alertController = UIAlertController(title: "Delete this step?", message: nil, preferredStyle: .alert)
+//                let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+//                    textNode.removeFromParentNode()
+//                }
+//                let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+//                alertController.addAction(yesAction)
+//                alertController.addAction(noAction)
+//                viewCtl?.present(alertController, animated: true, completion: nil)
             } else if let cubeFillNode = hitResults.first(where: { $0.node.name == "CubeFill" }) {
                 print("Found a node named CubeFill!")
                 
@@ -234,55 +234,55 @@ class DetectedPointCloud: SCNNode, PointCloud {
     }
     
     func getStepNumberText(initNumber: Int, completionHandler: @escaping (Bool, String?) -> Void) {
-        let alertController = UIAlertController(title: "Add step number?", message: nil, preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.placeholder = "\(initNumber)"
-        }
-        
-        let addTextAction = UIAlertAction(title: "Add Number", style: .default) { _ in
-            let userInput = alertController.textFields?.first?.text
-            completionHandler(true, userInput)
-        }
-        
-        let noTextAction = UIAlertAction(title: "No Number", style: .default) { _ in
-            completionHandler(true, nil)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)  { _ in
-            completionHandler(false, nil)
-        }
-    
-        alertController.addAction(addTextAction)
-        alertController.addAction(noTextAction)
-        alertController.addAction(cancelAction)
-        
-        viewCtl?.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "Add step number?", message: nil, preferredStyle: .alert)
+//        alertController.addTextField { textField in
+//            textField.placeholder = "\(initNumber)"
+//        }
+//        
+//        let addTextAction = UIAlertAction(title: "Add Number", style: .default) { _ in
+//            let userInput = alertController.textFields?.first?.text
+//            completionHandler(true, userInput)
+//        }
+//        
+//        let noTextAction = UIAlertAction(title: "No Number", style: .default) { _ in
+//            completionHandler(true, nil)
+//        }
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)  { _ in
+//            completionHandler(false, nil)
+//        }
+//    
+//        alertController.addAction(addTextAction)
+//        alertController.addAction(noTextAction)
+//        alertController.addAction(cancelAction)
+//        
+//        viewCtl?.present(alertController, animated: true, completion: nil)
     }
     
     func getAnnotationText(completionHandler: @escaping (Bool, String?) -> Void) {
-        let alertController = UIAlertController(title: "Add text to step?", message: nil, preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.placeholder = "Step text"
-        }
-        
-        let addTextAction = UIAlertAction(title: "Add Text", style: .default) { _ in
-            let userInput = alertController.textFields?.first?.text
-            completionHandler(true, userInput)
-        }
-        
-        let noTextAction = UIAlertAction(title: "No Text", style: .default) { _ in
-            completionHandler(true, nil)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)  { _ in
-            completionHandler(false, nil)
-        }
-    
-        alertController.addAction(addTextAction)
-        alertController.addAction(noTextAction)
-        alertController.addAction(cancelAction)
-        
-        viewCtl?.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "Add text to step?", message: nil, preferredStyle: .alert)
+//        alertController.addTextField { textField in
+//            textField.placeholder = "Step text"
+//        }
+//        
+//        let addTextAction = UIAlertAction(title: "Add Text", style: .default) { _ in
+//            let userInput = alertController.textFields?.first?.text
+//            completionHandler(true, userInput)
+//        }
+//        
+//        let noTextAction = UIAlertAction(title: "No Text", style: .default) { _ in
+//            completionHandler(true, nil)
+//        }
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)  { _ in
+//            completionHandler(false, nil)
+//        }
+//    
+//        alertController.addAction(addTextAction)
+//        alertController.addAction(noTextAction)
+//        alertController.addAction(cancelAction)
+//        
+//        viewCtl?.present(alertController, animated: true, completion: nil)
     }
     
     func addAnnotation(node: SCNNode) {

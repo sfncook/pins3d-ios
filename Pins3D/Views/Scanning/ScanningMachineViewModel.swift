@@ -8,7 +8,10 @@ import SwiftUI
 import ARKit
 
 class ScanningMachineViewModel: ObservableObject {
+    static let updateCenterPointNotification = Notification.Name("UpdateCenterPoint")
+    
     @Published var cameraTrackingState: ARCamera.TrackingState?
+    @Published var showAlert: Bool = false
     
     init() {
         NotificationCenter.default.addObserver(self,
@@ -21,5 +24,9 @@ class ScanningMachineViewModel: ObservableObject {
     private func cameraTrackingStateChanged(_ notification: Notification) {
         guard let cameraTrackingState = notification.userInfo?[Coordinator.cameraTrackingStateKey] as? ARCamera.TrackingState else { return }
         self.cameraTrackingState = cameraTrackingState
+    }
+    
+    func updateCenter() {
+        NotificationCenter.default.post(name: ScanningMachineViewModel.updateCenterPointNotification, object: self)
     }
 }

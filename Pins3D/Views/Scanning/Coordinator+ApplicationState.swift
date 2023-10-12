@@ -68,7 +68,7 @@ extension Coordinator {
             switch newState {
             case .startARSession:
                 print("AppState: Starting ARSession")
-                scan = nil
+                Coordinator.scan = nil
 //                testRun = nil
 //                modelURL = nil
 //                self.setNavigationBarTitle("")
@@ -90,7 +90,7 @@ extension Coordinator {
 //                cancelMessageExpirationTimer()
             case .notReady:
                 print("AppState: Not ready to scan")
-                scan = nil
+                Coordinator.scan = nil
 //                testRun = nil
 //                self.setNavigationBarTitle("")
 //                scanModelButton.isHidden = true
@@ -103,9 +103,9 @@ extension Coordinator {
 //                cancelMaxScanTimeTimer()
             case .scanning:
                 print("AppState: Scanning")
-                if scan == nil {
-                    self.scan = Scan(sceneView)
-                    self.scan?.state = .ready
+                if Coordinator.scan == nil {
+                    Coordinator.scan = Scan(sceneView!)
+                    Coordinator.scan?.state = .ready
                 }
 //                testRun = nil
 //                instructionsVisible = false
@@ -136,7 +136,7 @@ extension Coordinator {
     
     @objc
     func scanningStateChanged(_ notification: Notification) {
-        guard self.state == .scanning, let scan = notification.object as? Scan, scan === self.scan else { return }
+        guard self.state == .scanning, let scan = notification.object as? Scan, scan === Coordinator.scan else { return }
         guard let scanState = notification.userInfo?[Scan.stateUserInfoKey] as? Scan.State else { return }
         
         DispatchQueue.main.async {
@@ -177,7 +177,7 @@ extension Coordinator {
 //                self.loadModelButton.isHidden = true
 //                self.instructionsVisible = false
                 // Disable plane detection (even if no plane has been found yet at this time) for performance reasons.
-                self.sceneView.stopPlaneDetection()
+                self.sceneView!.stopPlaneDetection()
             case .adjustingOrigin:
                 print("State: Adjusting Origin")
 //                self.displayInstruction(Message("Adjust origin using gestures.\n" +
@@ -200,10 +200,11 @@ extension Coordinator {
         case .notReady:
             state = .startARSession
         case .scanning:
-            if let scan = scan {
+            if let scan = Coordinator.scan {
                 switch scan.state {
                 case .ready:
-                    restartButtonTapped(self)
+//                    restartButtonTapped(self)
+                    self.state = .startARSession
                 case .defineBoundingBox:
                     scan.state = .ready
                 case .scanning:
@@ -214,7 +215,7 @@ extension Coordinator {
             }
         case .testing:
             state = .scanning
-            scan?.state = .scanning
+            Coordinator.scan?.state = .scanning
         }
     }
     
@@ -225,7 +226,7 @@ extension Coordinator {
         case .notReady:
             state = .scanning
         case .scanning:
-            if let scan = scan {
+            if let scan = Coordinator.scan {
                 switch scan.state {
                 case .ready:
                     scan.state = .defineBoundingBox
@@ -246,7 +247,7 @@ extension Coordinator {
     
     @objc
     func ghostBoundingBoxWasCreated(_ notification: Notification) {
-        if let scan = scan, scan.state == .ready {
+        if let scan = Coordinator.scan, scan.state == .ready {
 //            DispatchQueue.main.async {
 //                self.displayInstruction(Message("Look at target object, click 'Start'"))
 //                self.scanModelButton.isHidden = false
@@ -258,7 +259,7 @@ extension Coordinator {
     
     @objc
     func ghostBoundingBoxWasRemoved(_ notification: Notification) {
-        if let scan = scan, scan.state == .ready {
+        if let scan = Coordinator.scan, scan.state == .ready {
 //            DispatchQueue.main.async {
 //                self.displayInstruction(Message("Readjusting, one moment please"))
 //                self.scanModelButton.isHidden = true
@@ -270,7 +271,7 @@ extension Coordinator {
     
     @objc
     func boundingBoxWasCreated(_ notification: Notification) {
-        if let scan = scan, scan.state == .defineBoundingBox {
+        if let scan = Coordinator.scan, scan.state == .defineBoundingBox {
 //            DispatchQueue.main.async {
 //                self.nextButton.isEnabled = true
 //            }

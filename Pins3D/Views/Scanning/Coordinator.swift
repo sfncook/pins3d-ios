@@ -8,7 +8,16 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     static let appStateUserInfoKey = "AppState"
     
     var sceneView: ARSCNView?
-    internal var internalState: State = .startARSession
+    var internalState: AppState = .startARSession
+    static var scan: Scan?
+    
+    override init() {
+        super.init()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.updateCenterPoint(_:)),
+                                               name: ScanningMachineViewModel.updateCenterPointNotification,
+                                               object: nil)
+    }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
     }
@@ -17,6 +26,11 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
         NotificationCenter.default.post(name: Coordinator.cameraTrackingStateChangedNotification,
                                         object: self,
                                         userInfo: [Coordinator.cameraTrackingStateKey: camera.trackingState])
+    }
+    
+    @objc
+    private func updateCenterPoint(_ notification: Notification) {
+        CGPoint.screenCenter = sceneView?.center ?? CGPoint()
     }
 
 }

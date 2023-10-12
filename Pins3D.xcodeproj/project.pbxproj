@@ -27,6 +27,12 @@
 		D4B22D922AD75E9800F3882B /* ScannedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D842AD75E9800F3882B /* ScannedObject.swift */; };
 		D4B22D932AD75E9800F3882B /* DetectedBoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D852AD75E9800F3882B /* DetectedBoundingBox.swift */; };
 		D4B22D942AD75E9800F3882B /* PointCloud+CreateVisualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D862AD75E9800F3882B /* PointCloud+CreateVisualization.swift */; };
+		D4B22D962AD75EC700F3882B /* Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D952AD75EC700F3882B /* Scan.swift */; };
+		D4B22D9B2AD773D500F3882B /* ThresholdRotationGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D982AD773D500F3882B /* ThresholdRotationGestureRecognizer.swift */; };
+		D4B22D9C2AD773D500F3882B /* ThresholdPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D992AD773D500F3882B /* ThresholdPanGestureRecognizer.swift */; };
+		D4B22D9D2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D9A2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift */; };
+		D4B22DA12AD774C700F3882B /* ARCameraTrackingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D9F2AD774C700F3882B /* ARCameraTrackingState.swift */; };
+		D4B22DA22AD774C700F3882B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22DA02AD774C700F3882B /* Utilities.swift */; };
 		D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */; };
 		D4DE513C2AD63C9C008E1F3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE513B2AD63C9C008E1F3C /* ContentView.swift */; };
 		D4DE513E2AD63C9C008E1F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */; };
@@ -62,6 +68,12 @@
 		D4B22D842AD75E9800F3882B /* ScannedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannedObject.swift; sourceTree = "<group>"; };
 		D4B22D852AD75E9800F3882B /* DetectedBoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectedBoundingBox.swift; sourceTree = "<group>"; };
 		D4B22D862AD75E9800F3882B /* PointCloud+CreateVisualization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PointCloud+CreateVisualization.swift"; sourceTree = "<group>"; };
+		D4B22D952AD75EC700F3882B /* Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
+		D4B22D982AD773D500F3882B /* ThresholdRotationGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThresholdRotationGestureRecognizer.swift; sourceTree = "<group>"; };
+		D4B22D992AD773D500F3882B /* ThresholdPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThresholdPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		D4B22D9A2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThresholdPinchGestureRecognizer.swift; sourceTree = "<group>"; };
+		D4B22D9F2AD774C700F3882B /* ARCameraTrackingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCameraTrackingState.swift; sourceTree = "<group>"; };
+		D4B22DA02AD774C700F3882B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D4DE51362AD63C9C008E1F3C /* Pins3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pins3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DE513B2AD63C9C008E1F3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */,
+				D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */,
 				D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */,
 				D4B22D702AD750FF00F3882B /* Coordinator.swift */,
-				D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */,
 				D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */,
 			);
 			path = Scanning;
@@ -117,8 +129,28 @@
 				D4B22D812AD75E9800F3882B /* Snapping.swift */,
 				D4B22D832AD75E9800F3882B /* Tile.swift */,
 				D4B22D792AD75E9800F3882B /* Wireframe.swift */,
+				D4B22D952AD75EC700F3882B /* Scan.swift */,
 			);
 			path = 3DVisualizations;
+			sourceTree = "<group>";
+		};
+		D4B22D972AD773C500F3882B /* Gesture Recognizers */ = {
+			isa = PBXGroup;
+			children = (
+				D4B22D992AD773D500F3882B /* ThresholdPanGestureRecognizer.swift */,
+				D4B22D9A2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift */,
+				D4B22D982AD773D500F3882B /* ThresholdRotationGestureRecognizer.swift */,
+			);
+			path = "Gesture Recognizers";
+			sourceTree = "<group>";
+		};
+		D4B22D9E2AD774B400F3882B /* Utility Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4B22D9F2AD774C700F3882B /* ARCameraTrackingState.swift */,
+				D4B22DA02AD774C700F3882B /* Utilities.swift */,
+			);
+			path = "Utility Extensions";
 			sourceTree = "<group>";
 		};
 		D4DE512D2AD63C9C008E1F3C = {
@@ -140,6 +172,8 @@
 		D4DE51382AD63C9C008E1F3C /* Pins3D */ = {
 			isa = PBXGroup;
 			children = (
+				D4B22D9E2AD774B400F3882B /* Utility Extensions */,
+				D4B22D972AD773C500F3882B /* Gesture Recognizers */,
 				D4B22D782AD75E6B00F3882B /* 3DVisualizations */,
 				D4DE514A2AD63E2E008E1F3C /* Data */,
 				D4DE51472AD63D8D008E1F3C /* Views */,
@@ -253,11 +287,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B22DA12AD774C700F3882B /* ARCameraTrackingState.swift in Sources */,
+				D4B22D9D2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift in Sources */,
 				D4B22D872AD75E9800F3882B /* Wireframe.swift in Sources */,
 				D4B22D932AD75E9800F3882B /* DetectedBoundingBox.swift in Sources */,
+				D4B22D962AD75EC700F3882B /* Scan.swift in Sources */,
 				D4DE515E2AD64606008E1F3C /* FirstDetailView.swift in Sources */,
+				D4B22DA22AD774C700F3882B /* Utilities.swift in Sources */,
 				D4B22D6A2AD6FF8700F3882B /* ScanningMachineView.swift in Sources */,
 				D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */,
+				D4B22D9C2AD773D500F3882B /* ThresholdPanGestureRecognizer.swift in Sources */,
 				D4B22D882AD75E9800F3882B /* CubeNode.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */,
@@ -275,6 +314,7 @@
 				D4B22D6C2AD7010400F3882B /* ARViewContainer.swift in Sources */,
 				D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */,
 				D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */,
+				D4B22D9B2AD773D500F3882B /* ThresholdRotationGestureRecognizer.swift in Sources */,
 				D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */,
 				D4B22D942AD75E9800F3882B /* PointCloud+CreateVisualization.swift in Sources */,
 				D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */,
