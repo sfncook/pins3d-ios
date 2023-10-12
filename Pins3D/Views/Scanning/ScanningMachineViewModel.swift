@@ -18,6 +18,7 @@ class ScanningMachineViewModel: ObservableObject {
     @Published var showSetScanningReadyButton: Bool = false
     @Published var showStartDefiningBoxButton: Bool = false
     @Published var showStartScanningButton: Bool = false
+    @Published var showStartScanningButtons: Bool = false
     @Published var showScanningButtons: Bool = false
     
     init() {
@@ -49,11 +50,12 @@ class ScanningMachineViewModel: ObservableObject {
     func startDefiningBox() {
         NotificationCenter.default.post(name: ScanningMachineViewModel.startDefiningBoxNotification, object: self)
         showStartDefiningBoxButton = false
-        showScanningButtons = true
+        showStartScanningButton = true
     }
     
     func startScanning() {
         NotificationCenter.default.post(name: ScanningMachineViewModel.startScanningNotification, object: self)
-        showScanningButtons = false
+        showStartScanningButton = false
+        showScanningButtons = true
     }
 }
