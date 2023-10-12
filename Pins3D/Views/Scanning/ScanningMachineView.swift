@@ -41,30 +41,46 @@ struct ScanningMachineView: View {
                 
                 Spacer()
                 
-                HStack {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Cancel")
-                            .padding()
-                            .background(Color.white)
-                            .foregroundColor(.blue)
-                            .cornerRadius(8)
-                    }
-                    
+                if $viewModel.showStartScanningButton.wrappedValue {
                     Spacer()
                     
                     Button(action: {
-                        print("Done pressed")
+                        print("Clicked Start Scanning")
+                        viewModel.startScanning()
                     }) {
-                        Text("Done")
+                        Text("Start Scanning")
                             .padding()
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
+                    .padding(.all, 20)
+                } else if $viewModel.showScanningButtons.wrappedValue {
+                    HStack {
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Text("Cancel")
+                                .padding()
+                                .background(Color.white)
+                                .foregroundColor(.blue)
+                                .cornerRadius(8)
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            print("Done pressed")
+                        }) {
+                            Text("Done")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .padding(.all, 20)
                 }
-                .padding(.all, 20)
             }
             .padding(.top, 10)
         }

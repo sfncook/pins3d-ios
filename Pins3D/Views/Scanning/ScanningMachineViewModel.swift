@@ -9,9 +9,12 @@ import ARKit
 
 class ScanningMachineViewModel: ObservableObject {
     static let updateCenterPointNotification = Notification.Name("UpdateCenterPoint")
+    static let switchToNextStateNotification = Notification.Name("SwitchToNextState")
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
     @Published var showAlert: Bool = false
+    @Published var showStartScanningButton: Bool = false
+    @Published var showScanningButtons: Bool = false
     
     init() {
         NotificationCenter.default.addObserver(self,
@@ -24,9 +27,16 @@ class ScanningMachineViewModel: ObservableObject {
     private func cameraTrackingStateChanged(_ notification: Notification) {
         guard let cameraTrackingState = notification.userInfo?[Coordinator.cameraTrackingStateKey] as? ARCamera.TrackingState else { return }
         self.cameraTrackingState = cameraTrackingState
+        if self.cameraTrackingState == .normal {
+            self.showStartScanningButton = true
+        }
     }
     
     func updateCenter() {
         NotificationCenter.default.post(name: ScanningMachineViewModel.updateCenterPointNotification, object: self)
+    }
+    
+    func startScanning() {
+        NotificationCenter.default.post(name: ScanningMachineViewModel.switchToNextStateNotification, object: self)
     }
 }

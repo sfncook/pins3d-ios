@@ -219,7 +219,7 @@ extension Coordinator {
         }
     }
     
-    func AppState() {
+    func switchToNextState() {
         switch state {
         case .startARSession:
             state = .notReady

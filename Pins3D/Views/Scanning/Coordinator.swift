@@ -17,6 +17,10 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
                                                selector: #selector(self.updateCenterPoint(_:)),
                                                name: ScanningMachineViewModel.updateCenterPointNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.switchToNextState(_:)),
+                                               name: ScanningMachineViewModel.switchToNextStateNotification,
+                                               object: nil)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -31,6 +35,11 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     @objc
     private func updateCenterPoint(_ notification: Notification) {
         CGPoint.screenCenter = sceneView?.center ?? CGPoint()
+    }
+    
+    @objc
+    private func switchToNextState(_ notification: Notification) {
+        switchToNextState()
     }
 
 }
