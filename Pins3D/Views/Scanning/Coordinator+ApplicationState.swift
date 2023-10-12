@@ -11,7 +11,7 @@ import SceneKit
 
 extension Coordinator {
     
-    enum AppState {
+    public enum AppState {
         case startARSession
         case notReady
         case scanning

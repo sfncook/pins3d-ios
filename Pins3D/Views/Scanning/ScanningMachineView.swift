@@ -9,14 +9,28 @@ struct ScanningMachineView: View {
         viewModel = ScanningMachineViewModel(machine: machine)
     }
     
-    var contentBasedOnState: Text {
+    var infoMessageContent: Text {
         switch $viewModel.cameraTrackingState.wrappedValue {
         case nil:
             return Text("Initializing")
         case .notAvailable:
             return Text("AR not available")
         case .normal:
-            return Text("Ready")
+            switch $viewModel.appState.wrappedValue {
+            case .notReady:
+                return Text("Not Ready")
+            case .startARSession:
+                return Text("Ready")
+            case .scanning:
+                if($viewModel.showSavingMsg.wrappedValue && $viewModel.savingMsg.wrappedValue != nil) {
+                    return Text($viewModel.savingMsg.wrappedValue!)
+                } else {
+                    return Text("Scanning")
+                }
+            default:
+                return Text("Scanning")
+            }
+            
         case .limited(let reason):
             switch reason {
             case .excessiveMotion:
@@ -38,7 +52,7 @@ struct ScanningMachineView: View {
             ARViewContainer()
 
             VStack {
-                contentBasedOnState
+                infoMessageContent
                     .padding()
                     .background(Color.white.opacity(0.5))
                     .foregroundColor(.black)

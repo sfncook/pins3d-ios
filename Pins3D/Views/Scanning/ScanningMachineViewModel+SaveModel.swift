@@ -51,10 +51,11 @@ extension ScanningMachineViewModel {
             request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
             let task = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
                 if let error = error {
-                    print("Error uploading referenceObject:", error)
-//                    self.displayInstruction(Message("Error uploading referenceObject"))
+                    print("Error uploading referenceObject: \(error.localizedDescription)")
+                    self.savingMsg = "Error uploading referenceObject"
                 } else if let data = data, let responseString = String(data: data, encoding: .utf8) {
-                    print("Received response:", responseString) //{"filename":"test1","success":true}
+                    print("Received response: \(responseString)") //{"filename":"test1","success":true}
+                    // TODO: How to save anchors/pins?
 //                    self.saveSidesObject()
                 }
                 completionHandler()
@@ -63,19 +64,25 @@ extension ScanningMachineViewModel {
         } catch {
 //            self.displayInstruction(Message("Error saving referenceObject"))
             print("Can't save referenceObject: \(error.localizedDescription)")
+            self.savingMsg = "Can't save referenceObject"
             completionHandler()
         }
     }
     
     func referenceObjectReady(referenceObject: ARReferenceObject) {
+        self.showSavingMsg = true
+        self.savingMsg = "Saving AR Ref file..."
         let arObjectFilename = convertToCamelCase(machine.name ?? defaultArFilename())
         saveArModelAndUpload(arObjectFilename: arObjectFilename, referenceObject: referenceObject) {
+            self.savingMsg = "Updating machine info..."
             self.machine.arFilename = arObjectFilename
             let context = self.machine.managedObjectContext
             do {
                 try context?.save()
+                self.savingMsg = "Done."
             } catch {
                 print("ERROR saveMachineAndRefObjectFile Failed to save arFilename to machine: \(error)")
+                self.savingMsg = "Error saving machine info"
             }
         }
     }

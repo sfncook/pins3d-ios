@@ -18,12 +18,15 @@ class ScanningMachineViewModel: ObservableObject, CreateArRefModelCallback {
     
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
+    @Published var appState: Coordinator.AppState?
     @Published var showAlert: Bool = false
     @Published var showSetScanningReadyButton: Bool = false
     @Published var showStartDefiningBoxButton: Bool = false
     @Published var showStartScanningButton: Bool = false
     @Published var showStartScanningButtons: Bool = false
     @Published var showScanningButtons: Bool = false
+    @Published var showSavingMsg: Bool = false
+    @Published var savingMsg: String?
     var machine: Machine
     
     init(machine: Machine) {
@@ -32,6 +35,10 @@ class ScanningMachineViewModel: ObservableObject, CreateArRefModelCallback {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.cameraTrackingStateChanged(_:)),
                                                name: Coordinator.cameraTrackingStateChangedNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.appStateChanged(_:)),
+                                               name: Coordinator.appStateChangedNotification,
                                                object: nil)
     }
     
@@ -42,6 +49,12 @@ class ScanningMachineViewModel: ObservableObject, CreateArRefModelCallback {
         if self.cameraTrackingState == .normal {
             self.showSetScanningReadyButton = true
         }
+    }
+    
+    @objc
+    private func appStateChanged(_ notification: Notification) {
+        guard let appState = notification.userInfo?[Coordinator.appStateUserInfoKey] as? Coordinator.AppState else { return }
+        self.appState = appState
     }
     
     func updateCenter() {
