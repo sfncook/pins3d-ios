@@ -10,13 +10,13 @@ import ARKit
 
 // Convenience accessors for Asset Catalog named colors.
 extension UIColor {
-    static let appYellow = UIColor(named: "appYellow")!
-    static let appLightYellow = UIColor(named: "appLightYellow")!
-    static let appBrown = UIColor(named: "appBrown")!
-    static let appGreen = UIColor(named: "appGreen")!
-    static let appBlue = UIColor(named: "appBlue")!
-    static let appLightBlue = UIColor(named: "appLightBlue")!
-    static let appGray = UIColor(named: "appGray")!
+    static let appYellow = UIColor.yellow
+    static let appLightYellow = UIColor.yellow
+    static let appBrown = UIColor.brown
+    static let appGreen = UIColor.green
+    static let appBlue = UIColor.blue
+    static let appLightBlue = UIColor.blue
+    static let appGray = UIColor.gray
 }
 
 enum Axis {
