@@ -41,63 +41,57 @@ struct ScanningMachineView: View {
                 
                 Spacer()
                 
-                if $viewModel.showSetScanningReadyButton.wrappedValue {
-                    Spacer()
-                    
+                HStack {
                     Button(action: {
-                        print("Clicked Set Scanning Read")
-                        viewModel.setScanningReady()
+                        viewModel.resetAppAndScanningStates()
+                        self.presentationMode.wrappedValue.dismiss()
                     }) {
-                        Text("SetScanningReady")
+                        Text("Cancel")
                             .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
+                            .background(Color.white)
+                            .foregroundColor(.blue)
                             .cornerRadius(8)
                     }
-                    .padding(.all, 20)
-                } else if $viewModel.showStartDefiningBoxButton.wrappedValue {
+                    
                     Spacer()
                     
-                    Button(action: {
-                        print("Clicked Definining Box")
-                        viewModel.startDefiningBox()
-                    }) {
-                        Text("Start Defining Box")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                    .padding(.all, 20)
-                } else if $viewModel.showStartScanningButton.wrappedValue {
-                    Spacer()
-                    
-                    Button(action: {
-                        print("Clicked Start Scanning")
-                        viewModel.startScanning()
-                    }) {
-                        Text("Start Scanning")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                    .padding(.all, 20)
-                } else if $viewModel.showScanningButtons.wrappedValue {
-                    HStack {
+                    if $viewModel.showSetScanningReadyButton.wrappedValue {
                         Button(action: {
-                            viewModel.resetAppAndScanningStates()
-                            self.presentationMode.wrappedValue.dismiss()
+                            print("Clicked Set Scanning Read")
+                            viewModel.setScanningReady()
                         }) {
-                            Text("Cancel")
+                            Text("SetScanningReady")
                                 .padding()
-                                .background(Color.white)
-                                .foregroundColor(.blue)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
                                 .cornerRadius(8)
                         }
-                        
-                        Spacer()
-                        
+                        .padding(.all, 20)
+                    } else if $viewModel.showStartDefiningBoxButton.wrappedValue {
+                        Button(action: {
+                            print("Clicked Definining Box")
+                            viewModel.startDefiningBox()
+                        }) {
+                            Text("Start Defining Box")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                        .padding(.all, 20)
+                    } else if $viewModel.showStartScanningButton.wrappedValue {
+                        Button(action: {
+                            print("Clicked Start Scanning")
+                            viewModel.startScanning()
+                        }) {
+                            Text("Start Scanning")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                        .padding(.all, 20)
+                    } else if $viewModel.showScanningButtons.wrappedValue {
                         Button(action: {
                             print("Done pressed")
                         }) {
@@ -108,8 +102,8 @@ struct ScanningMachineView: View {
                                 .cornerRadius(8)
                         }
                     }
-                    .padding(.all, 20)
                 }
+                .padding(.all, 20)
             }
             .padding(.top, 10)
         }
