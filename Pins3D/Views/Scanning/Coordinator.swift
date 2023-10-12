@@ -29,6 +29,10 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
                                                selector: #selector(self.startScanning(_:)),
                                                name: ScanningMachineViewModel.startScanningNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.resetAppAndScanningStates(_:)),
+                                               name: ScanningMachineViewModel.resetAppAndScanningStatesNotification,
+                                               object: nil)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -78,6 +82,11 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     @objc
     private func startScanning(_ notification: Notification) {
         startScanning()
+    }
+    
+    @objc
+    private func resetAppAndScanningStates(_ notification: Notification) {
+        resetAppAndScanningStates()
     }
 
 }

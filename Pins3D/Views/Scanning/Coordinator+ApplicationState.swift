@@ -236,6 +236,12 @@ extension Coordinator {
         Coordinator.scan?.state = .scanning
     }
     
+    func resetAppAndScanningStates() {
+        print("resetAppAndScanningStates")
+        state = .startARSession
+        Coordinator.scan = nil
+    }
+    
     func switchToNextState() {
         switch state {
         case .startARSession:

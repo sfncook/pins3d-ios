@@ -86,6 +86,7 @@ struct ScanningMachineView: View {
                 } else if $viewModel.showScanningButtons.wrappedValue {
                     HStack {
                         Button(action: {
+                            viewModel.resetAppAndScanningStates()
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Cancel")

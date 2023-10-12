@@ -12,6 +12,7 @@ class ScanningMachineViewModel: ObservableObject {
     static let setScanningReadyNotification = Notification.Name("SetScanningReady")
     static let startDefiningBoxNotification = Notification.Name("StartDefiningBox")
     static let startScanningNotification = Notification.Name("StartScanning")
+    static let resetAppAndScanningStatesNotification = Notification.Name("resetAppAndScanningStates")
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
     @Published var showAlert: Bool = false
@@ -57,5 +58,14 @@ class ScanningMachineViewModel: ObservableObject {
         NotificationCenter.default.post(name: ScanningMachineViewModel.startScanningNotification, object: self)
         showStartScanningButton = false
         showScanningButtons = true
+    }
+    
+    func resetAppAndScanningStates() {
+        NotificationCenter.default.post(name: ScanningMachineViewModel.resetAppAndScanningStatesNotification, object: self)
+        showSetScanningReadyButton = false
+        showStartDefiningBoxButton = false
+        showStartScanningButton = false
+        showStartScanningButtons = false
+        showScanningButtons = false
     }
 }
