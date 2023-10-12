@@ -60,7 +60,7 @@ struct CatalogView: View {
             
             List {
                 ForEach(machines) { machine in
-                    NavigationLink(destination: ScanningMachineView()) {
+                    NavigationLink(destination: ScanningMachineView(machine)) {
                         Text(machine.name!)
                     }
                 }

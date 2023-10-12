@@ -242,10 +242,12 @@ extension Coordinator {
         Coordinator.scan?.state = .scanning
     }
     
-    func saveModel() {
-        print("saveModel")
+    func saveModelAndCallback(_ createArRefModelCallback: CreateArRefModelCallback) {
+        print("saveModelAndCallback")
         Coordinator.scan?.createReferenceObject { referenceObject in
             print("Ref object ready to save")
+            guard let referenceObject = referenceObject else { return }
+            createArRefModelCallback.referenceObjectReady(referenceObject: referenceObject)
         }
     }
     

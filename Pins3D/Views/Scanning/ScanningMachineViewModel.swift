@@ -7,13 +7,14 @@
 import SwiftUI
 import ARKit
 
-class ScanningMachineViewModel: ObservableObject {
+class ScanningMachineViewModel: ObservableObject, CreateArRefModelCallback {
     static let resetAppAndScanningStatesNotification = Notification.Name("resetAppAndScanningStates")
     static let updateCenterPointNotification = Notification.Name("UpdateCenterPoint")
     static let setScanningReadyNotification = Notification.Name("SetScanningReady")
     static let startDefiningBoxNotification = Notification.Name("StartDefiningBox")
     static let startScanningNotification = Notification.Name("StartScanning")
     static let saveModelNotification = Notification.Name("SaveModel")
+    static let referenceObjectCallbackKey = "referenceObjectCallbackKey"
     
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
@@ -23,8 +24,11 @@ class ScanningMachineViewModel: ObservableObject {
     @Published var showStartScanningButton: Bool = false
     @Published var showStartScanningButtons: Bool = false
     @Published var showScanningButtons: Bool = false
+    var machine: Machine
     
-    init() {
+    init(machine: Machine) {
+        print("ScanningMachineViewModel.init \(machine.name)")
+        self.machine = machine
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.cameraTrackingStateChanged(_:)),
                                                name: Coordinator.cameraTrackingStateChangedNotification,
@@ -63,7 +67,9 @@ class ScanningMachineViewModel: ObservableObject {
     }
     
     func saveModel() {
-        NotificationCenter.default.post(name: ScanningMachineViewModel.saveModelNotification, object: self)
+        NotificationCenter.default.post(name: ScanningMachineViewModel.saveModelNotification,
+                                        object: self,
+                                        userInfo: [ScanningMachineViewModel.referenceObjectCallbackKey: self])
         showSetScanningReadyButton = false
         showStartDefiningBoxButton = false
         showStartScanningButton = false

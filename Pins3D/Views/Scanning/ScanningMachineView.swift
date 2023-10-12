@@ -2,8 +2,12 @@ import SwiftUI
 import ARKit
 
 struct ScanningMachineView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel = ScanningMachineViewModel()
+    @Environment(\.presentationMode) private var presentationMode
+    @ObservedObject var viewModel: ScanningMachineViewModel
+    
+    init(_ machine: Machine) {
+        viewModel = ScanningMachineViewModel(machine: machine)
+    }
     
     var contentBasedOnState: Text {
         switch $viewModel.cameraTrackingState.wrappedValue {

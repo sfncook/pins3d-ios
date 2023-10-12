@@ -6,6 +6,8 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     static let cameraTrackingStateKey = "CameraTrackingState"
     static let appStateChangedNotification = Notification.Name("ApplicationStateChanged")
     static let appStateUserInfoKey = "AppState"
+    static let referenceObjectReadyNotification = Notification.Name("referenceObjectReady")
+    static let referenceObjectKey = "referenceObjectKey"
     
     var sceneView: ARSCNView?
     var internalState: AppState = .startARSession
@@ -95,7 +97,8 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     
     @objc
     private func saveModel(_ notification: Notification) {
-        saveModel()
+        guard let createArRefModelCallback = notification.userInfo?[ScanningMachineViewModel.referenceObjectCallbackKey] as? CreateArRefModelCallback else { return }
+        saveModelAndCallback(createArRefModelCallback)
     }
 
 }

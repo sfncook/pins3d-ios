@@ -44,6 +44,7 @@
 		D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */; };
 		D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */; };
 		D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51632AD647C0008E1F3C /* CatalogView.swift */; };
+		D4E179172AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E179162AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift */; };
 		D4E826372AD79E43006E472A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E826362AD79E43006E472A /* art.scnassets */; };
 		D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDetailView.swift; sourceTree = "<group>"; };
 		D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdDetailView.swift; sourceTree = "<group>"; };
 		D4DE51632AD647C0008E1F3C /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
+		D4E179162AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningMachineViewModel+SaveModel.swift"; sourceTree = "<group>"; };
 		D4E826362AD79E43006E472A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickModuleTypeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +109,7 @@
 			children = (
 				D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */,
 				D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */,
+				D4E179162AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift */,
 				D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */,
 				D4B22D702AD750FF00F3882B /* Coordinator.swift */,
 				D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */,
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4B22DA12AD774C700F3882B /* ARCameraTrackingState.swift in Sources */,
+				D4E179172AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift in Sources */,
 				D4B22D9D2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift in Sources */,
 				D4B22D872AD75E9800F3882B /* Wireframe.swift in Sources */,
 				D4B22D932AD75E9800F3882B /* DetectedBoundingBox.swift in Sources */,
