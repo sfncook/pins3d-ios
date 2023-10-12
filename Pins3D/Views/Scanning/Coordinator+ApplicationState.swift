@@ -219,6 +219,12 @@ extension Coordinator {
         }
     }
     
+    func resetAppAndScanningStates() {
+        print("resetAppAndScanningStates")
+        state = .startARSession
+        Coordinator.scan = nil
+    }
+    
     func setScanningReady() {
         print("setScanningReady")
         state = .scanning
@@ -236,10 +242,11 @@ extension Coordinator {
         Coordinator.scan?.state = .scanning
     }
     
-    func resetAppAndScanningStates() {
-        print("resetAppAndScanningStates")
-        state = .startARSession
-        Coordinator.scan = nil
+    func saveModel() {
+        print("saveModel")
+        Coordinator.scan?.createReferenceObject { referenceObject in
+            print("Ref object ready to save")
+        }
     }
     
     func switchToNextState() {

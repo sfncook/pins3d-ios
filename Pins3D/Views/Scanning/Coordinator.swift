@@ -14,6 +14,10 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     override init() {
         super.init()
         NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.resetAppAndScanningStates(_:)),
+                                               name: ScanningMachineViewModel.resetAppAndScanningStatesNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.updateCenterPoint(_:)),
                                                name: ScanningMachineViewModel.updateCenterPointNotification,
                                                object: nil)
@@ -30,8 +34,8 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
                                                name: ScanningMachineViewModel.startScanningNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.resetAppAndScanningStates(_:)),
-                                               name: ScanningMachineViewModel.resetAppAndScanningStatesNotification,
+                                               selector: #selector(self.saveModel(_:)),
+                                               name: ScanningMachineViewModel.saveModelNotification,
                                                object: nil)
     }
     
@@ -65,6 +69,11 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     @objc
+    private func resetAppAndScanningStates(_ notification: Notification) {
+        resetAppAndScanningStates()
+    }
+    
+    @objc
     private func updateCenterPoint(_ notification: Notification) {
         CGPoint.screenCenter = sceneView?.center ?? CGPoint()
     }
@@ -85,8 +94,8 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     @objc
-    private func resetAppAndScanningStates(_ notification: Notification) {
-        resetAppAndScanningStates()
+    private func saveModel(_ notification: Notification) {
+        saveModel()
     }
 
 }

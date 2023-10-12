@@ -8,11 +8,13 @@ import SwiftUI
 import ARKit
 
 class ScanningMachineViewModel: ObservableObject {
+    static let resetAppAndScanningStatesNotification = Notification.Name("resetAppAndScanningStates")
     static let updateCenterPointNotification = Notification.Name("UpdateCenterPoint")
     static let setScanningReadyNotification = Notification.Name("SetScanningReady")
     static let startDefiningBoxNotification = Notification.Name("StartDefiningBox")
     static let startScanningNotification = Notification.Name("StartScanning")
-    static let resetAppAndScanningStatesNotification = Notification.Name("resetAppAndScanningStates")
+    static let saveModelNotification = Notification.Name("SaveModel")
+    
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
     @Published var showAlert: Bool = false
@@ -58,6 +60,15 @@ class ScanningMachineViewModel: ObservableObject {
         NotificationCenter.default.post(name: ScanningMachineViewModel.startScanningNotification, object: self)
         showStartScanningButton = false
         showScanningButtons = true
+    }
+    
+    func saveModel() {
+        NotificationCenter.default.post(name: ScanningMachineViewModel.saveModelNotification, object: self)
+        showSetScanningReadyButton = false
+        showStartDefiningBoxButton = false
+        showStartScanningButton = false
+        showStartScanningButtons = false
+        showScanningButtons = false
     }
     
     func resetAppAndScanningStates() {

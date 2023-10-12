@@ -93,9 +93,10 @@ struct ScanningMachineView: View {
                         .padding(.all, 20)
                     } else if $viewModel.showScanningButtons.wrappedValue {
                         Button(action: {
-                            print("Done pressed")
+                            print("Save pressed")
+                            viewModel.saveModel()
                         }) {
-                            Text("Done")
+                            Text("Save")
                                 .padding()
                                 .background(Color.blue)
                                 .foregroundColor(.white)
