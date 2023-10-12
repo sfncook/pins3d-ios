@@ -84,6 +84,7 @@ class Scan {
                 break
             }
             // Apply the new state
+            print("ScanState: \(newValue)")
             stateValue = newValue
 
             NotificationCenter.default.post(name: Scan.stateChangedNotification,
@@ -339,6 +340,7 @@ class Scan {
     }
     
     func updateOnEveryFrame(_ frame: ARFrame) {
+        print("updateOnEveryFrame \(state)")
         if state == .ready || state == .defineBoundingBox {
             if let points = frame.rawFeaturePoints {
                 // Automatically adjust the size of the bounding box.

@@ -41,7 +41,35 @@ struct ScanningMachineView: View {
                 
                 Spacer()
                 
-                if $viewModel.showStartScanningButton.wrappedValue {
+                if $viewModel.showSetScanningReadyButton.wrappedValue {
+                    Spacer()
+                    
+                    Button(action: {
+                        print("Clicked Set Scanning Read")
+                        viewModel.setScanningReady()
+                    }) {
+                        Text("SetScanningReady")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                    .padding(.all, 20)
+                } else if $viewModel.showStartDefiningBoxButton.wrappedValue {
+                    Spacer()
+                    
+                    Button(action: {
+                        print("Clicked Definining Box")
+                        viewModel.startDefiningBox()
+                    }) {
+                        Text("Start Defining Box")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                    .padding(.all, 20)
+                } else if $viewModel.showStartScanningButton.wrappedValue {
                     Spacer()
                     
                     Button(action: {

@@ -18,12 +18,22 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
                                                name: ScanningMachineViewModel.updateCenterPointNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.switchToNextState(_:)),
-                                               name: ScanningMachineViewModel.switchToNextStateNotification,
+                                               selector: #selector(self.setScanningReady(_:)),
+                                               name: ScanningMachineViewModel.setScanningReadyNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.startDefiningBox(_:)),
+                                               name: ScanningMachineViewModel.startDefiningBoxNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.startScanning(_:)),
+                                               name: ScanningMachineViewModel.startScanningNotification,
                                                object: nil)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let frame = sceneView?.session.currentFrame else { return }
+        Coordinator.scan?.updateOnEveryFrame(frame)
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
@@ -38,8 +48,18 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     @objc
-    private func switchToNextState(_ notification: Notification) {
-        switchToNextState()
+    private func setScanningReady(_ notification: Notification) {
+        setScanningReady()
+    }
+    
+    @objc
+    private func startDefiningBox(_ notification: Notification) {
+        startDefiningBox()
+    }
+    
+    @objc
+    private func startScanning(_ notification: Notification) {
+        startScanning()
     }
 
 }

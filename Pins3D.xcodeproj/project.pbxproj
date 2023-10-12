@@ -124,12 +124,12 @@
 				D4B22D7B2AD75E9800F3882B /* ObjectOrigin.swift */,
 				D4B22D7F2AD75E9800F3882B /* ObjectOriginAxis.swift */,
 				D4B22D862AD75E9800F3882B /* PointCloud+CreateVisualization.swift */,
+				D4B22D952AD75EC700F3882B /* Scan.swift */,
 				D4B22D842AD75E9800F3882B /* ScannedObject.swift */,
 				D4B22D7D2AD75E9800F3882B /* ScannedPointCloud.swift */,
 				D4B22D812AD75E9800F3882B /* Snapping.swift */,
 				D4B22D832AD75E9800F3882B /* Tile.swift */,
 				D4B22D792AD75E9800F3882B /* Wireframe.swift */,
-				D4B22D952AD75EC700F3882B /* Scan.swift */,
 			);
 			path = 3DVisualizations;
 			sourceTree = "<group>";

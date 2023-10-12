@@ -219,6 +219,23 @@ extension Coordinator {
         }
     }
     
+    func setScanningReady() {
+        print("setScanningReady")
+        state = .scanning
+        Coordinator.scan?.state = .ready
+    }
+    
+    func startDefiningBox() {
+        print("startDefiningBox")
+        Coordinator.scan?.state = .defineBoundingBox
+    }
+    
+    func startScanning() {
+        print("startScanning")
+        state = .scanning
+        Coordinator.scan?.state = .scanning
+    }
+    
     func switchToNextState() {
         switch state {
         case .startARSession:

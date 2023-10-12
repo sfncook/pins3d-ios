@@ -9,10 +9,14 @@ import ARKit
 
 class ScanningMachineViewModel: ObservableObject {
     static let updateCenterPointNotification = Notification.Name("UpdateCenterPoint")
-    static let switchToNextStateNotification = Notification.Name("SwitchToNextState")
+    static let setScanningReadyNotification = Notification.Name("SetScanningReady")
+    static let startDefiningBoxNotification = Notification.Name("StartDefiningBox")
+    static let startScanningNotification = Notification.Name("StartScanning")
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
     @Published var showAlert: Bool = false
+    @Published var showSetScanningReadyButton: Bool = false
+    @Published var showStartDefiningBoxButton: Bool = false
     @Published var showStartScanningButton: Bool = false
     @Published var showScanningButtons: Bool = false
     
@@ -28,7 +32,7 @@ class ScanningMachineViewModel: ObservableObject {
         guard let cameraTrackingState = notification.userInfo?[Coordinator.cameraTrackingStateKey] as? ARCamera.TrackingState else { return }
         self.cameraTrackingState = cameraTrackingState
         if self.cameraTrackingState == .normal {
-            self.showStartScanningButton = true
+            self.showSetScanningReadyButton = true
         }
     }
     
@@ -36,7 +40,20 @@ class ScanningMachineViewModel: ObservableObject {
         NotificationCenter.default.post(name: ScanningMachineViewModel.updateCenterPointNotification, object: self)
     }
     
+    func setScanningReady() {
+        NotificationCenter.default.post(name: ScanningMachineViewModel.setScanningReadyNotification, object: self)
+        showSetScanningReadyButton = false
+        showStartDefiningBoxButton = true
+    }
+    
+    func startDefiningBox() {
+        NotificationCenter.default.post(name: ScanningMachineViewModel.startDefiningBoxNotification, object: self)
+        showStartDefiningBoxButton = false
+        showScanningButtons = true
+    }
+    
     func startScanning() {
-        NotificationCenter.default.post(name: ScanningMachineViewModel.switchToNextStateNotification, object: self)
+        NotificationCenter.default.post(name: ScanningMachineViewModel.startScanningNotification, object: self)
+        showScanningButtons = false
     }
 }
