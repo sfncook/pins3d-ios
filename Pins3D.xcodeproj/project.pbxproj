@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */; };
 		D4B22D6A2AD6FF8700F3882B /* ScanningMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */; };
 		D4B22D6C2AD7010400F3882B /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMachineView.swift; sourceTree = "<group>"; };
 		D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningMachineView.swift; sourceTree = "<group>"; };
 		D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				D4DE515D2AD64606008E1F3C /* FirstDetailView.swift */,
 				D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */,
 				D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */,
+				D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */,
 				D4B22D942AD75E9800F3882B /* PointCloud+CreateVisualization.swift in Sources */,
 				D4F582E12AD8B52800FFADBB /* AnnotatingMachineViewViewModel.swift in Sources */,
+				D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */,
 				D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */,
 				D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */,
 				D4B22D8E2AD75E9800F3882B /* BoundingBoxSide.swift in Sources */,
