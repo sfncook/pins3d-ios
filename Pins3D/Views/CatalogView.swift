@@ -49,79 +49,82 @@ struct CatalogView: View {
     }
     
     var body: some View {
-        VStack {
-            
-            List {
-                ForEach(facilities) { facility in
-                    NavigationLink {
-                        Text(facility.name!)
-                    } label: {
-                        Text(facility.name!)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            
-            List {
-                ForEach(machines) { machine in
-                    Button(action: {
-                        self.selectedMachine = machine
-                    })  {
-                        Text(machine.name!)
-                    }
-                }
-                .onDelete(perform: deleteMachines)
-            }
-            List {
-                ForEach(procedures) { procedure in
-                    NavigationLink {
-                        Text(procedure.name!)
-                    } label: {
-                        Text(procedure.name!)
-                    }
-                }
-                .onDelete(perform: deleteProcedures)
-            }
-            .navigationBarTitle(self.title, displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: {
-                        self.showPickModuleTypeView = true
-                    }) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                    .sheet(isPresented: $showPickModuleTypeView, onDismiss: {
-                        print("PickModuleTypeView was dismissed")
-                        self.showScanningMachineView = true
-                    }) {
-                        PickModuleTypeView(
-                            createdMachine: $selectedMachine,
-                            showPickModuleTypeView: $showPickModuleTypeView
-                        )
-                    }
-                }
-            }
-            
-            Spacer()
-        }// VStack
-        
-        .fullScreenCover(isPresented: $showScanningMachineView, onDismiss: {
-            print("ScanningMachineView was dismissed")
-        }) {
-            ScanningMachineView(
+        if(self.showAnnotatingMachineView) {
+            AnnotatingMachineView(
                 self.selectedMachine!,
-                showScanningMachineView: $showScanningMachineView,
                 showAnnotatingMachineView: $showAnnotatingMachineView
             )
+        } else {
+            VStack {
+                
+                List {
+                    ForEach(facilities) { facility in
+                        NavigationLink {
+                            Text(facility.name!)
+                        } label: {
+                            Text(facility.name!)
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
+                
+                List {
+                    ForEach(machines) { machine in
+                        Button(action: {
+                            self.selectedMachine = machine
+                            self.showAnnotatingMachineView = true
+                        })  {
+                            Text(machine.name!)
+                        }
+                    }
+                    .onDelete(perform: deleteMachines)
+                }
+                List {
+                    ForEach(procedures) { procedure in
+                        NavigationLink {
+                            Text(procedure.name!)
+                        } label: {
+                            Text(procedure.name!)
+                        }
+                    }
+                    .onDelete(perform: deleteProcedures)
+                }
+                .navigationBarTitle(self.title, displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: {
+                            self.showPickModuleTypeView = true
+                        }) {
+                            Label("Add Item", systemImage: "plus")
+                        }
+                        .sheet(isPresented: $showPickModuleTypeView, onDismiss: {
+                            print("PickModuleTypeView was dismissed")
+                            self.showScanningMachineView = true
+                        }) {
+                            PickModuleTypeView(
+                                createdMachine: $selectedMachine,
+                                showPickModuleTypeView: $showPickModuleTypeView
+                            )
+                        }
+                    }
+                }
+                
+                Spacer()
+            }// VStack
+            
+            .fullScreenCover(isPresented: $showScanningMachineView, onDismiss: {
+                print("ScanningMachineView was dismissed")
+            }) {
+                ScanningMachineView(
+                    self.selectedMachine!,
+                    showScanningMachineView: $showScanningMachineView,
+                    showAnnotatingMachineView: $showAnnotatingMachineView
+                )
+            }
         }
         
-        .fullScreenCover(isPresented: $showAnnotatingMachineView, onDismiss: {
-            print("AnnotatingMachineView was dismissed")
-        }) {
-            AnnotatingMachineView(self.selectedMachine!)
-        }
     }// body: View
 }// struct CatalogView
