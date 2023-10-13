@@ -3,11 +3,10 @@ import SwiftUI
 struct CreateMachineView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var machineName: String = ""
-    @State private var showScanningMachineView = false
     @State private var newMachine: Machine? = nil
     
     var body: some View {
-        if self.showScanningMachineView {
+        if self.newMachine != nil {
             ScanningMachineView(newMachine!)
         } else {
             VStack(spacing: 20) {
@@ -19,7 +18,6 @@ struct CreateMachineView: View {
                 
                 Button(action: {
                     self.newMachine = saveNewMachine()
-                    self.showScanningMachineView = true
                 }) {
                     Text("Machine Scan")
                         .frame(maxWidth: .infinity)

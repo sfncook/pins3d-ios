@@ -34,7 +34,6 @@ struct CatalogView: View {
     private var title: String
     
     @State private var showPickModuleTypeView = false
-    @State private var showSelectedMachineView = false
     @State private var selectedMachine: Machine?
     
     init(title: String) {
@@ -43,13 +42,9 @@ struct CatalogView: View {
     
     var body: some View {
         if self.showPickModuleTypeView {
-            NavigationLink(destination: PickModuleTypeView(), isActive: $showPickModuleTypeView) {
-                EmptyView()
-            }
-        } else if self.showSelectedMachineView {
-            NavigationLink(destination: ScanningMachineView(self.selectedMachine!), isActive: $showSelectedMachineView) {
-                EmptyView()
-            }
+            PickModuleTypeView()
+        } else if self.selectedMachine != nil {
+            ScanningMachineView(self.selectedMachine!)
         } else {
             VStack {
                 
@@ -68,7 +63,6 @@ struct CatalogView: View {
                     ForEach(machines) { machine in
                         Button(action: {
                             self.selectedMachine = machine
-                            self.showSelectedMachineView = true
                         })  {
                             Text(machine.name!)
                         }
