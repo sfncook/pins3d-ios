@@ -3,39 +3,39 @@ import SwiftUI
 struct CreateMachineView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var machineName: String = ""
-    @State private var isShowingNewView = false
+    @State private var showScanningMachineView = false
     @State private var newMachine: Machine? = nil
     
     var body: some View {
-        VStack(spacing: 20) {
-            NavigationLink(destination: ScanningMachineView(newMachine!), isActive: $isShowingNewView) {
-                EmptyView()
-            }.opacity(0)
-            
-            TextField("Enter machine name", text: $machineName)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(8)
-                .padding(.horizontal)
-            
-            Button(action: {
-                self.newMachine = saveNewMachine()
-                self.isShowingNewView = true
-            }) {
-                Text("Machine Scan")
-                    .frame(maxWidth: .infinity)
+        if self.showScanningMachineView {
+            ScanningMachineView(newMachine!)
+        } else {
+            VStack(spacing: 20) {
+                TextField("Enter machine name", text: $machineName)
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                    .background(Color.gray.opacity(0.2))
                     .cornerRadius(8)
+                    .padding(.horizontal)
+                
+                Button(action: {
+                    self.newMachine = saveNewMachine()
+                    self.showScanningMachineView = true
+                }) {
+                    Text("Machine Scan")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal)
+                
+                .navigationBarTitle("Machine name?", displayMode: .inline)
+                
+                Spacer()
             }
-            .padding(.horizontal)
-            
-            .navigationBarTitle("Machine name?", displayMode: .inline)
-            
-            Spacer()
+            .padding(.vertical)
         }
-        .padding(.vertical)
     }
     
     private func saveNewMachine() -> Machine {
