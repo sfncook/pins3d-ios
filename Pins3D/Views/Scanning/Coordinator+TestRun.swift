@@ -3,6 +3,7 @@ import SceneKit
 
 extension Coordinator {
     func testObjectDetection() {
+        print("testObjectDetection")
         // In case an object for testing has been received, use it right away...
         if let object = referenceObjectToTest {
             testObjectDetection(of: object)
@@ -21,9 +22,11 @@ extension Coordinator {
             if let object = scannedObject {
                 self.testObjectDetection(of: object)
             } else {
-                let title = "Scan failed"
-                let message = "Saving the scan failed."
-                let buttonTitle = "Restart Scan"
+                print("Scan failed.  Restarting ar session")
+                self.state = .startARSession
+//                let title = "Scan failed"
+//                let message = "Saving the scan failed."
+//                let buttonTitle = "Restart Scan"
 //                self.showAlert(title: title, message: message, buttonTitle: buttonTitle, showCancel: false) { _ in
 //                    self.state = .startARSession
 //                }
@@ -32,6 +35,7 @@ extension Coordinator {
     }
     
     func testObjectDetection(of object: ARReferenceObject) {
+        print("Test detection of the object from different angles. Consider moving the object to different environments and test there.")
         self.testRun?.setReferenceObject(object, screenshot: Coordinator.scan?.screenshot, sidesNodeObject: nil)
 //        self.testRun?.detectedObject?.pointCloudVisualization.viewCtl = self // viewCtl is only used for displaying alerts
         
@@ -52,7 +56,7 @@ extension Coordinator {
                 DispatchQueue.main.async {
                     self.referenceObjectToTest = referenceObject
                     self.state = .testing
-                    print("3. Done.")
+                    print("Load complete")
 ////                    self.displayInstruction(Message("Load complete"))
                 }
     }

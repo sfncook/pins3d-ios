@@ -431,6 +431,7 @@ class Scan {
     
     /// - Tag: ExtractReferenceObject
     func createReferenceObject(completionHandler creationFinished: @escaping (ARReferenceObject?) -> Void) {
+        print("Scan.createReferenceObject")
         guard let boundingBox = scannedObject.boundingBox, let origin = scannedObject.origin else {
             print("Error: No bounding box or object origin present.")
             creationFinished(nil)
@@ -443,6 +444,7 @@ class Scan {
             center: SIMD3<Float>(), extent: boundingBox.extent,
             completionHandler: { object, error in
                 if let referenceObject = object {
+                    print("Successfully created the object")
                     // Adjust the object's origin with the user-provided transform.
                     self.scannedReferenceObject = referenceObject.applyingTransform(origin.simdTransform)
                     self.scannedReferenceObject!.name = self.scannedObject.scanName
