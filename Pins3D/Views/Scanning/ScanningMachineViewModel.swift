@@ -27,13 +27,16 @@ class ScanningMachineViewModel: ObservableObject, CreateArRefModelCallback {
     @Published var showScanningButtons: Bool = false
     @Published var showSavingMsg: Bool = false
     @Published var savingMsg: String?
-    @Published var navigateAnnotatingMachineView = false
+    @Binding var showScanningMachineView: Bool
+    @Binding var showAnnotatingMachineView: Bool
     
     var machine: Machine
     
-    init(machine: Machine) {
+    init(machine: Machine, showScanningMachineView: Binding<Bool>, showAnnotatingMachineView: Binding<Bool>) {
         print("ScanningMachineViewModel.init \(machine.name)")
         self.machine = machine
+        self._showScanningMachineView = showScanningMachineView
+        self._showAnnotatingMachineView = showAnnotatingMachineView
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.cameraTrackingStateChanged(_:)),
                                                name: Coordinator.cameraTrackingStateChangedNotification,

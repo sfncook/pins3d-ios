@@ -86,8 +86,8 @@ extension ScanningMachineViewModel {
             do {
                 try context?.save()
                 DispatchQueue.main.async {
-                    print("navigateAnnotatingMachineView = true")
-                    self.navigateAnnotatingMachineView = true
+                    self.showScanningMachineView = false
+                    self.showAnnotatingMachineView = true
                 }
                 print("Done saving")
             } catch {

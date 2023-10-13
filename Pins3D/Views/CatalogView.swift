@@ -41,6 +41,7 @@ struct CatalogView: View {
     
     @State private var showPickModuleTypeView = false
     @State private var showScanningMachineView = false
+    @State private var showAnnotatingMachineView = false
     @State private var selectedMachine: Machine?
     
     init(title: String) {
@@ -110,7 +111,17 @@ struct CatalogView: View {
         .fullScreenCover(isPresented: $showScanningMachineView, onDismiss: {
             print("ScanningMachineView was dismissed")
         }) {
-            ScanningMachineView(self.selectedMachine!)
+            ScanningMachineView(
+                self.selectedMachine!,
+                showScanningMachineView: $showScanningMachineView,
+                showAnnotatingMachineView: $showAnnotatingMachineView
+            )
+        }
+        
+        .fullScreenCover(isPresented: $showAnnotatingMachineView, onDismiss: {
+            print("AnnotatingMachineView was dismissed")
+        }) {
+            AnnotatingMachineView(self.selectedMachine!)
         }
     }// body: View
 }// struct CatalogView
