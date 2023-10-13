@@ -27,6 +27,8 @@ class ScanningMachineViewModel: ObservableObject, CreateArRefModelCallback {
     @Published var showScanningButtons: Bool = false
     @Published var showSavingMsg: Bool = false
     @Published var savingMsg: String?
+    @Published var navigateAnnotatingMachineView = false
+    
     var machine: Machine
     
     init(machine: Machine) {

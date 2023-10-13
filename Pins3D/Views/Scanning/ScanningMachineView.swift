@@ -49,7 +49,20 @@ struct ScanningMachineView: View {
     
     var body: some View {
         ZStack {
+//            NavigationLink(
+//                destination: AnnotatingMachineView($viewModel.machine.wrappedValue),
+//                isActive: $viewModel.navigateAnnotatingMachineView
+//            ) {
+//                EmptyView()
+//            }.opacity(0)
+            
             ARViewContainer()
+            
+            if viewModel.navigateAnnotatingMachineView {
+                Text("What about the fudge?")
+                    .background(Color.white)
+                    .foregroundColor(.blue)
+            }
 
             VStack {
                 infoMessageContent
@@ -129,6 +142,7 @@ struct ScanningMachineView: View {
         .navigationBarTitle("Machine Scan", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .onAppear {
+            print("ScanningMachineView.OnAppear \($viewModel.navigateAnnotatingMachineView.wrappedValue)")
             viewModel.updateCenter()
         }
     }

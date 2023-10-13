@@ -92,6 +92,9 @@ struct CatalogView: View {
             }
             
             Spacer()
+        }// VStack
+        .onAppear {
+            print("CatalogView.onAppear")
         }
     }
 

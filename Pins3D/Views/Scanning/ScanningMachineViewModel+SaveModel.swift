@@ -71,15 +71,25 @@ extension ScanningMachineViewModel {
     
     func referenceObjectReady(referenceObject: ARReferenceObject) {
         self.showSavingMsg = true
-        self.savingMsg = "Saving AR Ref file..."
+        let msg = "Saving AR Ref file..."
+        print(msg)
+        self.savingMsg = msg
         let arObjectFilename = convertToCamelCase(machine.name ?? defaultArFilename())
         saveArModelAndUpload(arObjectFilename: arObjectFilename, referenceObject: referenceObject) {
-            self.savingMsg = "Updating machine info..."
+            let msg = "Updating machine info..."
+            print(msg)
+            DispatchQueue.main.async {
+                self.savingMsg = msg
+            }
             self.machine.arFilename = arObjectFilename
             let context = self.machine.managedObjectContext
             do {
                 try context?.save()
-                self.savingMsg = "Done."
+                DispatchQueue.main.async {
+                    print("navigateAnnotatingMachineView = true")
+                    self.navigateAnnotatingMachineView = true
+                }
+                print("Done saving")
             } catch {
                 print("ERROR saveMachineAndRefObjectFile Failed to save arFilename to machine: \(error)")
                 self.savingMsg = "Error saving machine info"
