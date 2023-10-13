@@ -12,6 +12,8 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     var sceneView: ARSCNView?
     var internalState: AppState = .startARSession
     static var scan: Scan?
+    var testRun: TestRun?
+    var referenceObjectToTest: ARReferenceObject?
     
     override init() {
         super.init()
@@ -38,6 +40,10 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.saveModel(_:)),
                                                name: ScanningMachineViewModel.saveModelNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.loadModel(_:)),
+                                               name: AnnotatingMachineViewViewModel.loadModelNotification,
                                                object: nil)
     }
     
@@ -99,6 +105,12 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     private func saveModel(_ notification: Notification) {
         guard let createArRefModelCallback = notification.userInfo?[ScanningMachineViewModel.referenceObjectCallbackKey] as? CreateArRefModelCallback else { return }
         saveModelAndCallback(createArRefModelCallback)
+    }
+    
+    @objc
+    private func loadModel(_ notification: Notification) {
+        guard let referenceObject = notification.userInfo?[AnnotatingMachineViewViewModel.referenceObjectKey] as? ARReferenceObject else { return }
+        loadModelAndStartScanning(referenceObject)
     }
 
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
+		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
+		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
 		D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */; };
 		D4B22D6A2AD6FF8700F3882B /* ScanningMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */; };
 		D4B22D6C2AD7010400F3882B /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */; };
@@ -54,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
+		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
+		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
 		D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMachineView.swift; sourceTree = "<group>"; };
 		D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningMachineView.swift; sourceTree = "<group>"; };
 		D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */,
 				D4B22D702AD750FF00F3882B /* Coordinator.swift */,
 				D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */,
+				D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */,
 			);
 			path = Scanning;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				D4B22D812AD75E9800F3882B /* Snapping.swift */,
 				D4B22D832AD75E9800F3882B /* Tile.swift */,
 				D4B22D792AD75E9800F3882B /* Wireframe.swift */,
+				D48C557A2AD9D57400731F8F /* TestRun.swift */,
 			);
 			path = 3DVisualizations;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 				D4B22D882AD75E9800F3882B /* CubeNode.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */,
+				D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */,
 				D4B22D752AD75BC500F3882B /* Coordinator+ApplicationState.swift in Sources */,
 				D4F582DF2AD8B4EC00FFADBB /* AnnotatingMachineView.swift in Sources */,
 				D4B22D8C2AD75E9800F3882B /* DetectedObject.swift in Sources */,
@@ -349,6 +356,7 @@
 				D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */,
 				D4B22D8E2AD75E9800F3882B /* BoundingBoxSide.swift in Sources */,
 				D4DE515C2AD64332008E1F3C /* Persistence.swift in Sources */,
+				D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */,
 				D4B22D8A2AD75E9800F3882B /* DetectedPointCloud.swift in Sources */,
 				D4B22D892AD75E9800F3882B /* ObjectOrigin.swift in Sources */,
 			);

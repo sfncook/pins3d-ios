@@ -56,10 +56,10 @@ extension Coordinator {
                 }
             case .testing:
                 print("Testing")
-//                guard scan?.boundingBoxExists == true || referenceObjectToTest != nil else {
-//                    print("Error: Scan is not ready to be tested.")
-//                    return
-//                }
+                guard Coordinator.scan?.boundingBoxExists == true || referenceObjectToTest != nil else {
+                    print("Error: Scan is not ready to be tested.")
+                    return
+                }
             }
             
             // 2. Apply changes as needed per state.
@@ -123,8 +123,8 @@ extension Coordinator {
 ////                nextButton.setTitle("Share", for: [])
 //                instructionsVisible = false
 //                
-//                testRun = TestRun(sceneView: sceneView)
-//                testObjectDetection()
+                testRun = TestRun(sceneView: sceneView!)
+                testObjectDetection()
 //                cancelMaxScanTimeTimer()
             }
             

@@ -74,7 +74,7 @@ struct CatalogView: View {
                             self.selectedMachine = machine
                             self.showAnnotatingMachineView = true
                         })  {
-                            Text(machine.name!)
+                            Text("\(machine.name!) \(machine.arFilename ?? "NO AR Filename")")
                         }
                     }
                     .onDelete(perform: deleteMachines)
