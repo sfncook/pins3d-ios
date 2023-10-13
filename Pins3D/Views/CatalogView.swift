@@ -34,65 +34,74 @@ struct CatalogView: View {
     private var title: String
     
     @State private var showPickModuleTypeView = false
+    @State private var showSelectedMachineView = false
+    @State private var selectedMachine: Machine?
     
     init(title: String) {
         self.title = title
     }
     
     var body: some View {
-        VStack {
+        if self.showPickModuleTypeView {
             NavigationLink(destination: PickModuleTypeView(), isActive: $showPickModuleTypeView) {
                 EmptyView()
-            }.opacity(0)
-            
-            List {
-                ForEach(facilities) { facility in
-                    NavigationLink {
-                        Text(facility.name!)
-                    } label: {
-                        Text(facility.name!)
+            }
+        } else if self.showSelectedMachineView {
+            NavigationLink(destination: ScanningMachineView(self.selectedMachine!), isActive: $showSelectedMachineView) {
+                EmptyView()
+            }
+        } else {
+            VStack {
+                
+                List {
+                    ForEach(facilities) { facility in
+                        NavigationLink {
+                            Text(facility.name!)
+                        } label: {
+                            Text(facility.name!)
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
+                
+                List {
+                    ForEach(machines) { machine in
+                        Button(action: {
+                            self.selectedMachine = machine
+                            self.showSelectedMachineView = true
+                        })  {
+                            Text(machine.name!)
+                        }
+                    }
+                    .onDelete(perform: deleteMachines)
+                }
+                List {
+                    ForEach(procedures) { procedure in
+                        NavigationLink {
+                            Text(procedure.name!)
+                        } label: {
+                            Text(procedure.name!)
+                        }
+                    }
+                    .onDelete(perform: deleteProcedures)
+                }
+                .navigationBarTitle(self.title, displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: {
+                            // 4. Trigger navigation when the button is pressed
+                            self.showPickModuleTypeView = true
+                        }) {
+                            Label("Add Item", systemImage: "plus")
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            
-            List {
-                ForEach(machines) { machine in
-                    NavigationLink(destination: ScanningMachineView(machine)) {
-                        Text(machine.name!)
-                    }
-                }
-                .onDelete(perform: deleteMachines)
-            }
-            List {
-                ForEach(procedures) { procedure in
-                    NavigationLink {
-                        Text(procedure.name!)
-                    } label: {
-                        Text(procedure.name!)
-                    }
-                }
-                .onDelete(perform: deleteProcedures)
-            }
-            .navigationBarTitle(self.title, displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: {
-                        // 4. Trigger navigation when the button is pressed
-                        self.showPickModuleTypeView = true
-                    }) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            
-            Spacer()
-        }// VStack
-        .onAppear {
-            print("CatalogView.onAppear")
+                
+                Spacer()
+            }// VStack
         }
     }
 
