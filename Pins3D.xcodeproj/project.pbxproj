@@ -211,10 +211,10 @@
 				D4DE51632AD647C0008E1F3C /* CatalogView.swift */,
 				D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */,
 				D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */,
+				D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */,
 				D4DE515D2AD64606008E1F3C /* FirstDetailView.swift */,
 				D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */,
 				D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */,
-				D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

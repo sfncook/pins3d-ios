@@ -50,8 +50,8 @@ struct CatalogView: View {
     var body: some View {
         if self.selectedModuleTypeToCreate == "\(ModuleType.machine)" {
             CreateMachineView()
-        } else if self.showPickModuleTypeView {
-            PickModuleTypeView(selectedModuleTypeToCreate: $selectedModuleTypeToCreate)
+//        } else if self.showPickModuleTypeView {
+//            PickModuleTypeView(selectedModuleTypeToCreate: $selectedModuleTypeToCreate)
         } else if self.selectedMachine != nil {
             ScanningMachineView(self.selectedMachine!)
         } else {
@@ -95,10 +95,15 @@ struct CatalogView: View {
                     }
                     ToolbarItem {
                         Button(action: {
-                            // 4. Trigger navigation when the button is pressed
                             self.showPickModuleTypeView = true
                         }) {
                             Label("Add Item", systemImage: "plus")
+                        }
+                        .sheet(isPresented: $showPickModuleTypeView, onDismiss: {
+                            // Handle data changes if needed, or use it as a callback when the modal is dismissed.
+                            print("Modal was dismissed")
+                        }) {
+                            PickModuleTypeView(selectedModuleTypeToCreate: $selectedModuleTypeToCreate)
                         }
                     }
                 }
