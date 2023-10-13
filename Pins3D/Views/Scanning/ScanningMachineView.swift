@@ -48,102 +48,104 @@ struct ScanningMachineView: View {
     }
     
     var body: some View {
-        ZStack {
-//            NavigationLink(
-//                destination: AnnotatingMachineView($viewModel.machine.wrappedValue),
-//                isActive: $viewModel.navigateAnnotatingMachineView
-//            ) {
-//                EmptyView()
-//            }.opacity(0)
-            
-            ARViewContainer()
-            
-            if viewModel.navigateAnnotatingMachineView {
-                Text("What about the fudge?")
-                    .background(Color.white)
-                    .foregroundColor(.blue)
-            }
-
-            VStack {
-                infoMessageContent
-                    .padding()
-                    .background(Color.white.opacity(0.5))
-                    .foregroundColor(.black)
+        NavigationView {
+            ZStack {
+                //            NavigationLink(
+                //                destination: AnnotatingMachineView($viewModel.machine.wrappedValue),
+                //                isActive: $viewModel.navigateAnnotatingMachineView
+                //            ) {
+                //                EmptyView()
+                //            }.opacity(0)
                 
-                Spacer()
+                ARViewContainer()
                 
-                HStack {
-                    Button(action: {
-                        viewModel.resetAppAndScanningStates()
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Cancel")
-                            .padding()
-                            .background(Color.white)
-                            .foregroundColor(.blue)
-                            .cornerRadius(8)
-                    }
+                if viewModel.navigateAnnotatingMachineView {
+                    Text("What about the fudge?")
+                        .background(Color.white)
+                        .foregroundColor(.blue)
+                }
+                
+                VStack {
+                    infoMessageContent
+                        .padding()
+                        .background(Color.white.opacity(0.5))
+                        .foregroundColor(.black)
                     
                     Spacer()
                     
-                    if $viewModel.showSetScanningReadyButton.wrappedValue {
+                    HStack {
                         Button(action: {
-                            print("Clicked Set Scanning Read")
-                            viewModel.setScanningReady()
+                            viewModel.resetAppAndScanningStates()
+                            self.presentationMode.wrappedValue.dismiss()
                         }) {
-                            Text("SetScanningReady")
+                            Text("Cancel")
                                 .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
+                                .background(Color.white)
+                                .foregroundColor(.blue)
                                 .cornerRadius(8)
                         }
-                        .padding(.all, 20)
-                    } else if $viewModel.showStartDefiningBoxButton.wrappedValue {
-                        Button(action: {
-                            print("Clicked Definining Box")
-                            viewModel.startDefiningBox()
-                        }) {
-                            Text("Start Defining Box")
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        }
-                        .padding(.all, 20)
-                    } else if $viewModel.showStartScanningButton.wrappedValue {
-                        Button(action: {
-                            print("Clicked Start Scanning")
-                            viewModel.startScanning()
-                        }) {
-                            Text("Start Scanning")
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        }
-                        .padding(.all, 20)
-                    } else if $viewModel.showScanningButtons.wrappedValue {
-                        Button(action: {
-                            print("Save pressed")
-                            viewModel.saveModel()
-                        }) {
-                            Text("Save")
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                        
+                        Spacer()
+                        
+                        if $viewModel.showSetScanningReadyButton.wrappedValue {
+                            Button(action: {
+                                print("Clicked Set Scanning Read")
+                                viewModel.setScanningReady()
+                            }) {
+                                Text("SetScanningReady")
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .padding(.all, 20)
+                        } else if $viewModel.showStartDefiningBoxButton.wrappedValue {
+                            Button(action: {
+                                print("Clicked Definining Box")
+                                viewModel.startDefiningBox()
+                            }) {
+                                Text("Start Defining Box")
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .padding(.all, 20)
+                        } else if $viewModel.showStartScanningButton.wrappedValue {
+                            Button(action: {
+                                print("Clicked Start Scanning")
+                                viewModel.startScanning()
+                            }) {
+                                Text("Start Scanning")
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .padding(.all, 20)
+                        } else if $viewModel.showScanningButtons.wrappedValue {
+                            Button(action: {
+                                print("Save pressed")
+                                viewModel.saveModel()
+                            }) {
+                                Text("Save")
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
                         }
                     }
+                    .padding(.all, 20)
                 }
-                .padding(.all, 20)
+                .padding(.top, 10)
             }
-            .padding(.top, 10)
-        }
-        .navigationBarTitle("Machine Scan", displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
-        .onAppear {
-            print("ScanningMachineView.OnAppear \($viewModel.navigateAnnotatingMachineView.wrappedValue)")
-            viewModel.updateCenter()
+            .navigationBarTitle("Machine Scan", displayMode: .inline)
+            .navigationBarBackButtonHidden(true)
+            .onAppear {
+                print("ScanningMachineView.OnAppear \($viewModel.navigateAnnotatingMachineView.wrappedValue)")
+                viewModel.updateCenter()
+            }
         }
     }
 }

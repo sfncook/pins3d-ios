@@ -40,6 +40,7 @@ struct CatalogView: View {
     private var title: String
     
     @State private var showPickModuleTypeView = false
+    @State private var showScanningMachineView = false
     @State private var selectedMachine: Machine?
     
     init(title: String) {
@@ -47,64 +48,69 @@ struct CatalogView: View {
     }
     
     var body: some View {
-        if self.selectedMachine != nil {
+        VStack {
+            
+            List {
+                ForEach(facilities) { facility in
+                    NavigationLink {
+                        Text(facility.name!)
+                    } label: {
+                        Text(facility.name!)
+                    }
+                }
+                .onDelete(perform: deleteItems)
+            }
+            
+            List {
+                ForEach(machines) { machine in
+                    Button(action: {
+                        self.selectedMachine = machine
+                    })  {
+                        Text(machine.name!)
+                    }
+                }
+                .onDelete(perform: deleteMachines)
+            }
+            List {
+                ForEach(procedures) { procedure in
+                    NavigationLink {
+                        Text(procedure.name!)
+                    } label: {
+                        Text(procedure.name!)
+                    }
+                }
+                .onDelete(perform: deleteProcedures)
+            }
+            .navigationBarTitle(self.title, displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+                ToolbarItem {
+                    Button(action: {
+                        self.showPickModuleTypeView = true
+                    }) {
+                        Label("Add Item", systemImage: "plus")
+                    }
+                    .sheet(isPresented: $showPickModuleTypeView, onDismiss: {
+                        print("PickModuleTypeView was dismissed")
+                        self.showScanningMachineView = true
+                    }) {
+                        PickModuleTypeView(
+                            createdMachine: $selectedMachine,
+                            showPickModuleTypeView: $showPickModuleTypeView
+                        )
+                    }
+                }
+            }
+            
+            Spacer()
+        }// VStack
+        
+        .fullScreenCover(isPresented: $showScanningMachineView, onDismiss: {
+            print("ScanningMachineView was dismissed")
+        }) {
             ScanningMachineView(self.selectedMachine!)
-        } else {
-            VStack {
-                
-                List {
-                    ForEach(facilities) { facility in
-                        NavigationLink {
-                            Text(facility.name!)
-                        } label: {
-                            Text(facility.name!)
-                        }
-                    }
-                    .onDelete(perform: deleteItems)
-                }
-                
-                List {
-                    ForEach(machines) { machine in
-                        Button(action: {
-                            self.selectedMachine = machine
-                        })  {
-                            Text(machine.name!)
-                        }
-                    }
-                    .onDelete(perform: deleteMachines)
-                }
-                List {
-                    ForEach(procedures) { procedure in
-                        NavigationLink {
-                            Text(procedure.name!)
-                        } label: {
-                            Text(procedure.name!)
-                        }
-                    }
-                    .onDelete(perform: deleteProcedures)
-                }
-                .navigationBarTitle(self.title, displayMode: .inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
-                    ToolbarItem {
-                        Button(action: {
-                            self.showPickModuleTypeView = true
-                        }) {
-                            Label("Add Item", systemImage: "plus")
-                        }
-                        .sheet(isPresented: $showPickModuleTypeView, onDismiss: {
-                            // Handle data changes if needed, or use it as a callback when the modal is dismissed.
-                            print("Modal was dismissed")
-                        }) {
-                            PickModuleTypeView(createdMachine: $selectedMachine)
-                        }
-                    }
-                }
-                
-                Spacer()
-            }// VStack
         }
-    }
-}
+    }// body: View
+}// struct CatalogView

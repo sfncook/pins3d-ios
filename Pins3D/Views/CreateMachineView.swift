@@ -4,6 +4,7 @@ struct CreateMachineView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var machineName: String = ""
     @Binding var createdMachine: Machine?
+    @Binding var showPickModuleTypeView: Bool
     
     var body: some View {
         VStack(spacing: 20) {
@@ -14,7 +15,8 @@ struct CreateMachineView: View {
                 .padding(.horizontal)
             
             Button(action: {
-                createdMachine = saveNewMachine()
+                saveNewMachine()
+                showPickModuleTypeView = false
             }) {
                 Text("Machine Scan")
                     .frame(maxWidth: .infinity)
@@ -35,20 +37,19 @@ struct CreateMachineView: View {
         }
     }
     
-    private func saveNewMachine() -> Machine {
-        let newMachine = Machine(context: viewContext)
-        newMachine.id = UUID()
-        newMachine.name = self.machineName
+    private func saveNewMachine() {
+        createdMachine = Machine(context: viewContext)
+        createdMachine!.id = UUID()
+        createdMachine!.name = self.machineName
 
         do {
             try viewContext.save()
-            print("Machine saved \(self.machineName)")
+            print("Machine saved \(self.machineName) \(createdMachine!.name!)")
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
-        return newMachine
     }
 }
