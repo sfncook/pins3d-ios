@@ -3,36 +3,35 @@ import SwiftUI
 struct CreateMachineView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var machineName: String = ""
-    @State private var newMachine: Machine? = nil
+    @Binding var createdMachine: Machine?
     
     var body: some View {
-        if self.newMachine != nil {
-            ScanningMachineView(newMachine!)
-        } else {
-            VStack(spacing: 20) {
-                TextField("Enter machine name", text: $machineName)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(8)
-                    .padding(.horizontal)
-                
-                Button(action: {
-                    self.newMachine = saveNewMachine()
-                }) {
-                    Text("Machine Scan")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
+        VStack(spacing: 20) {
+            TextField("Enter machine name", text: $machineName)
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(8)
                 .padding(.horizontal)
-                
-                .navigationBarTitle("Machine name?", displayMode: .inline)
-                
-                Spacer()
+            
+            Button(action: {
+                createdMachine = saveNewMachine()
+            }) {
+                Text("Machine Scan")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
             }
-            .padding(.vertical)
+            .padding(.horizontal)
+            
+            .navigationBarTitle("Machine name?", displayMode: .inline)
+            
+            Spacer()
+        }
+        .padding(.vertical)
+        .onAppear{
+            print("CreateMachineView.onAppear")
         }
     }
     

@@ -41,18 +41,13 @@ struct CatalogView: View {
     
     @State private var showPickModuleTypeView = false
     @State private var selectedMachine: Machine?
-    @State private var selectedModuleTypeToCreate: String = "NOT SET"
     
     init(title: String) {
         self.title = title
     }
     
     var body: some View {
-        if self.selectedModuleTypeToCreate == "\(ModuleType.machine)" {
-            CreateMachineView()
-//        } else if self.showPickModuleTypeView {
-//            PickModuleTypeView(selectedModuleTypeToCreate: $selectedModuleTypeToCreate)
-        } else if self.selectedMachine != nil {
+        if self.selectedMachine != nil {
             ScanningMachineView(self.selectedMachine!)
         } else {
             VStack {
@@ -103,7 +98,7 @@ struct CatalogView: View {
                             // Handle data changes if needed, or use it as a callback when the modal is dismissed.
                             print("Modal was dismissed")
                         }) {
-                            PickModuleTypeView(selectedModuleTypeToCreate: $selectedModuleTypeToCreate)
+                            PickModuleTypeView(createdMachine: $selectedMachine)
                         }
                     }
                 }
