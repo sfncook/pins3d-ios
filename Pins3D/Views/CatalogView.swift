@@ -31,18 +31,27 @@ struct CatalogView: View {
         animation: .default)
     private var procedures: FetchedResults<Procedure>
     
+    enum ModuleType: String {
+        case facility
+        case machine
+        case procedure
+    }
+    
     private var title: String
     
     @State private var showPickModuleTypeView = false
     @State private var selectedMachine: Machine?
+    @State private var selectedModuleTypeToCreate: String = "NOT SET"
     
     init(title: String) {
         self.title = title
     }
     
     var body: some View {
-        if self.showPickModuleTypeView {
-            PickModuleTypeView()
+        if self.selectedModuleTypeToCreate == "\(ModuleType.machine)" {
+            CreateMachineView()
+        } else if self.showPickModuleTypeView {
+            PickModuleTypeView(selectedModuleTypeToCreate: $selectedModuleTypeToCreate)
         } else if self.selectedMachine != nil {
             ScanningMachineView(self.selectedMachine!)
         } else {

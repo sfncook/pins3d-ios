@@ -1,9 +1,13 @@
 import SwiftUI
 
 struct PickModuleTypeView: View {
+    @Binding var selectedModuleTypeToCreate: String
+    
     var body: some View {
         VStack(spacing: 20) {
-            NavigationLink(destination: ThirdDetailView()) {
+            Button(action: {
+                self.selectedModuleTypeToCreate = CatalogView.ModuleType.facility.rawValue
+            })  {
                 Text("Facility Scan")
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -13,7 +17,9 @@ struct PickModuleTypeView: View {
             }
             .padding(.horizontal)
             
-            NavigationLink(destination: CreateMachineView()) {
+            Button(action: {
+                self.selectedModuleTypeToCreate = CatalogView.ModuleType.machine.rawValue
+            })  {
                 Text("Machine Scan")
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -23,7 +29,9 @@ struct PickModuleTypeView: View {
             }
             .padding(.horizontal)
             
-            NavigationLink(destination: ThirdDetailView()) {
+            Button(action: {
+                self.selectedModuleTypeToCreate = CatalogView.ModuleType.procedure.rawValue
+            })  {
                 Text("Procedure")
                     .frame(maxWidth: .infinity)
                     .padding()
