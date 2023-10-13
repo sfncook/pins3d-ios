@@ -99,9 +99,6 @@ struct ScanningMachineView: View {
             }
             .navigationBarTitle(viewModel.machine.name ?? "Machine Scan", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
-            .onAppear {
-                viewModel.updateCenter()
-            }
         }
     }// body: View
     

@@ -70,6 +70,7 @@ class ScanningMachineViewModel: ObservableObject, CreateArRefModelCallback {
         NotificationCenter.default.post(name: ScanningMachineViewModel.setScanningReadyNotification, object: self)
         showSetScanningReadyButton = false
         showStartDefiningBoxButton = true
+        updateCenter()
     }
     
     func startDefiningBox() {
