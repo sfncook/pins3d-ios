@@ -46,6 +46,9 @@ struct AnnotatingMachineView: View {
                     }
                     .sheet(isPresented: $viewModel.showCreatePinView, onDismiss: {
                         print("CreatePinView onDismiss pin:\(self.createdPin?.text ?? "NOT_SET")")
+                        if self.createdPin != nil {
+                            viewModel.addPin(pin: self.createdPin!)
+                        }
                         self.createdPin = nil
                     }) {
                         CreatePinView(

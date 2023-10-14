@@ -124,6 +124,10 @@ class DetectedPointCloud: SCNNode, PointCloud {
                                                selector: #selector(self.getAnnotationPointCallback(_:)),
                                                name: AnnotatingMachineViewModel.getAnnotationPointNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.addPin(_:)),
+                                               name: AnnotatingMachineViewModel.addPinNotification,
+                                               object: nil)
     }// init
     
     required init?(coder aDecoder: NSCoder) {
@@ -171,7 +175,6 @@ class DetectedPointCloud: SCNNode, PointCloud {
                 self.hitNodePointedAt = hit.node
                 self.sphereNode.removeFromParentNode()
                 self.hitNodePointedAt?.addChildNode(self.sphereNode)
-//                print("hitNode name:\(hitNode.name ?? "NOT_SET") position:(\(hitNode.position.x),\(hitNode.position.y),\(hitNode.position.z))")
             }
         }
     }
@@ -186,6 +189,21 @@ class DetectedPointCloud: SCNNode, PointCloud {
             y: self.hitNodePointedAt?.position.y,
             z: self.hitNodePointedAt?.position.z
         )
+    }
+    @objc
+    private func addPin(_ notification: Notification) {
+        guard let pin = notification.userInfo?[AnnotatingMachineViewModel.pinKey] as? Pin else { return }
+        let targetPosition = SCNVector3(x: pin.x, y: pin.y, z: pin.z)
+        let delta: Float = 0.5 // for example
+        if let node = self.sidesNode.findChildNode(near: targetPosition, within: delta) {
+            self.manyAnnotations += 1
+            if let textPin = pin as? TextPin {
+                addAnnotation(node: node, stepNumberText: "\(self.manyAnnotations)", annotationText: textPin.text!)
+            } else {
+                print("This pin is not a TextPin")
+            }
+        }
+
     }
     
     func findNode(named name: String, in node: SCNNode) -> SCNNode? {
@@ -319,83 +337,86 @@ class DetectedPointCloud: SCNNode, PointCloud {
                 self.getAnnotationText() { createAnnotation, annotationText in
                     if(createAnnotation) {
                         self.manyAnnotations += 1
-                        
-                        // Step # text node
-                        let textGeometry = SCNText(string: stepNumberText, extrusionDepth: 1)
-                        textGeometry.font = UIFont.systemFont(ofSize: 6)
-                        textGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
-                        let textNode = SCNNode(geometry: textGeometry)
-                        textNode.scale = SCNVector3(0.01, 0.01, 0.01)
-                        let midX = (textGeometry.boundingBox.max.x + textGeometry.boundingBox.min.x) * 0.5
-                        let midY = (textGeometry.boundingBox.max.y + textGeometry.boundingBox.min.y) * 0.5
-                        textNode.pivot = SCNMatrix4MakeTranslation(midX, midY, 0)
-                        textNode.name = "TextNode"
-                        
-                        // Text background shape
-                        let circleDiameter = CGFloat(max(textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x,
-                                                         textGeometry.boundingBox.max.y - textGeometry.boundingBox.min.y) * 1.5)  // Adjust as needed
-                        let circleGeometry = SCNPlane(width: circleDiameter, height: circleDiameter)
-                        circleGeometry.cornerRadius = 1
-                        circleGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
-                        let circleNode = SCNNode(geometry: circleGeometry)
-                        circleNode.position = SCNVector3(x: midX, y: midY, z: 0.1)
-                        
-                        // Add constraints so annotation nodes always face camera
-                        let billboardConstraint = SCNBillboardConstraint()
-                        billboardConstraint.freeAxes = SCNBillboardAxis.all
-                        textNode.constraints = [billboardConstraint]
-                        circleNode.constraints = [billboardConstraint]
-                        
-                        // Center text node on parent node
-                        let min = textNode.boundingBox.min
-                        let max = textNode.boundingBox.max
-                        textNode.pivot = SCNMatrix4MakeTranslation(
-                            (max.x - min.x) / 2 + min.x,
-                            (max.y - min.y) / 2 + min.y,
-                            (max.z - min.z) / 2 + min.z
-                        )
-                        textNode.position = SCNVector3(0, 0, 0)
-
-                        node.addChildNode(textNode)
-                        textNode.addChildNode(circleNode)
-                        
-                        if(annotationText != nil) {
-                            let annotationTextGeometry = SCNText(string: annotationText, extrusionDepth: 1)
-                            annotationTextGeometry.font = UIFont.systemFont(ofSize: 2)
-                            annotationTextGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
-                            let annotationTextNode = SCNNode(geometry: annotationTextGeometry)
-                            annotationTextNode.name = "AnnotationTextNode"
-                            
-                            let width = CGFloat((annotationTextGeometry.boundingBox.max.x - annotationTextGeometry.boundingBox.min.x) + 2)
-                            let height = CGFloat((annotationTextGeometry.boundingBox.max.y - annotationTextGeometry.boundingBox.min.y) + 2)
-                            let circleGeometry = SCNPlane(width: width, height: height)
-                            circleGeometry.cornerRadius = 0.5
-                            circleGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
-                            let annotationCircleNode = SCNNode(geometry: circleGeometry)
-                            
-                            let textHeight = textNode.boundingBox.max.y - textNode.boundingBox.min.y
-                            let annotationTextHeight = annotationTextNode.boundingBox.max.y - annotationTextNode.boundingBox.min.y
-
-                            let midX = (annotationTextNode.boundingBox.max.x + annotationTextNode.boundingBox.min.x) * 0.5
-                            let midY = (annotationTextNode.boundingBox.max.y + annotationTextNode.boundingBox.min.y) * 0.5
-                            annotationCircleNode.position = SCNVector3(x: midX, y: midY, z: 0.1)
-            //                annotationTextNode.pivot = SCNMatrix4MakeTranslation(midX, midY, 0)
-                            
-                            
-                            // Adjusting the y position of the annotationTextNode to be just below textNode
-                            let offset: Float = 0.0
-            //                annotationTextNode.position.x = -midX
-                            annotationTextNode.position.y = -textHeight / 2 - annotationTextHeight / 2 - offset
-
-                            
-                            annotationTextNode.addChildNode(annotationCircleNode)
-                            textNode.addChildNode(annotationTextNode)
-                        }// if(annotationText != nil)
+//                        addAnnotation(node: node, stepNumberText: stepNumberText, annotationText: annotationText)
                     }// if(createAnnotation)
                 }// self.getAnnotationText()
             }// if(createAnnotation1)
         }// getStepNumberText()
     }// func
+    
+    func addAnnotation(node: SCNNode, stepNumberText: String, annotationText: String) {
+        // Step # text node
+        let textGeometry = SCNText(string: stepNumberText, extrusionDepth: 1)
+        textGeometry.font = UIFont.systemFont(ofSize: 6)
+        textGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
+        let textNode = SCNNode(geometry: textGeometry)
+        textNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        let midX = (textGeometry.boundingBox.max.x + textGeometry.boundingBox.min.x) * 0.5
+        let midY = (textGeometry.boundingBox.max.y + textGeometry.boundingBox.min.y) * 0.5
+        textNode.pivot = SCNMatrix4MakeTranslation(midX, midY, 0)
+        textNode.name = "TextNode"
+        
+        // Text background shape
+        let circleDiameter = CGFloat(max(textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x,
+                                         textGeometry.boundingBox.max.y - textGeometry.boundingBox.min.y) * 1.5)  // Adjust as needed
+        let circleGeometry = SCNPlane(width: circleDiameter, height: circleDiameter)
+        circleGeometry.cornerRadius = 1
+        circleGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
+        let circleNode = SCNNode(geometry: circleGeometry)
+        circleNode.position = SCNVector3(x: midX, y: midY, z: 0.1)
+        
+        // Add constraints so annotation nodes always face camera
+        let billboardConstraint = SCNBillboardConstraint()
+        billboardConstraint.freeAxes = SCNBillboardAxis.all
+        textNode.constraints = [billboardConstraint]
+        circleNode.constraints = [billboardConstraint]
+        
+        // Center text node on parent node
+        let min = textNode.boundingBox.min
+        let max = textNode.boundingBox.max
+        textNode.pivot = SCNMatrix4MakeTranslation(
+            (max.x - min.x) / 2 + min.x,
+            (max.y - min.y) / 2 + min.y,
+            (max.z - min.z) / 2 + min.z
+        )
+        textNode.position = SCNVector3(0, 0, 0)
+
+        node.addChildNode(textNode)
+        textNode.addChildNode(circleNode)
+        
+        if(annotationText != nil) {
+            let annotationTextGeometry = SCNText(string: annotationText, extrusionDepth: 1)
+            annotationTextGeometry.font = UIFont.systemFont(ofSize: 2)
+            annotationTextGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
+            let annotationTextNode = SCNNode(geometry: annotationTextGeometry)
+            annotationTextNode.name = "AnnotationTextNode"
+            
+            let width = CGFloat((annotationTextGeometry.boundingBox.max.x - annotationTextGeometry.boundingBox.min.x) + 2)
+            let height = CGFloat((annotationTextGeometry.boundingBox.max.y - annotationTextGeometry.boundingBox.min.y) + 2)
+            let circleGeometry = SCNPlane(width: width, height: height)
+            circleGeometry.cornerRadius = 0.5
+            circleGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
+            let annotationCircleNode = SCNNode(geometry: circleGeometry)
+            
+            let textHeight = textNode.boundingBox.max.y - textNode.boundingBox.min.y
+            let annotationTextHeight = annotationTextNode.boundingBox.max.y - annotationTextNode.boundingBox.min.y
+
+            let midX = (annotationTextNode.boundingBox.max.x + annotationTextNode.boundingBox.min.x) * 0.5
+            let midY = (annotationTextNode.boundingBox.max.y + annotationTextNode.boundingBox.min.y) * 0.5
+            annotationCircleNode.position = SCNVector3(x: midX, y: midY, z: 0.1)
+//                annotationTextNode.pivot = SCNMatrix4MakeTranslation(midX, midY, 0)
+            
+            
+            // Adjusting the y position of the annotationTextNode to be just below textNode
+            let offset: Float = 0.0
+//                annotationTextNode.position.x = -midX
+            annotationTextNode.position.y = -textHeight / 2 - annotationTextHeight / 2 - offset
+
+            
+            annotationTextNode.addChildNode(annotationCircleNode)
+            textNode.addChildNode(annotationTextNode)
+        }// if(annotationText != nil)
+    }
     
     func getPoints() -> [SIMD3<Float>] {
         return referenceObjectPointCloud.points
@@ -405,3 +426,28 @@ class DetectedPointCloud: SCNNode, PointCloud {
         return self.center
     }
 }
+
+extension SCNNode {
+    func findChildNode(near position: SCNVector3, within delta: Float) -> SCNNode? {
+        // Compute the distance between this node's position and the target position
+        let distance = sqrt(pow(self.position.x - position.x, 2) +
+                            pow(self.position.y - position.y, 2) +
+                            pow(self.position.z - position.z, 2))
+        
+        // Check if the distance is within the delta
+        if distance <= delta {
+            return self
+        }
+        
+        // Recursively search child nodes
+        for child in childNodes {
+            if let found = child.findChildNode(near: position, within: delta) {
+                return found
+            }
+        }
+        
+        // If not found, return nil
+        return nil
+    }
+}
+
