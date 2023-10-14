@@ -13,6 +13,8 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     static let referenceObjectKey = "referenceObjectKey"
     static let getAnnotationPointNotification = Notification.Name("getAnnotationPointNotification")
     static let getAnnotationPointCallbackKey = "getAnnotationPointCallbackKey"
+    static let addPinNotification = Notification.Name("addPinNotification")
+    static let pinKey = "pinKey"
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
     @Published var appState: Coordinator.AppState?
@@ -23,6 +25,9 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     @Published var hasModelBeenLoaded: Bool = false
     @Published var hasObjectBeenDetected: Bool = false
     @Published var showCreatePinView: Bool = false
+    @Published var annotationPointX: Float?
+    @Published var annotationPointY: Float?
+    @Published var annotationPointZ: Float?
     
     var machine: Machine
     
@@ -75,9 +80,20 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     }
     
     func setAnnotationPoint(x: Float?, y: Float?, z: Float?) {
-        print("setAnnotationPoint \(x), \(y), \(z)")
-        self.showCreatePinView = true
+        self.annotationPointX = x
+        self.annotationPointY = y
+        self.annotationPointZ = z
+        if x != nil && y != nil && z != nil {
+            self.showCreatePinView = true
+        }
     }
+    
+    func addPin(pin: Pin) {
+        NotificationCenter.default.post(name: AnnotatingMachineViewModel.addPinNotification,
+                                        object: self,
+                                        userInfo: [AnnotatingMachineViewModel.pinKey: pin])
+    }
+    
 }
 
 protocol GetAnnotationPointCallback {

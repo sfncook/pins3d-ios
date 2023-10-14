@@ -4,7 +4,7 @@ import ARKit
 struct AnnotatingMachineView: View {
     @ObservedObject var viewModel: AnnotatingMachineViewModel
     @Binding var showAnnotatingMachineView: Bool
-    @State private var pinText: String = ""
+    @State var createdPin: TextPin? = nil
     
     init(_ machine: Machine, showAnnotatingMachineView: Binding<Bool>) {
 //        print("AnnotatingMachineView.init \(machine.name!) \(machine.arFilename ?? "NO AR Filename")")
@@ -45,12 +45,16 @@ struct AnnotatingMachineView: View {
                             .cornerRadius(8)
                     }
                     .sheet(isPresented: $viewModel.showCreatePinView, onDismiss: {
-                        print("CreatePinView onDismiss pinText:\(self.$pinText)")
-                        self.pinText = ""
+                        print("CreatePinView onDismiss pin:\(self.createdPin?.text ?? "NOT_SET")")
+                        self.createdPin = nil
                     }) {
                         CreatePinView(
-                            pinText: self.$pinText,
-                            showCreatePinView: $viewModel.showCreatePinView
+                            machine: viewModel.machine,
+                            x: viewModel.annotationPointX!,
+                            y: viewModel.annotationPointY!,
+                            z: viewModel.annotationPointZ!,
+                            showCreatePinView: $viewModel.showCreatePinView,
+                            createdPin: self.$createdPin
                         )
                     }
                 }
