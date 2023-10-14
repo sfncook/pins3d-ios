@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D4203F422ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */; };
+		D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F432ADB3B7000422E86 /* CreatePinView.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnotatingMachineViewModel+LoadModel.swift"; sourceTree = "<group>"; };
+		D4203F432ADB3B7000422E86 /* CreatePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinView.swift; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				D4F582DE2AD8B4EC00FFADBB /* AnnotatingMachineView.swift */,
 				D4F582E02AD8B52800FFADBB /* AnnotatingMachineViewModel.swift */,
 				D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */,
+				D4203F432ADB3B7000422E86 /* CreatePinView.swift */,
 			);
 			path = Annotating;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */,
 				D4203F422ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift in Sources */,
 				D4B22D9C2AD773D500F3882B /* ThresholdPanGestureRecognizer.swift in Sources */,
+				D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */,
 				D4B22D882AD75E9800F3882B /* CubeNode.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */,

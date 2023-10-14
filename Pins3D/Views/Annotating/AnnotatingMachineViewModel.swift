@@ -76,6 +76,7 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     
     func setAnnotationPoint(x: Float?, y: Float?, z: Float?) {
         print("setAnnotationPoint \(x), \(y), \(z)")
+        self.showCreatePinView = true
     }
 }
 

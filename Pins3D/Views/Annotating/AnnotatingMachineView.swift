@@ -4,6 +4,7 @@ import ARKit
 struct AnnotatingMachineView: View {
     @ObservedObject var viewModel: AnnotatingMachineViewModel
     @Binding var showAnnotatingMachineView: Bool
+    @State private var pinText: String = ""
     
     init(_ machine: Machine, showAnnotatingMachineView: Binding<Bool>) {
 //        print("AnnotatingMachineView.init \(machine.name!) \(machine.arFilename ?? "NO AR Filename")")
@@ -42,6 +43,15 @@ struct AnnotatingMachineView: View {
                             .background(Color.white)
                             .foregroundColor(.blue)
                             .cornerRadius(8)
+                    }
+                    .sheet(isPresented: $viewModel.showCreatePinView, onDismiss: {
+                        print("CreatePinView onDismiss pinText:\(self.$pinText)")
+                        self.pinText = ""
+                    }) {
+                        CreatePinView(
+                            pinText: self.$pinText,
+                            showCreatePinView: $viewModel.showCreatePinView
+                        )
                     }
                 }
             }

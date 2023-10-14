@@ -32,9 +32,6 @@ struct CreateMachineView: View {
             Spacer()
         }
         .padding(.vertical)
-        .onAppear{
-            print("CreateMachineView.onAppear")
-        }
     }
     
     private func saveNewMachine() {
