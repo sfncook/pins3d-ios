@@ -35,8 +35,7 @@ struct AnnotatingMachineView: View {
                     }
                 } else if $viewModel.hasObjectBeenDetected.wrappedValue {
                     Button(action: {
-    //                    viewModel.resetAppAndScanningStates()
-    //                    self.presentationMode.wrappedValue.dismiss()
+                        viewModel.onDropPin()
                     }) {
                         Text("Drop Pin")
                             .padding()

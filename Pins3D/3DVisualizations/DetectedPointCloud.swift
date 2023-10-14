@@ -120,12 +120,11 @@ class DetectedPointCloud: SCNNode, PointCloud {
                 }
             }
         }
-
-
-        
-//        addChildNode(CubeNode(position: SCNVector3(x: min.x, y: min.y, z: min.z)))
-//        addChildNode(CubeNode(position: SCNVector3(x: max.x, y: max.y, z: max.z)))
-    }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.getAnnotationPointCallback(_:)),
+                                               name: AnnotatingMachineViewModel.getAnnotationPointNotification,
+                                               object: nil)
+    }// init
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -157,6 +156,7 @@ class DetectedPointCloud: SCNNode, PointCloud {
 //        self.geometry = createVisualization(for: currentPointCloudInliers, color: .appGreen, size: 12, type: .point)
         
         
+        // Draw user pointer on cube that is pointed at
         DispatchQueue.main.async {
             let scnView = ARSCNView.sceneView!
             let screenPos = CGPoint(x: scnView.bounds.midX, y: scnView.bounds.midY)
@@ -168,11 +168,24 @@ class DetectedPointCloud: SCNNode, PointCloud {
             ])
             if !hitResults.isEmpty {
                 let hit = hitResults[0]
-                let hitNode = hit.node
+                self.hitNodePointedAt = hit.node
                 self.sphereNode.removeFromParentNode()
-                hitNode.addChildNode(self.sphereNode)
+                self.hitNodePointedAt?.addChildNode(self.sphereNode)
+//                print("hitNode name:\(hitNode.name ?? "NOT_SET") position:(\(hitNode.position.x),\(hitNode.position.y),\(hitNode.position.z))")
             }
         }
+    }
+    
+    private var hitNodePointedAt: SCNNode?
+    
+    @objc
+    private func getAnnotationPointCallback(_ notification: Notification) {
+        guard let getAnnotationPointCallback = notification.userInfo?[AnnotatingMachineViewModel.getAnnotationPointCallbackKey] as? GetAnnotationPointCallback else { return }
+        getAnnotationPointCallback.setAnnotationPoint(
+            x: self.hitNodePointedAt?.position.x,
+            y: self.hitNodePointedAt?.position.y,
+            z: self.hitNodePointedAt?.position.z
+        )
     }
     
     func findNode(named name: String, in node: SCNNode) -> SCNNode? {

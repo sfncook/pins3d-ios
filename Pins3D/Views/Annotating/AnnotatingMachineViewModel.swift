@@ -8,9 +8,11 @@
 import SwiftUI
 import ARKit
 
-class AnnotatingMachineViewModel: ObservableObject {
+class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     static let loadModelNotification = Notification.Name("LoadModel")
     static let referenceObjectKey = "referenceObjectKey"
+    static let getAnnotationPointNotification = Notification.Name("getAnnotationPointNotification")
+    static let getAnnotationPointCallbackKey = "getAnnotationPointCallbackKey"
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
     @Published var appState: Coordinator.AppState?
@@ -20,6 +22,7 @@ class AnnotatingMachineViewModel: ObservableObject {
     @Published var isModelLoading: Bool = false
     @Published var hasModelBeenLoaded: Bool = false
     @Published var hasObjectBeenDetected: Bool = false
+    @Published var showCreatePinView: Bool = false
     
     var machine: Machine
     
@@ -64,4 +67,18 @@ class AnnotatingMachineViewModel: ObservableObject {
     private func updateShowLoadButton() {
         self.showStartLoadButtons = self.cameraTrackingState == .normal && !self.hasModelBeenLoaded && !self.isModelLoading
     }
+    
+    func onDropPin() {
+        NotificationCenter.default.post(name: AnnotatingMachineViewModel.getAnnotationPointNotification,
+                                        object: self,
+                                        userInfo: [AnnotatingMachineViewModel.getAnnotationPointCallbackKey: self])
+    }
+    
+    func setAnnotationPoint(x: Float?, y: Float?, z: Float?) {
+        print("setAnnotationPoint \(x), \(y), \(z)")
+    }
+}
+
+protocol GetAnnotationPointCallback {
+    func setAnnotationPoint(x: Float?, y: Float?, z: Float?)
 }
