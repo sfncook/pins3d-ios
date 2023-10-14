@@ -11,6 +11,8 @@ import ARKit
 // This class represents a test run of a scanned object.
 class TestRun {
     
+    static let objectDetectedNotification = Notification.Name("objectDetectedNotification")
+    
     // The ARReferenceObject to be tested in this run.
     var referenceObject: ARReferenceObject?
     
@@ -83,7 +85,10 @@ class TestRun {
     }
 
     func successfulDetection(_ objectAnchor: ARObjectAnchor) {
-//        print("TestRun.successfulDetection")
+        if(detections==0) {
+            // Send notification on first detection
+            NotificationCenter.default.post(name: TestRun.objectDetectedNotification, object: self)
+        }
         // Compute the time it took to detect this object & the average.
         lastDetectionDelayInSeconds = Date().timeIntervalSince(self.lastDetectionStartTime!)
         detections += 1

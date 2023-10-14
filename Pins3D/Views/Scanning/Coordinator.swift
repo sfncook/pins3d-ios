@@ -43,7 +43,7 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.loadModel(_:)),
-                                               name: AnnotatingMachineViewViewModel.loadModelNotification,
+                                               name: AnnotatingMachineViewModel.loadModelNotification,
                                                object: nil)
     }
     
@@ -111,7 +111,7 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     
     @objc
     private func loadModel(_ notification: Notification) {
-        guard let referenceObject = notification.userInfo?[AnnotatingMachineViewViewModel.referenceObjectKey] as? ARReferenceObject else { return }
+        guard let referenceObject = notification.userInfo?[AnnotatingMachineViewModel.referenceObjectKey] as? ARReferenceObject else { return }
         loadModelAndStartScanning(referenceObject)
     }
 
