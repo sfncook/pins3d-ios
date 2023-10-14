@@ -15,7 +15,6 @@ class AnnotatingMachineViewModel: ObservableObject {
     @Published var cameraTrackingState: ARCamera.TrackingState?
     @Published var appState: Coordinator.AppState?
     @Published var showStartLoadButtons: Bool = false
-    @Published var showDropPinButtons: Bool = false
     @Published var showLoadingMsg: Bool = false
     @Published var loadingMsg: String?
     @Published var isModelLoading: Bool = false

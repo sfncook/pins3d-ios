@@ -33,7 +33,7 @@ struct AnnotatingMachineView: View {
                             .foregroundColor(.blue)
                             .cornerRadius(8)
                     }
-                } else if $viewModel.showDropPinButtons.wrappedValue {
+                } else if $viewModel.hasObjectBeenDetected.wrappedValue {
                     Button(action: {
     //                    viewModel.resetAppAndScanningStates()
     //                    self.presentationMode.wrappedValue.dismiss()

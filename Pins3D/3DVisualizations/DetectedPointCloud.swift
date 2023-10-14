@@ -24,6 +24,8 @@ class DetectedPointCloud: SCNNode, PointCloud {
     
     private let innerCubesColor: UIColor = UIColor.clear
     
+    private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.005))
+    
     init(referenceObjectPointCloud: ARPointCloud, center: SIMD3<Float>, extent: SIMD3<Float>, sidesNodeObject: SCNNode?) {
         self.referenceObjectPointCloud = referenceObjectPointCloud
         self.center = center
@@ -33,11 +35,6 @@ class DetectedPointCloud: SCNNode, PointCloud {
         self.sidesNode = sidesNodeObject ?? SCNNode()
         
         let textNodes = self.sidesNode.childNodes { (node, stop) -> Bool in
-//            if(node.geometry is SCNText) {
-//                let textGeometry = node.geometry as! SCNText
-//                let text = textGeometry.string
-//                textGeometry.string = "ABC"
-//            }
             return node.name == "TextNode"
         }
         manyAnnotations = textNodes.count
@@ -157,8 +154,25 @@ class DetectedPointCloud: SCNNode, PointCloud {
         }
         
         let currentPointCloudInliers = inlierPoints
-//        print("currentPointCloudInliers.count: \(currentPointCloudInliers.count)")
-        self.geometry = createVisualization(for: currentPointCloudInliers, color: .appGreen, size: 12, type: .point)
+//        self.geometry = createVisualization(for: currentPointCloudInliers, color: .appGreen, size: 12, type: .point)
+        
+        
+        DispatchQueue.main.async {
+            let scnView = ARSCNView.sceneView!
+            let screenPos = CGPoint(x: scnView.bounds.midX, y: scnView.bounds.midY)
+            let hitResults = scnView.hitTest(screenPos, options: [
+                .rootNode: self.sidesNode,
+                .ignoreHiddenNodes: true,
+                .backFaceCulling: true,
+                .searchMode: SCNHitTestSearchMode.all.rawValue
+            ])
+            if !hitResults.isEmpty {
+                let hit = hitResults[0]
+                let hitNode = hit.node
+                self.sphereNode.removeFromParentNode()
+                hitNode.addChildNode(self.sphereNode)
+            }
+        }
     }
     
     func findNode(named name: String, in node: SCNNode) -> SCNNode? {

@@ -34,7 +34,7 @@ class TestRun {
     
     private(set) var previewImage = UIImage()
     
-    private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.005))
+//    private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.005))
     
     init(sceneView: ARSCNView) {
         self.sceneView = sceneView
@@ -66,7 +66,7 @@ class TestRun {
         self.detectedObject = DetectedObject(referenceObject: object, sidesNodeObject: sidesNodeObject)
         self.sceneView.scene.rootNode.addChildNode(self.detectedObject!)
         
-        self.detectedObject?.addChildNode(self.sphereNode)
+//        self.detectedObject?.addChildNode(self.sphereNode)
         
         self.lastDetectionStartTime = Date()
         
