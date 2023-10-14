@@ -31,6 +31,7 @@ class AnnotatingMachineViewViewModel: ObservableObject {
         let arFilename = machine.arFilename!
 //        print("AnnotatingMachineViewViewModel.loadModel \(machine.name!) \(arFilename)")
         let urlStr = "https://us-central1-cook-250617.cloudfunctions.net/ar-model/\(arFilename)"
+//        let urlStr = "https://us-central1-cook-250617.cloudfunctions.net/ar-model/referenceObject1"
         let url = URL(string: urlStr)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             guard error == nil else {

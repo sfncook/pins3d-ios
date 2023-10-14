@@ -157,6 +157,7 @@ class DetectedPointCloud: SCNNode, PointCloud {
         }
         
         let currentPointCloudInliers = inlierPoints
+//        print("currentPointCloudInliers.count: \(currentPointCloudInliers.count)")
         self.geometry = createVisualization(for: currentPointCloudInliers, color: .appGreen, size: 12, type: .point)
     }
     

@@ -83,7 +83,7 @@ class TestRun {
     }
 
     func successfulDetection(_ objectAnchor: ARObjectAnchor) {
-        print("TestRun.successfulDetection")
+//        print("TestRun.successfulDetection")
         // Compute the time it took to detect this object & the average.
         lastDetectionDelayInSeconds = Date().timeIntervalSince(self.lastDetectionStartTime!)
         detections += 1
@@ -108,6 +108,7 @@ class TestRun {
 //        print("TestRun.updateOnEveryFrame")
         if let detectedObject = self.detectedObject {
             if let currentPointCloud = self.sceneView.session.currentFrame?.rawFeaturePoints {
+//                print("currentPointCloud.points.count: \(currentPointCloud.points.count)")
                 detectedObject.updatePointCloud(currentPointCloud)
             }
         }
