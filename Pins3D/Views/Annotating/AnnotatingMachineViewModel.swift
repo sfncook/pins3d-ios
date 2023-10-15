@@ -15,6 +15,7 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     static let getAnnotationPointCallbackKey = "getAnnotationPointCallbackKey"
     static let addPinNotification = Notification.Name("addPinNotification")
     static let pinKey = "pinKey"
+    static let requestCameraStateUpdateNotification = Notification.Name("requestCameraStateUpdate")
     
     @Published var cameraTrackingState: ARCamera.TrackingState?
     @Published var appState: Coordinator.AppState?
@@ -105,6 +106,10 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
         NotificationCenter.default.post(name: AnnotatingMachineViewModel.addPinNotification,
                                         object: self,
                                         userInfo: [AnnotatingMachineViewModel.pinKey: pin])
+    }
+    
+    func requestCameraStateUpdate() {
+        NotificationCenter.default.post(name: AnnotatingMachineViewModel.requestCameraStateUpdateNotification, object: self)
     }
     
 }

@@ -45,6 +45,10 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
                                                selector: #selector(self.loadModel(_:)),
                                                name: AnnotatingMachineViewModel.loadModelNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.requestCameraStateUpdate(_:)),
+                                               name: AnnotatingMachineViewModel.requestCameraStateUpdateNotification,
+                                               object: nil)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -73,6 +77,7 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        print("Coordinator.session camera.TrackingState:\(camera.trackingState)")
         NotificationCenter.default.post(name: Coordinator.cameraTrackingStateChangedNotification,
                                         object: self,
                                         userInfo: [Coordinator.cameraTrackingStateKey: camera.trackingState])
@@ -113,6 +118,20 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     private func loadModel(_ notification: Notification) {
         guard let referenceObject = notification.userInfo?[AnnotatingMachineViewModel.referenceObjectKey] as? ARReferenceObject else { return }
         loadModelAndStartScanning(referenceObject)
+    }
+    
+    @objc
+    private func requestCameraStateUpdate(_ notification: Notification) {
+        if let cameraTrackingState = ARSCNView.sceneView?.session.currentFrame?.camera.trackingState {
+            NotificationCenter.default.post(name: Coordinator.cameraTrackingStateChangedNotification,
+                                            object: self,
+                                            userInfo: [Coordinator.cameraTrackingStateKey: cameraTrackingState])
+        }
+        
+        NotificationCenter.default.post(name: Coordinator.appStateChangedNotification,
+                                        object: self,
+                                        userInfo: [Coordinator.appStateUserInfoKey: self.state])
+
     }
 
 }

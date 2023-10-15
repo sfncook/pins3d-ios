@@ -50,6 +50,7 @@ struct AnnotatingMachineView: View {
                             viewModel.addPin(pin: self.createdPin!)
                         }
                         self.createdPin = nil
+                        viewModel.requestCameraStateUpdate()
                     }) {
                         CreatePinView(
                             machine: viewModel.machine,
