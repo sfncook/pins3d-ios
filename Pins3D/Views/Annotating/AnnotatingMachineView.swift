@@ -2,13 +2,13 @@ import SwiftUI
 import ARKit
 
 struct AnnotatingMachineView: View {
-    @ObservedObject var viewModel: AnnotatingMachineViewModel
+    @StateObject var viewModel: AnnotatingMachineViewModel
     @Binding var showAnnotatingMachineView: Bool
     @State var createdPin: TextPin? = nil
     
     init(_ machine: Machine, showAnnotatingMachineView: Binding<Bool>) {
-//        print("AnnotatingMachineView.init \(machine.name!) \(machine.arFilename ?? "NO AR Filename")")
-        viewModel = AnnotatingMachineViewModel(machine: machine)
+        print("AnnotatingMachineView.init")
+        _viewModel = StateObject(wrappedValue: AnnotatingMachineViewModel(machine: machine))
         self._showAnnotatingMachineView = showAnnotatingMachineView
     }
     
@@ -50,10 +50,9 @@ struct AnnotatingMachineView: View {
                             viewModel.addPin(pin: self.createdPin!)
                         }
                         self.createdPin = nil
-                        viewModel.requestCameraStateUpdate()
                     }) {
                         CreatePinView(
-                            machine: viewModel.machine,
+                            viewModel: viewModel,
                             x: viewModel.annotationPointX!,
                             y: viewModel.annotationPointY!,
                             z: viewModel.annotationPointZ!,

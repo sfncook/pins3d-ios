@@ -9,7 +9,6 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     static let referenceObjectReadyNotification = Notification.Name("referenceObjectReady")
     static let referenceObjectKey = "referenceObjectKey"
     
-    var sceneView: ARSCNView?
     var internalState: AppState = .startARSession
     static var scan: Scan?
     var testRun: TestRun?
@@ -52,7 +51,7 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        guard let frame = sceneView?.session.currentFrame else { return }
+        guard let frame = ARSCNView.sceneView?.session.currentFrame else { return }
         Coordinator.scan?.updateOnEveryFrame(frame)
         testRun?.updateOnEveryFrame()
     }
@@ -72,7 +71,7 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
             Coordinator.scan?.scannedObject.tryToAlignWithPlanes([planeAnchor])
             
             // After a plane was found, disable plane detection for performance reasons.
-            sceneView?.stopPlaneDetection()
+            ARSCNView.sceneView?.stopPlaneDetection()
         }
     }
     
@@ -90,7 +89,7 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     
     @objc
     private func updateCenterPoint(_ notification: Notification) {
-        CGPoint.screenCenter = sceneView?.center ?? CGPoint()
+        CGPoint.screenCenter = ARSCNView.sceneView?.center ?? CGPoint()
     }
     
     @objc

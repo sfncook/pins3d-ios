@@ -32,7 +32,7 @@ extension Coordinator {
                 break
             case .notReady:
                 // Immediately switch to .ready if tracking state is normal.
-                if let camera = self.sceneView?.session.currentFrame?.camera {
+                if let camera = ARSCNView.sceneView?.session.currentFrame?.camera {
                     switch camera.trackingState {
                     case .normal:
                         newState = .scanning
@@ -44,7 +44,7 @@ extension Coordinator {
                 }
             case .scanning:
                 // Immediately switch to .notReady if tracking state is not normal.
-                if let camera = self.sceneView?.session.currentFrame?.camera {
+                if let camera = ARSCNView.sceneView?.session.currentFrame?.camera {
                     switch camera.trackingState {
                     case .normal:
                         break
@@ -81,11 +81,11 @@ extension Coordinator {
 ////                flashlightButton.isHidden = true
                 
                 // Make sure the SCNScene is cleared of any SCNNodes from previous scans.
-                sceneView?.scene = SCNScene()
+                ARSCNView.sceneView?.scene = SCNScene()
                 
                 let configuration = ARObjectScanningConfiguration()
                 configuration.planeDetection = .horizontal
-                sceneView?.session.run(configuration, options: .resetTracking)
+                ARSCNView.sceneView?.session.run(configuration, options: .resetTracking)
 //                cancelMaxScanTimeTimer()
 //                cancelMessageExpirationTimer()
             case .notReady:
@@ -104,7 +104,7 @@ extension Coordinator {
             case .scanning:
                 print("AppState: Scanning")
                 if Coordinator.scan == nil {
-                    Coordinator.scan = Scan(sceneView!)
+                    Coordinator.scan = Scan(ARSCNView.sceneView!)
                     Coordinator.scan?.state = .ready
                 }
 //                testRun = nil
@@ -123,7 +123,7 @@ extension Coordinator {
 ////                nextButton.setTitle("Share", for: [])
 //                instructionsVisible = false
 //                
-                testRun = TestRun(sceneView: sceneView!)
+                testRun = TestRun(sceneView: ARSCNView.sceneView!)
                 testObjectDetection()
 //                cancelMaxScanTimeTimer()
             }
@@ -177,7 +177,7 @@ extension Coordinator {
 //                self.loadModelButton.isHidden = true
 //                self.instructionsVisible = false
                 // Disable plane detection (even if no plane has been found yet at this time) for performance reasons.
-                self.sceneView!.stopPlaneDetection()
+                ARSCNView.sceneView!.stopPlaneDetection()
             case .adjustingOrigin:
                 print("State: Adjusting Origin")
 //                self.displayInstruction(Message("Adjust origin using gestures.\n" +

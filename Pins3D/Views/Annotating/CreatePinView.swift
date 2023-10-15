@@ -7,20 +7,20 @@ struct CreatePinView: View {
     @Binding var createdPin: TextPin?
     @Binding var showCreatePinView: Bool
     
-    let machine: Machine
+    let viewModel: AnnotatingMachineViewModel
     let x: Float
     let y: Float
     let z: Float
     
     init(
-        machine: Machine,
+        viewModel: AnnotatingMachineViewModel,
         x: Float,
         y: Float,
         z: Float,
         showCreatePinView: Binding<Bool>,
         createdPin: Binding<TextPin?>
     ) {
-        self.machine = machine
+        self.viewModel = viewModel
         self.x = x
         self.y = y
         self.z = z
@@ -64,7 +64,7 @@ struct CreatePinView: View {
         createdPin!.y = self.y
         createdPin!.z = self.z
         
-        self.machine.addToPins(createdPin!)
+        viewModel.addPinYoMama(pin: createdPin!)
 
         do {
             try viewContext.save()

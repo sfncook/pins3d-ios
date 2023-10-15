@@ -9,6 +9,8 @@ import SwiftUI
 import ARKit
 
 class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
+    @Environment(\.managedObjectContext) private var viewContext
+    
     static let loadModelNotification = Notification.Name("LoadModel")
     static let referenceObjectKey = "referenceObjectKey"
     static let getAnnotationPointNotification = Notification.Name("getAnnotationPointNotification")
@@ -110,6 +112,10 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     
     func requestCameraStateUpdate() {
         NotificationCenter.default.post(name: AnnotatingMachineViewModel.requestCameraStateUpdateNotification, object: self)
+    }
+    
+    func addPinYoMama(pin: TextPin) {
+        self.machine.addToPins(pin)
     }
     
 }
