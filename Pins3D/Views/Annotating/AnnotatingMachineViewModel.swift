@@ -79,7 +79,11 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     }
     
     private func updateShowLoadButton() {
+        let initVal = self.showStartLoadButtons
         self.showStartLoadButtons = self.cameraTrackingState == .normal && !self.hasModelBeenLoaded && !self.isModelLoading
+        if(!initVal && self.showStartLoadButtons) {
+            loadModel()
+        }
     }
     
     func onDropPin() {

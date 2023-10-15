@@ -24,7 +24,7 @@ struct AnnotatingMachineView: View {
                 
                 Spacer()
                 
-                if $viewModel.showStartLoadButtons.wrappedValue {
+                /*if $viewModel.showStartLoadButtons.wrappedValue {
                     Button(action: {
                         viewModel.loadModel()
                     }) {
@@ -34,7 +34,7 @@ struct AnnotatingMachineView: View {
                             .foregroundColor(.blue)
                             .cornerRadius(8)
                     }
-                } else if $viewModel.hasObjectBeenDetected.wrappedValue {
+                } else*/ if $viewModel.hasObjectBeenDetected.wrappedValue {
                     Button(action: {
                         viewModel.onDropPin()
                     }) {
