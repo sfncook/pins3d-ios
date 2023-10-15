@@ -137,9 +137,22 @@ class Scan {
                                                name: Coordinator.appStateChangedNotification,
                                                object: nil)
         
+        // Gestures
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.magnifyingGestureOnChanged(_:)),
                                                name: ScanningMachineViewModel.magnifyingGestureOnChangedNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.draggingGestureOnBegan(_:)),
+                                               name: ScanningMachineViewModel.draggingGestureOnBeganNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.draggingGestureOnChanged(_:)),
+                                               name: ScanningMachineViewModel.draggingGestureOnChangedNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.draggingGestureOnEnded(_:)),
+                                               name: ScanningMachineViewModel.draggingGestureOnEndedNotification,
                                                object: nil)
         
         self.sceneView.scene.rootNode.addChildNode(self.scannedObject)
@@ -198,52 +211,29 @@ class Scan {
         }
     }
     
-    func didTwoFingerPan(_ gesture: ThresholdPanGestureRecognizer) {
-        if state == .ready {
-            state = .defineBoundingBox
-        }
-        
-        if state == .defineBoundingBox || state == .scanning {
-            switch gesture.state {
-            case .possible:
-                break
-            case .began:
-                if gesture.numberOfTouches == 2 {
-                    scannedObject.boundingBox?.startGroundPlaneDrag(screenPos: gesture.offsetLocation(in: sceneView))
-                }
-            case .changed where gesture.isThresholdExceeded:
-                if gesture.numberOfTouches == 2 {
-                    scannedObject.boundingBox?.updateGroundPlaneDrag(screenPos: gesture.offsetLocation(in: sceneView))
-                }
-            case .changed:
-                break
-            case .failed, .cancelled, .ended:
-                scannedObject.boundingBox?.endGroundPlaneDrag()
-            @unknown default:
-                break
-            }
-        } else if state == .adjustingOrigin {
-            switch gesture.state {
-            case .possible:
-                break
-            case .began:
-                if gesture.numberOfTouches == 2 {
-                    scannedObject.origin?.startPlaneDrag(screenPos: gesture.offsetLocation(in: sceneView))
-                }
-            case .changed where gesture.isThresholdExceeded:
-                if gesture.numberOfTouches == 2 {
-                    scannedObject.origin?.updatePlaneDrag(screenPos: gesture.offsetLocation(in: sceneView))
-                }
-            case .changed:
-                break
-            case .failed, .cancelled, .ended:
-                scannedObject.origin?.endPlaneDrag()
-            @unknown default:
-                break
-            }
+    @objc
+    private func draggingGestureOnBegan(_ notification: Notification) {
+        if state == .defineBoundingBox {
+            guard let draggingLocation = notification.userInfo?[ScanningMachineViewModel.draggingLocationKey] as? CGPoint else { return }
+            scannedObject.boundingBox?.startGroundPlaneDrag(screenPos: draggingLocation)
         }
     }
     
+    @objc
+    private func draggingGestureOnChanged(_ notification: Notification) {
+        if state == .defineBoundingBox {
+            guard let draggingLocation = notification.userInfo?[ScanningMachineViewModel.draggingLocationKey] as? CGPoint else { return }
+            scannedObject.boundingBox?.updateGroundPlaneDrag(screenPos: draggingLocation)
+        }
+    }
+    
+    @objc
+    private func draggingGestureOnEnded(_ notification: Notification) {
+        if state == .defineBoundingBox {
+            scannedObject.boundingBox?.endGroundPlaneDrag()
+        }
+    }
+   
     func didRotate(_ gesture: ThresholdRotationGestureRecognizer) {
         if state == .ready {
             state = .defineBoundingBox

@@ -5,7 +5,7 @@ extension ScanningMachineViewModel {
     static let draggingGestureOnBeganNotification = Notification.Name("draggingGestureOnBegan")
     static let draggingGestureOnChangedNotification = Notification.Name("draggingGestureOnChanged")
     static let draggingGestureOnEndedNotification = Notification.Name("draggingGestureOnEnded")
-    static let gestureValueKey = "gestureValueKey"
+    static let draggingLocationKey = "draggingLocationKey"
     static let magnifyingGestureOnChangedNotification = Notification.Name("magnifyingGestureOnChanged")
     static let magnificationScaleKey = "magnificationScaleKey"
     
@@ -13,20 +13,18 @@ extension ScanningMachineViewModel {
         if(self.isDragging) {
             NotificationCenter.default.post(name: ScanningMachineViewModel.draggingGestureOnChangedNotification,
                                             object: self,
-                                            userInfo: [ScanningMachineViewModel.gestureValueKey: value])
+                                            userInfo: [ScanningMachineViewModel.draggingLocationKey: value.location])
         } else {
             self.isDragging = true
             NotificationCenter.default.post(name: ScanningMachineViewModel.draggingGestureOnBeganNotification,
                                             object: self,
-                                            userInfo: [ScanningMachineViewModel.gestureValueKey: value])
+                                            userInfo: [ScanningMachineViewModel.draggingLocationKey: value.location])
         }
     }
     
     func draggingGestureOnEnded(_ value: DragGesture.Value) {
         self.isDragging = false
-        NotificationCenter.default.post(name: ScanningMachineViewModel.draggingGestureOnEndedNotification,
-                                        object: self,
-                                        userInfo: [ScanningMachineViewModel.gestureValueKey: value])
+        NotificationCenter.default.post(name: ScanningMachineViewModel.draggingGestureOnEndedNotification, object: self)
     }
     
     func magnifyingGestureOnChanged(_ value: MagnificationGesture.Value) {
