@@ -32,6 +32,11 @@ class ScanningMachineViewModel: ObservableObject, CreateArRefModelCallback {
     
     var machine: Machine
     
+    // Gestures
+    var isDragging = false
+    var currentScale: CGFloat = 1.0
+    var lastScale: CGFloat = 1.0
+    
     init(machine: Machine, showScanningMachineView: Binding<Bool>, showAnnotatingMachineView: Binding<Bool>) {
         print("ScanningMachineViewModel.init \(machine.name)")
         self.machine = machine

@@ -21,6 +21,21 @@ struct ScanningMachineView: View {
         NavigationView {
             ZStack {
                 ARViewContainer()
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                viewModel.draggingGestureOnChanged(value)
+                            }
+                            .onEnded { value in
+                                viewModel.draggingGestureOnEnded(value)
+                            }
+                    )
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged { value in
+                                viewModel.magnifyingGestureOnChanged(value)
+                            }
+                    )
                 
                 VStack {
                     infoMessageContent

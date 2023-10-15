@@ -10,6 +10,7 @@
 		D4203F422ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */; };
 		D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F432ADB3B7000422E86 /* CreatePinView.swift */; };
 		D46EA9932ADC52D30055F3D5 /* TextPinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */; };
+		D46EA9952ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
@@ -61,6 +62,7 @@
 		D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnotatingMachineViewModel+LoadModel.swift"; sourceTree = "<group>"; };
 		D4203F432ADB3B7000422E86 /* CreatePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinView.swift; sourceTree = "<group>"; };
 		D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPinNode.swift; sourceTree = "<group>"; };
+		D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningMachineViewModel+Gestures.swift"; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */,
 				D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */,
 				D4E179162AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift */,
+				D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */,
 				D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */,
 				D4B22D702AD750FF00F3882B /* Coordinator.swift */,
 				D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */,
@@ -365,6 +368,7 @@
 				D4B22D912AD75E9800F3882B /* Tile.swift in Sources */,
 				D4B22D8D2AD75E9800F3882B /* ObjectOriginAxis.swift in Sources */,
 				D4B22D6C2AD7010400F3882B /* ARViewContainer.swift in Sources */,
+				D46EA9952ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift in Sources */,
 				D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */,
 				D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */,
 				D4B22D9B2AD773D500F3882B /* ThresholdRotationGestureRecognizer.swift in Sources */,

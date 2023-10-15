@@ -137,6 +137,11 @@ class Scan {
                                                name: Coordinator.appStateChangedNotification,
                                                object: nil)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.magnifyingGestureOnChanged(_:)),
+                                               name: ScanningMachineViewModel.magnifyingGestureOnChangedNotification,
+                                               object: nil)
+        
         self.sceneView.scene.rootNode.addChildNode(self.scannedObject)
         self.sceneView.scene.rootNode.addChildNode(self.pointCloud)
     }
@@ -305,39 +310,48 @@ class Scan {
         }
     }
     
-    func didPinch(_ gesture: ThresholdPinchGestureRecognizer) {
-        if state == .ready {
-            state = .defineBoundingBox
-        }
-        
-        if state == .defineBoundingBox || state == .scanning {
-            switch gesture.state {
-            case .possible, .began:
-                break
-            case .changed where gesture.isThresholdExceeded:
-                scannedObject.scaleBoundingBox(scale: gesture.scale)
-                gesture.scale = 1
-            case .changed:
-                break
-            case .failed, .cancelled, .ended:
-                break
-            @unknown default:
-                break
-            }
-        } else if state == .adjustingOrigin {
-            switch gesture.state {
-            case .possible, .began:
-                break
-            case .changed where gesture.isThresholdExceeded:
-                scannedObject.origin?.updateScale(Float(gesture.scale))
-                gesture.scale = 1
-            case .changed, .failed, .cancelled, .ended:
-                break
-            @unknown default:
-                break
-            }
+    
+    @objc
+    private func magnifyingGestureOnChanged(_ notification: Notification) {
+        if state == .defineBoundingBox {
+            guard let magnificationScale = notification.userInfo?[ScanningMachineViewModel.magnificationScaleKey] as? CGFloat else { return }
+            scannedObject.scaleBoundingBox(scale: magnificationScale)
         }
     }
+    
+//    func didPinch(_ gesture: ThresholdPinchGestureRecognizer) {
+//        if state == .ready {
+//            state = .defineBoundingBox
+//        }
+//        
+//        if state == .defineBoundingBox || state == .scanning {
+//            switch gesture.state {
+//            case .possible, .began:
+//                break
+//            case .changed where gesture.isThresholdExceeded:
+//                scannedObject.scaleBoundingBox(scale: gesture.scale)
+//                gesture.scale = 1
+//            case .changed:
+//                break
+//            case .failed, .cancelled, .ended:
+//                break
+//            @unknown default:
+//                break
+//            }
+//        } else if state == .adjustingOrigin {
+//            switch gesture.state {
+//            case .possible, .began:
+//                break
+//            case .changed where gesture.isThresholdExceeded:
+//                scannedObject.origin?.updateScale(Float(gesture.scale))
+//                gesture.scale = 1
+//            case .changed, .failed, .cancelled, .ended:
+//                break
+//            @unknown default:
+//                break
+//            }
+//        }
+//    }
     
     func updateOnEveryFrame(_ frame: ARFrame) {
         if state == .ready || state == .defineBoundingBox {
