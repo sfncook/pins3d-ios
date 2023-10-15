@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D4203F422ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */; };
 		D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F432ADB3B7000422E86 /* CreatePinView.swift */; };
+		D46EA9932ADC52D30055F3D5 /* TextPinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnotatingMachineViewModel+LoadModel.swift"; sourceTree = "<group>"; };
 		D4203F432ADB3B7000422E86 /* CreatePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinView.swift; sourceTree = "<group>"; };
+		D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPinNode.swift; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D46EA9912ADC52C90055F3D5 /* Pins */ = {
+			isa = PBXGroup;
+			children = (
+				D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */,
+			);
+			path = Pins;
+			sourceTree = "<group>";
+		};
 		D4B22D6D2AD717A600F3882B /* Scanning */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +145,7 @@
 		D4B22D782AD75E6B00F3882B /* 3DVisualizations */ = {
 			isa = PBXGroup;
 			children = (
+				D46EA9912ADC52C90055F3D5 /* Pins */,
 				D4B22D822AD75E9800F3882B /* BoundingBox.swift */,
 				D4B22D802AD75E9800F3882B /* BoundingBoxSide.swift */,
 				D4B22D7A2AD75E9800F3882B /* CubeNode.swift */,
@@ -328,6 +339,7 @@
 				D4B22D9D2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift in Sources */,
 				D4B22D872AD75E9800F3882B /* Wireframe.swift in Sources */,
 				D4B22D932AD75E9800F3882B /* DetectedBoundingBox.swift in Sources */,
+				D46EA9932ADC52D30055F3D5 /* TextPinNode.swift in Sources */,
 				D4B22D962AD75EC700F3882B /* Scan.swift in Sources */,
 				D4DE515E2AD64606008E1F3C /* FirstDetailView.swift in Sources */,
 				D4B22DA22AD774C700F3882B /* Utilities.swift in Sources */,

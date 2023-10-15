@@ -198,7 +198,9 @@ class DetectedPointCloud: SCNNode, PointCloud {
         if let node = self.sidesNode.findChildNode(near: targetPosition, within: delta) {
             self.manyAnnotations += 1
             if let textPin = pin as? TextPin {
-                addAnnotation(node: node, stepNumberText: "\(self.manyAnnotations)", annotationText: textPin.text!)
+                let textPinNode = TextPinNode(textPin)
+                node.addChildNode(textPinNode)
+//                addAnnotation(node: node, stepNumberText: "\(self.manyAnnotations)", annotationText: textPin.text!)
             } else {
                 print("This pin is not a TextPin")
             }
