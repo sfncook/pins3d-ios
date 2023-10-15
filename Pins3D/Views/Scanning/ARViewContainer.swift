@@ -4,6 +4,10 @@ import ARKit
 struct ARViewContainer: UIViewRepresentable {
     typealias UIViewType = ARSCNView
     
+    init() {
+        print("ARViewContainer.init")
+    }
+    
     func makeCoordinator() -> Coordinator {
         return Coordinator()
     }

@@ -194,7 +194,7 @@ class DetectedPointCloud: SCNNode, PointCloud {
     private func addPin(_ notification: Notification) {
         guard let pin = notification.userInfo?[AnnotatingMachineViewModel.pinKey] as? Pin else { return }
         let targetPosition = SCNVector3(x: pin.x, y: pin.y, z: pin.z)
-        let delta: Float = 0.5 // for example
+        let delta: Float = 0.01 // for example
         if let node = self.sidesNode.findChildNode(near: targetPosition, within: delta) {
             self.manyAnnotations += 1
             if let textPin = pin as? TextPin {

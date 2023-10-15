@@ -32,7 +32,7 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     var machine: Machine
     
     init(machine: Machine) {
-//        print("AnnotatingMachineViewViewModel.init \(machine.name!) \(machine.arFilename ?? "NO AR Filename")")
+        print("AnnotatingMachineViewViewModel.init")
         self.machine = machine
         
         NotificationCenter.default.addObserver(self,
@@ -64,6 +64,15 @@ class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
     
     @objc
     private func objectDetected(_ notification: Notification) {
+        if let pins = machine.pins {
+            for pin in pins {
+                if let _pin = pin as? Pin {
+                    addPin(pin: _pin)
+                }
+            }
+        } else {
+            
+        }
         DispatchQueue.main.async {
             self.hasObjectBeenDetected = true
         }
