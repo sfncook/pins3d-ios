@@ -31,6 +31,22 @@ struct ScanningAndAnnotatingFacilityView: View {
                         .foregroundColor(.blue)
                         .cornerRadius(8)
                 }
+                .sheet(isPresented: $viewModel.showCreatePinView, onDismiss: {
+                    print("CreatePinView onDismiss pin:\(self.createdPin?.text ?? "NOT_SET")")
+                    if self.createdPin != nil {
+                        viewModel.addPin(pin: self.createdPin!)
+                    }
+                    self.createdPin = nil
+                }) {
+                    CreatePinView(
+                        viewModel: viewModel,
+                        x: viewModel.annotationPointX!,
+                        y: viewModel.annotationPointY!,
+                        z: viewModel.annotationPointZ!,
+                        showCreatePinView: $viewModel.showCreatePinView,
+                        createdPin: self.$createdPin
+                    )
+                }
             }
             .padding(.top, 10)
             .navigationBarBackButtonHidden(true)

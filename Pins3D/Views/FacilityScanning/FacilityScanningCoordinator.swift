@@ -5,6 +5,14 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
     
     private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.005))
     
+    override init() {
+        super.init()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.addPin(_:)),
+                                               name: ScanningAndAnnotatingFacilityViewModel.addPinToFacilityNotification,
+                                               object: nil)
+    }
+    
     // MARK: - ARSCNViewDelegate
     
     // Update On Every Frame
@@ -56,5 +64,19 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
 //        Tracking: \(frame.camera.trackingState.description)
 //        """
 //        updateSessionInfoLabel(for: frame, trackingState: frame.camera.trackingState)
+    }
+    
+    @objc
+    private func addPin(_ notification: Notification) {
+        guard let pin = notification.userInfo?[ScanningAndAnnotatingFacilityViewModel.pinFacilityKey] as? Pin else { return }
+        let targetPosition = SCNVector3(x: pin.x, y: pin.y, z: pin.z)
+        if let textPin = pin as? TextPin {
+            let textPinNode = TextPinNode(textPin)
+            ARSCNView.sceneView!.scene.rootNode.addChildNode(textPinNode)
+            textPinNode.position = targetPosition
+        } else {
+            print("This pin is not a TextPin")
+        }
+
     }
 }

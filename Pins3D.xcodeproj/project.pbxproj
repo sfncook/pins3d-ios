@@ -14,6 +14,7 @@
 		D43819EC2ADCD9B5002C08B5 /* FacilityScanningARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819EB2ADCD9B5002C08B5 /* FacilityScanningARViewContainer.swift */; };
 		D43819EE2ADCD9EA002C08B5 /* FacilityScanningCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819ED2ADCD9EA002C08B5 /* FacilityScanningCoordinator.swift */; };
 		D43819F02ADCDBCB002C08B5 /* ScanningAndAnnotatingFacilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819EF2ADCDBCB002C08B5 /* ScanningAndAnnotatingFacilityViewModel.swift */; };
+		D43819F22ADCE7A0002C08B5 /* AddPinCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819F12ADCE7A0002C08B5 /* AddPinCallback.swift */; };
 		D46EA9932ADC52D30055F3D5 /* TextPinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */; };
 		D46EA9952ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
@@ -68,6 +69,7 @@
 		D43819EB2ADCD9B5002C08B5 /* FacilityScanningARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityScanningARViewContainer.swift; sourceTree = "<group>"; };
 		D43819ED2ADCD9EA002C08B5 /* FacilityScanningCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityScanningCoordinator.swift; sourceTree = "<group>"; };
 		D43819EF2ADCDBCB002C08B5 /* ScanningAndAnnotatingFacilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningAndAnnotatingFacilityViewModel.swift; sourceTree = "<group>"; };
+		D43819F12ADCE7A0002C08B5 /* AddPinCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinCallback.swift; sourceTree = "<group>"; };
 		D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPinNode.swift; sourceTree = "<group>"; };
 		D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningMachineViewModel+Gestures.swift"; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */,
 				D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */,
 				D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */,
+				D43819F12ADCE7A0002C08B5 /* AddPinCallback.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				D4B22D9C2AD773D500F3882B /* ThresholdPanGestureRecognizer.swift in Sources */,
 				D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */,
 				D4B22D882AD75E9800F3882B /* CubeNode.swift in Sources */,
+				D43819F22ADCE7A0002C08B5 /* AddPinCallback.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */,
 				D4B22D752AD75BC500F3882B /* Coordinator+ApplicationState.swift in Sources */,

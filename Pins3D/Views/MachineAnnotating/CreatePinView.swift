@@ -7,13 +7,13 @@ struct CreatePinView: View {
     @Binding var createdPin: TextPin?
     @Binding var showCreatePinView: Bool
     
-    let viewModel: AnnotatingMachineViewModel
+    let viewModel: AddPinCallback
     let x: Float
     let y: Float
     let z: Float
     
     init(
-        viewModel: AnnotatingMachineViewModel,
+        viewModel: AddPinCallback,
         x: Float,
         y: Float,
         z: Float,

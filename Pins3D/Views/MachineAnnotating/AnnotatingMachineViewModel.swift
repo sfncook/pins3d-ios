@@ -8,7 +8,7 @@
 import SwiftUI
 import ARKit
 
-class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback {
+class AnnotatingMachineViewModel: ObservableObject, GetAnnotationPointCallback, AddPinCallback {
     @Environment(\.managedObjectContext) private var viewContext
     
     static let loadModelNotification = Notification.Name("LoadModel")
