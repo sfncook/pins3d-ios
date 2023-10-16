@@ -114,13 +114,13 @@ struct CatalogView: View {
                         }
                         .sheet(isPresented: $showPickModuleTypeView, onDismiss: {
                             print("PickModuleTypeView was dismissed")
-                            self.showScanningFacilityView = self.selectedFacility != nil
-                            self.showScanningMachineView = self.selectedMachine != nil
                         }) {
                             PickModuleTypeView(
                                 createdFacility: $selectedFacility,
                                 createdMachine: $selectedMachine,
-                                showPickModuleTypeView: $showPickModuleTypeView
+                                showPickModuleTypeView: $showPickModuleTypeView,
+                                showScanningFacilityView: $showScanningFacilityView,
+                                showScanningMachineView: $showScanningMachineView
                             )
                         }
                     }

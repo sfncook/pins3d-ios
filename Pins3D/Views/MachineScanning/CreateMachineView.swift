@@ -5,6 +5,7 @@ struct CreateMachineView: View {
     @State private var machineName: String = ""
     @Binding var createdMachine: Machine?
     @Binding var showPickModuleTypeView: Bool
+    @Binding var showScanningMachineView: Bool
     
     var body: some View {
         VStack(spacing: 20) {
@@ -17,6 +18,7 @@ struct CreateMachineView: View {
             Button(action: {
                 saveNewMachine()
                 showPickModuleTypeView = false
+                showScanningMachineView = true
             }) {
                 Text("Create")
                     .frame(maxWidth: .infinity)

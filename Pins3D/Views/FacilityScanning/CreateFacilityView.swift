@@ -5,6 +5,7 @@ struct CreateFacilityView: View {
     @State private var facilityName: String = ""
     @Binding var createdFacility: Facility?
     @Binding var showPickModuleTypeView: Bool
+    @Binding var showScanningFacilityView: Bool
     
     var body: some View {
         VStack(spacing: 20) {
@@ -17,6 +18,7 @@ struct CreateFacilityView: View {
             Button(action: {
                 saveNewFacility()
                 showPickModuleTypeView = false
+                showScanningFacilityView = true
             }) {
                 Text("Create")
                     .frame(maxWidth: .infinity)

@@ -7,17 +7,21 @@ struct PickModuleTypeView: View {
     @Binding var createdFacility: Facility?
     @Binding var createdMachine: Machine?
     @Binding var showPickModuleTypeView: Bool
+    @Binding var showScanningFacilityView: Bool
+    @Binding var showScanningMachineView: Bool
     
     var body: some View {
         if self.selectedType == CatalogView.ModuleType.facility {
             CreateFacilityView(
                 createdFacility: $createdFacility,
-                showPickModuleTypeView:  $showPickModuleTypeView
+                showPickModuleTypeView:  $showPickModuleTypeView,
+                showScanningFacilityView: $showScanningFacilityView
             )
         } else if self.selectedType == CatalogView.ModuleType.machine {
             CreateMachineView(
                 createdMachine: $createdMachine,
-                showPickModuleTypeView: $showPickModuleTypeView
+                showPickModuleTypeView: $showPickModuleTypeView,
+                showScanningMachineView: $showScanningMachineView
             )
         } else {
             VStack(spacing: 20) {
