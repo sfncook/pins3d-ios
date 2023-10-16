@@ -309,40 +309,6 @@ class Scan {
         }
     }
     
-//    func didPinch(_ gesture: ThresholdPinchGestureRecognizer) {
-//        if state == .ready {
-//            state = .defineBoundingBox
-//        }
-//        
-//        if state == .defineBoundingBox || state == .scanning {
-//            switch gesture.state {
-//            case .possible, .began:
-//                break
-//            case .changed where gesture.isThresholdExceeded:
-//                scannedObject.scaleBoundingBox(scale: gesture.scale)
-//                gesture.scale = 1
-//            case .changed:
-//                break
-//            case .failed, .cancelled, .ended:
-//                break
-//            @unknown default:
-//                break
-//            }
-//        } else if state == .adjustingOrigin {
-//            switch gesture.state {
-//            case .possible, .began:
-//                break
-//            case .changed where gesture.isThresholdExceeded:
-//                scannedObject.origin?.updateScale(Float(gesture.scale))
-//                gesture.scale = 1
-//            case .changed, .failed, .cancelled, .ended:
-//                break
-//            @unknown default:
-//                break
-//            }
-//        }
-//    }
-    
     func updateOnEveryFrame(_ frame: ARFrame) {
         if state == .ready || state == .defineBoundingBox {
             if let points = frame.rawFeaturePoints {

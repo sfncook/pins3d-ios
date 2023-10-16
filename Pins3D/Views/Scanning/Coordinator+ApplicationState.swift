@@ -237,7 +237,6 @@ extension Coordinator {
     }
     
     func startScanning() {
-        print("startScanning")
         state = .scanning
         Coordinator.scan?.state = .scanning
     }

@@ -10,15 +10,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>0</string>
+					<string>5</string>
 					<key>EndingLineNumber</key>
-					<string>358</string>
+					<string>309</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>5</string>
 					<key>StartingLineNumber</key>
-					<string>357</string>
+					<string>309</string>
 					<key>Timestamp</key>
-					<string>719086345.5994999</string>
+					<string>719108829.101011</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -34,16 +34,15 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>//    func didPinch(_ gesture: ThresholdPinchGestureRecognizer) {
-</string>
+				<string></string>
 				<key>leading</key>
-				<string>    }
-    
-</string>
+				<string>            scannedObject.scaleBoundingBox(scale: magnificationScale)
+        }
+    }</string>
 				<key>trailing</key>
-				<string>//        if state == .ready {
-//            state = .defineBoundingBox
-//        }
+				<string>
+    
+    func updateOnEveryFrame(_ frame: ARFrame) {
 </string>
 			</dict>
 			<key>type</key>
@@ -57,13 +56,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>237</string>
+					<string>248</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>236</string>
+					<string>247</string>
 					<key>Timestamp</key>
-					<string>719086345.5995229</string>
+					<string>719086770.915337</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -79,16 +78,61 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    func didTwoFingerPan(_ gesture: ThresholdPanGestureRecognizer) {
+				<string>                scannedObject.origin?.rotateWithSnappingOnYAxis(by: -Float(gesture.rotationDelta))
 </string>
 				<key>leading</key>
-				<string>    }
-    
+				<string>        } else if state == .adjustingOrigin {
+            if gesture.state == .changed {
 </string>
 				<key>trailing</key>
-				<string>        if state == .ready {
-            state = .defineBoundingBox
+				<string>            }
         }
+    }
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>249</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>248</string>
+					<key>Timestamp</key>
+					<string>719086770.915349</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Pins3D/3DVisualizations/Scan.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>            }
+</string>
+				<key>leading</key>
+				<string>            if gesture.state == .changed {
+                scannedObject.origin?.rotateWithSnappingOnYAxis(by: -Float(gesture.rotationDelta))
+</string>
+				<key>trailing</key>
+				<string>        }
+    }
+    
 </string>
 			</dict>
 			<key>type</key>
