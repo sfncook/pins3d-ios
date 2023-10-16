@@ -47,9 +47,6 @@
 		D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */; };
 		D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51582AD64291008E1F3C /* Model.xcdatamodeld */; };
 		D4DE515C2AD64332008E1F3C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515B2AD64332008E1F3C /* Persistence.swift */; };
-		D4DE515E2AD64606008E1F3C /* FirstDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515D2AD64606008E1F3C /* FirstDetailView.swift */; };
-		D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */; };
-		D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */; };
 		D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51632AD647C0008E1F3C /* CatalogView.swift */; };
 		D4E179172AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E179162AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift */; };
 		D4E826372AD79E43006E472A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E826362AD79E43006E472A /* art.scnassets */; };
@@ -100,9 +97,6 @@
 		D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUserRoleView.swift; sourceTree = "<group>"; };
 		D4DE51592AD64291008E1F3C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D4DE515B2AD64332008E1F3C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		D4DE515D2AD64606008E1F3C /* FirstDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDetailView.swift; sourceTree = "<group>"; };
-		D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDetailView.swift; sourceTree = "<group>"; };
-		D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdDetailView.swift; sourceTree = "<group>"; };
 		D4DE51632AD647C0008E1F3C /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		D4E179162AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningMachineViewModel+SaveModel.swift"; sourceTree = "<group>"; };
 		D4E826362AD79E43006E472A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -122,6 +116,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D43819E62ADCD5F7002C08B5 /* FacilityScanning */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FacilityScanning;
+			sourceTree = "<group>";
+		};
 		D46EA9912ADC52C90055F3D5 /* Pins */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,9 +131,10 @@
 			path = Pins;
 			sourceTree = "<group>";
 		};
-		D4B22D6D2AD717A600F3882B /* Scanning */ = {
+		D4B22D6D2AD717A600F3882B /* MachineScanning */ = {
 			isa = PBXGroup;
 			children = (
+				D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */,
 				D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */,
 				D4B22D722AD7559000F3882B /* ScanningMachineViewModel.swift */,
 				D4E179162AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift */,
@@ -142,7 +144,7 @@
 				D4B22D742AD75BC500F3882B /* Coordinator+ApplicationState.swift */,
 				D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */,
 			);
-			path = Scanning;
+			path = MachineScanning;
 			sourceTree = "<group>";
 		};
 		D4B22D782AD75E6B00F3882B /* 3DVisualizations */ = {
@@ -233,15 +235,12 @@
 			isa = PBXGroup;
 			children = (
 				D4F582DD2AD8B4E300FFADBB /* Annotating */,
-				D4B22D6D2AD717A600F3882B /* Scanning */,
+				D43819E62ADCD5F7002C08B5 /* FacilityScanning */,
+				D4B22D6D2AD717A600F3882B /* MachineScanning */,
 				D4DE51632AD647C0008E1F3C /* CatalogView.swift */,
+				D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */,
 				D4DE51482AD63DD1008E1F3C /* PickUserRoleView.swift */,
 				D4FFF1B92AD6F15500812341 /* PickModuleTypeView.swift */,
-				D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */,
-				D4DE515D2AD64606008E1F3C /* FirstDetailView.swift */,
-				D4DE515F2AD64618008E1F3C /* SecondDetailView.swift */,
-				D4DE51612AD64623008E1F3C /* ThirdDetailView.swift */,
-				D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -344,7 +343,6 @@
 				D4B22D932AD75E9800F3882B /* DetectedBoundingBox.swift in Sources */,
 				D46EA9932ADC52D30055F3D5 /* TextPinNode.swift in Sources */,
 				D4B22D962AD75EC700F3882B /* Scan.swift in Sources */,
-				D4DE515E2AD64606008E1F3C /* FirstDetailView.swift in Sources */,
 				D4B22DA22AD774C700F3882B /* Utilities.swift in Sources */,
 				D4B22D6A2AD6FF8700F3882B /* ScanningMachineView.swift in Sources */,
 				D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */,
@@ -353,7 +351,6 @@
 				D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */,
 				D4B22D882AD75E9800F3882B /* CubeNode.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
-				D4DE51622AD64623008E1F3C /* ThirdDetailView.swift in Sources */,
 				D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */,
 				D4B22D752AD75BC500F3882B /* Coordinator+ApplicationState.swift in Sources */,
 				D4F582DF2AD8B4EC00FFADBB /* AnnotatingMachineView.swift in Sources */,
@@ -377,7 +374,6 @@
 				D4F582E12AD8B52800FFADBB /* AnnotatingMachineViewModel.swift in Sources */,
 				D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */,
 				D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */,
-				D4DE51602AD64618008E1F3C /* SecondDetailView.swift in Sources */,
 				D4B22D8E2AD75E9800F3882B /* BoundingBoxSide.swift in Sources */,
 				D4DE515C2AD64332008E1F3C /* Persistence.swift in Sources */,
 				D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */,

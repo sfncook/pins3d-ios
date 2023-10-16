@@ -21,7 +21,7 @@ struct PickUserRoleView: View {
                 }
                 .padding(.horizontal)
                 
-                NavigationLink(destination: FirstDetailView()) {
+                NavigationLink(destination: CatalogView(title: "All Modules")) {
                     Text("Consumer Role")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding()
