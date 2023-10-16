@@ -154,6 +154,16 @@
 			path = Pins;
 			sourceTree = "<group>";
 		};
+		D473ED792ADDEB4100883157 /* old */ = {
+			isa = PBXGroup;
+			children = (
+				D4B22D972AD773C500F3882B /* Gesture Recognizers */,
+				D4B22D782AD75E6B00F3882B /* 3DVisualizations */,
+				D4DE51472AD63D8D008E1F3C /* Views */,
+			);
+			path = old;
+			sourceTree = "<group>";
+		};
 		D4B22D6D2AD717A600F3882B /* MachineScanning */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,11 +242,9 @@
 		D4DE51382AD63C9C008E1F3C /* Pins3D */ = {
 			isa = PBXGroup;
 			children = (
+				D473ED792ADDEB4100883157 /* old */,
 				D4B22D9E2AD774B400F3882B /* Utility Extensions */,
-				D4B22D972AD773C500F3882B /* Gesture Recognizers */,
-				D4B22D782AD75E6B00F3882B /* 3DVisualizations */,
 				D4DE514A2AD63E2E008E1F3C /* Data */,
-				D4DE51472AD63D8D008E1F3C /* Views */,
 				D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */,
 				D4DE513B2AD63C9C008E1F3C /* ContentView.swift */,
 				D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */,
