@@ -4,11 +4,17 @@ struct PickModuleTypeView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State private var selectedType: CatalogView.ModuleType?
+    @Binding var createdFacility: Facility?
     @Binding var createdMachine: Machine?
     @Binding var showPickModuleTypeView: Bool
     
     var body: some View {
-        if self.selectedType == CatalogView.ModuleType.machine {
+        if self.selectedType == CatalogView.ModuleType.facility {
+            CreateFacilityView(
+                createdFacility: $createdFacility,
+                showPickModuleTypeView:  $showPickModuleTypeView
+            )
+        } else if self.selectedType == CatalogView.ModuleType.machine {
             CreateMachineView(
                 createdMachine: $createdMachine,
                 showPickModuleTypeView: $showPickModuleTypeView
@@ -16,7 +22,6 @@ struct PickModuleTypeView: View {
         } else {
             VStack(spacing: 20) {
                 Button(action: {
-                    print("Click facility")
                     selectedType = .facility
                 })  {
                     Text("Facility Scan")
@@ -29,7 +34,6 @@ struct PickModuleTypeView: View {
                 .padding(.horizontal)
                 
                 Button(action: {
-                    print("Click machine")
                     selectedType = .machine
                 })  {
                     Text("Machine Scan")
@@ -42,7 +46,6 @@ struct PickModuleTypeView: View {
                 .padding(.horizontal)
                 
                 Button(action: {
-                    print("Click procedure")
                     selectedType = .procedure
                 })  {
                     Text("Procedure")

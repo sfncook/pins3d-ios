@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D4203F422ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */; };
 		D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F432ADB3B7000422E86 /* CreatePinView.swift */; };
+		D43819E82ADCD68F002C08B5 /* CreateFacilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819E72ADCD68F002C08B5 /* CreateFacilityView.swift */; };
 		D46EA9932ADC52D30055F3D5 /* TextPinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */; };
 		D46EA9952ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnotatingMachineViewModel+LoadModel.swift"; sourceTree = "<group>"; };
 		D4203F432ADB3B7000422E86 /* CreatePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinView.swift; sourceTree = "<group>"; };
+		D43819E72ADCD68F002C08B5 /* CreateFacilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFacilityView.swift; sourceTree = "<group>"; };
 		D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPinNode.swift; sourceTree = "<group>"; };
 		D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningMachineViewModel+Gestures.swift"; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		D43819E62ADCD5F7002C08B5 /* FacilityScanning */ = {
 			isa = PBXGroup;
 			children = (
+				D43819E72ADCD68F002C08B5 /* CreateFacilityView.swift */,
 			);
 			path = FacilityScanning;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				D4B22D6A2AD6FF8700F3882B /* ScanningMachineView.swift in Sources */,
 				D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */,
 				D4203F422ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift in Sources */,
+				D43819E82ADCD68F002C08B5 /* CreateFacilityView.swift in Sources */,
 				D4B22D9C2AD773D500F3882B /* ThresholdPanGestureRecognizer.swift in Sources */,
 				D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */,
 				D4B22D882AD75E9800F3882B /* CubeNode.swift in Sources */,

@@ -1,21 +1,21 @@
 import SwiftUI
 
-struct CreateMachineView: View {
+struct CreateFacilityView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var machineName: String = ""
-    @Binding var createdMachine: Machine?
+    @State private var facilityName: String = ""
+    @Binding var createdFacility: Facility?
     @Binding var showPickModuleTypeView: Bool
     
     var body: some View {
         VStack(spacing: 20) {
-            TextField("Enter machine name", text: $machineName)
+            TextField("Enter facility name", text: $facilityName)
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(8)
                 .padding(.horizontal)
             
             Button(action: {
-                saveNewMachine()
+                saveNewFacility()
                 showPickModuleTypeView = false
             }) {
                 Text("Create")
@@ -27,21 +27,21 @@ struct CreateMachineView: View {
             }
             .padding(.horizontal)
             
-            .navigationBarTitle("Machine name?", displayMode: .inline)
+            .navigationBarTitle("Name of the facility?", displayMode: .inline)
             
             Spacer()
         }
         .padding(.vertical)
     }
     
-    private func saveNewMachine() {
-        createdMachine = Machine(context: viewContext)
-        createdMachine!.id = UUID()
-        createdMachine!.name = self.machineName
+    private func saveNewFacility() {
+        createdFacility = Facility(context: viewContext)
+        createdFacility!.id = UUID()
+        createdFacility!.name = self.facilityName
 
         do {
             try viewContext.save()
-            print("Machine saved \(self.machineName) \(createdMachine!.name!)")
+            print("Facility saved \(self.facilityName) \(createdFacility!.name!)")
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

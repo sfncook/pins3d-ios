@@ -40,8 +40,10 @@ struct CatalogView: View {
     private var title: String
     
     @State private var showPickModuleTypeView = false
+    @State private var showScanningFacilityView = false
     @State private var showScanningMachineView = false
     @State private var showAnnotatingMachineView = false
+    @State private var selectedFacility: Facility?
     @State private var selectedMachine: Machine?
     
     init(title: String) {
@@ -102,9 +104,11 @@ struct CatalogView: View {
                         }
                         .sheet(isPresented: $showPickModuleTypeView, onDismiss: {
                             print("PickModuleTypeView was dismissed")
-                            self.showScanningMachineView = true
+                            self.showScanningFacilityView = self.selectedFacility != nil
+                            self.showScanningMachineView = self.selectedMachine != nil
                         }) {
                             PickModuleTypeView(
+                                createdFacility: $selectedFacility,
                                 createdMachine: $selectedMachine,
                                 showPickModuleTypeView: $showPickModuleTypeView
                             )
