@@ -72,7 +72,7 @@ struct CatalogView: View {
                             self.showAnnotatingMachineView = false
                             self.showScanningMachineView = false
                         })  {
-                            Text(facility.name!)
+                            Text("\(facility.name!) - \(facility.worldMapFilename ?? "NO World Map Filename")")
                         }
                     }
                     .onDelete(perform: deleteFacilities)
@@ -86,7 +86,7 @@ struct CatalogView: View {
                             self.showAnnotatingMachineView = true
                             self.showScanningMachineView = false
                         })  {
-                            Text("\(machine.name!) \(machine.arFilename ?? "NO AR Filename")")
+                            Text("\(machine.name!) - \(machine.arFilename ?? "NO AR Filename")")
                         }
                     }
                     .onDelete(perform: deleteMachines)

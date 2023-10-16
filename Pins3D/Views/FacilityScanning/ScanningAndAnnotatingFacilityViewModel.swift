@@ -1,8 +1,10 @@
 import SwiftUI
 import ARKit
 
-class ScanningAndAnnotatingFacilityViewModel: ObservableObject, AddPinCallback {
+class ScanningAndAnnotatingFacilityViewModel: ObservableObject, AddPinCallback, WorldMapReadyCallback {
     
+    static let getWorldMapNotification = Notification.Name("getWorldMapNotification")
+    static let worldMapReadyCallback = "worldMapReadyCallback"
     static let addPinToFacilityNotification = Notification.Name("addPinToFacilityNotification")
     static let pinFacilityKey = "pinFacilityKey"
     @Published var showCreatePinView: Bool = false

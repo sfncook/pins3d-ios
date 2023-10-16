@@ -8,6 +8,10 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
     override init() {
         super.init()
         NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.saveFacility(_:)),
+                                               name: ScanningAndAnnotatingFacilityViewModel.getWorldMapNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.addPin(_:)),
                                                name: ScanningAndAnnotatingFacilityViewModel.addPinToFacilityNotification,
                                                object: nil)
@@ -64,6 +68,19 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
 //        Tracking: \(frame.camera.trackingState.description)
 //        """
 //        updateSessionInfoLabel(for: frame, trackingState: frame.camera.trackingState)
+    }
+    
+    @objc
+    private func saveFacility(_ notification: Notification) {
+        guard let worldMapReady = notification.userInfo?[ScanningAndAnnotatingFacilityViewModel.worldMapReadyCallback] as? WorldMapReadyCallback else { return }
+        ARSCNView.sceneView!.session.getCurrentWorldMap { worldMap, error in
+            guard let map = worldMap
+            else {
+                print("Can't get current world map \(error!.localizedDescription)")
+                return
+            }
+            worldMapReady.worldMapReady(worldMap: map)
+        }
     }
     
     @objc
