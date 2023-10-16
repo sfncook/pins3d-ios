@@ -18,6 +18,7 @@
 		D43819F42ADCF0FD002C08B5 /* ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819F32ADCF0FD002C08B5 /* ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift */; };
 		D46EA9932ADC52D30055F3D5 /* TextPinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */; };
 		D46EA9952ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */; };
+		D473ED782ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED772ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
@@ -74,6 +75,7 @@
 		D43819F32ADCF0FD002C08B5 /* ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift"; sourceTree = "<group>"; };
 		D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPinNode.swift; sourceTree = "<group>"; };
 		D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningMachineViewModel+Gestures.swift"; sourceTree = "<group>"; };
+		D473ED772ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift"; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
@@ -136,9 +138,10 @@
 				D43819E72ADCD68F002C08B5 /* CreateFacilityView.swift */,
 				D43819E92ADCD8DC002C08B5 /* ScanningAndAnnotatingFacilityView.swift */,
 				D43819EF2ADCDBCB002C08B5 /* ScanningAndAnnotatingFacilityViewModel.swift */,
+				D43819F32ADCF0FD002C08B5 /* ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift */,
+				D473ED772ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift */,
 				D43819EB2ADCD9B5002C08B5 /* FacilityScanningARViewContainer.swift */,
 				D43819ED2ADCD9EA002C08B5 /* FacilityScanningCoordinator.swift */,
-				D43819F32ADCF0FD002C08B5 /* ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift */,
 			);
 			path = FacilityScanning;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43819F42ADCF0FD002C08B5 /* ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift in Sources */,
+				D473ED782ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift in Sources */,
 				D4B22DA12AD774C700F3882B /* ARCameraTrackingState.swift in Sources */,
 				D4E179172AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift in Sources */,
 				D4B22D9D2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift in Sources */,

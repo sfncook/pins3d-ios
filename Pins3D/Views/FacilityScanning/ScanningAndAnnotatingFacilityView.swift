@@ -61,6 +61,18 @@ struct ScanningAndAnnotatingFacilityView: View {
                             .cornerRadius(8)
                     }
                     
+                    Spacer()
+                    
+                    Button(action: {
+                        viewModel.loadWorldMap()
+                    }) {
+                        Text("Load")
+                            .padding()
+                            .background(Color.white)
+                            .foregroundColor(.blue)
+                            .cornerRadius(8)
+                    }
+                    
                 }
             }
             .padding(.top, 10)

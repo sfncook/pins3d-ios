@@ -2,6 +2,8 @@ import SwiftUI
 import ARKit
 
 class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
+    static let facilityCameraTrackingStateChangedNotification = Notification.Name("facilityCameraTrackingStateChangedNotification")
+    static let facilityCameraTrackingStateKey = "facilityCameraTrackingStateKey"
     
     private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.005))
     var pinDictionary: [String: Pin] = [:]
@@ -15,6 +17,10 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.addPin(_:)),
                                                name: ScanningAndAnnotatingFacilityViewModel.addPinToFacilityNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.loadWorldMap(_:)),
+                                               name: ScanningAndAnnotatingFacilityViewModel.loadWorldMapNotification,
                                                object: nil)
     }
     
@@ -36,11 +42,12 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
         }
     }
     
-    /// - Tag: RestoreVirtualContent
+    // On Anchor added
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let anchorName = anchor.name
             else { return }
         
+        print("FacilityScanningCoordinator anchor/pin added:\(anchorName)")
         if anchorName.hasPrefix("textpin_") {
             let pinId = String(anchorName.dropFirst("textpin_".count))
             if let textPin = pinDictionary[pinId] as? TextPin {
@@ -57,9 +64,11 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
     }
     
     // MARK: - ARSessionDelegate
-    
+    // On Camera Tracking State change
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
-//        updateSessionInfoLabel(for: session.currentFrame!, trackingState: camera.trackingState)
+        NotificationCenter.default.post(name: FacilityScanningCoordinator.facilityCameraTrackingStateChangedNotification,
+                                        object: self,
+                                        userInfo: [FacilityScanningCoordinator.facilityCameraTrackingStateKey: camera.trackingState])
     }
     
     /// - Tag: CheckMappingStatus
@@ -90,6 +99,15 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
             }
             worldMapReady.worldMapReady(worldMap: map)
         }
+    }
+    
+    @objc
+    private func loadWorldMap(_ notification: Notification) {
+        print("FacilityScanningCoordinator.loadWorldMap")
+        guard let worldMap = notification.userInfo?[ScanningAndAnnotatingFacilityViewModel.worldMapKey] as? ARWorldMap else { return }
+        let configuration = FacilityScanningARViewContainer.defaultConfiguration // this app's standard world tracking settings
+        configuration.initialWorldMap = worldMap
+        ARSCNView.sceneView!.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     @objc

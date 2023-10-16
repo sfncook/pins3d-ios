@@ -76,7 +76,6 @@ class Coordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
-        print("Coordinator.session camera.TrackingState:\(camera.trackingState)")
         NotificationCenter.default.post(name: Coordinator.cameraTrackingStateChangedNotification,
                                         object: self,
                                         userInfo: [Coordinator.cameraTrackingStateKey: camera.trackingState])

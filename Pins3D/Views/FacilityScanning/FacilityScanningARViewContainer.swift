@@ -4,7 +4,7 @@ import ARKit
 struct FacilityScanningARViewContainer: UIViewRepresentable {
     typealias UIViewType = ARSCNView
     
-    var defaultConfiguration: ARWorldTrackingConfiguration {
+    static public var defaultConfiguration: ARWorldTrackingConfiguration {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
         configuration.environmentTexturing = .automatic
@@ -20,7 +20,7 @@ struct FacilityScanningARViewContainer: UIViewRepresentable {
         arSCNView.delegate = context.coordinator
         arSCNView.session.delegate = context.coordinator
         ARSCNView.sceneView = arSCNView
-        arSCNView.session.run(defaultConfiguration)
+        arSCNView.session.run(FacilityScanningARViewContainer.defaultConfiguration)
         arSCNView.debugOptions = [ .showFeaturePoints ]
         
         return arSCNView
