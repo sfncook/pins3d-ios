@@ -5,7 +5,6 @@ import CoreData
 struct ScanningFacilityView: View {
     @StateObject var viewModel: ScanningFacilityViewModel
     @Binding var showThisView: Bool
-    @State private var showModal = false
     
     init(facility: Facility?, showScanningFacilityView: Binding<Bool>, viewContext: NSManagedObjectContext) {
         _viewModel = StateObject(
@@ -29,7 +28,7 @@ struct ScanningFacilityView: View {
                     HStack {
                         Button(action: {
                             withAnimation {
-                                showModal.toggle()
+                                $viewModel.showCreateAreaFragment.wrappedValue.toggle()
                             }
                         }) {
                             Text("Drop Pin")
@@ -55,8 +54,8 @@ struct ScanningFacilityView: View {
             }// ZStack
             .navigationBarTitle($viewModel.facility.wrappedValue?.name ?? "Scanning New Area", displayMode: .inline)
             
-            .sheet(isPresented: $showModal, onDismiss: {
-                print("Dimiss showModal:\($showModal.wrappedValue)")
+            .sheet(isPresented: $viewModel.showCreateAreaFragment, onDismiss: {
+                print("Dimiss showModal:\(viewModel.showCreateAreaFragment)")
             }) {
                 CreateAreaFragment()
             }
