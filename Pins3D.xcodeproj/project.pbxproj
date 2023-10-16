@@ -20,6 +20,8 @@
 		D46EA9952ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */; };
 		D473ED782ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED772ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift */; };
 		D473ED7C2ADDEBB700883157 /* AreasListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED7B2ADDEBB700883157 /* AreasListView.swift */; };
+		D473ED7E2ADDEDB600883157 /* ScanningFacilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED7D2ADDEDB600883157 /* ScanningFacilityView.swift */; };
+		D473ED802ADDEE2400883157 /* ScanningFacilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED7F2ADDEE2400883157 /* ScanningFacilityViewModel.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
@@ -77,6 +79,8 @@
 		D46EA9942ADC584D0055F3D5 /* ScanningMachineViewModel+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningMachineViewModel+Gestures.swift"; sourceTree = "<group>"; };
 		D473ED772ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift"; sourceTree = "<group>"; };
 		D473ED7B2ADDEBB700883157 /* AreasListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreasListView.swift; sourceTree = "<group>"; };
+		D473ED7D2ADDEDB600883157 /* ScanningFacilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningFacilityView.swift; sourceTree = "<group>"; };
+		D473ED7F2ADDEE2400883157 /* ScanningFacilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningFacilityViewModel.swift; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				D473ED7B2ADDEBB700883157 /* AreasListView.swift */,
+				D473ED7D2ADDEDB600883157 /* ScanningFacilityView.swift */,
+				D473ED7F2ADDEE2400883157 /* ScanningFacilityViewModel.swift */,
 			);
 			path = "Area Scanning";
 			sourceTree = "<group>";
@@ -376,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D473ED802ADDEE2400883157 /* ScanningFacilityViewModel.swift in Sources */,
 				D43819F42ADCF0FD002C08B5 /* ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift in Sources */,
 				D473ED782ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift in Sources */,
 				D4B22DA12AD774C700F3882B /* ARCameraTrackingState.swift in Sources */,
@@ -397,6 +404,7 @@
 				D43819F22ADCE7A0002C08B5 /* AddPinCallback.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */,
+				D473ED7E2ADDEDB600883157 /* ScanningFacilityView.swift in Sources */,
 				D4B22D752AD75BC500F3882B /* Coordinator+ApplicationState.swift in Sources */,
 				D4F582DF2AD8B4EC00FFADBB /* AnnotatingMachineView.swift in Sources */,
 				D4B22D8C2AD75E9800F3882B /* DetectedObject.swift in Sources */,

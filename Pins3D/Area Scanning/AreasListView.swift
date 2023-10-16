@@ -10,37 +10,45 @@ struct AreasListView: View {
     var facilities: FetchedResults<Facility>
     
     @State private var selectedFacility: Facility?
+    @State private var showScanningFacilityView: Bool = false
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(facilities) { facility in
-                    Button(action: {
-                        self.selectedFacility = facility
-//                        self.showScanningFacilityView = true
-//                        self.showAnnotatingMachineView = false
-//                        self.showScanningMachineView = false
-                    })  {
-                        Text("\(facility.name!) - \(facility.worldMapFilename ?? "NO World Map Filename")")
+        if(self.showScanningFacilityView) {
+            ScanningFacilityView(
+                facility: self.selectedFacility,
+                showScanningFacilityView: $showScanningFacilityView,
+                viewContext: viewContext
+            )
+        } else {
+            NavigationView {
+                VStack {
+                    List {
+                        ForEach(facilities) { facility in
+                            Button(action: {
+                                self.selectedFacility = facility
+                                self.showScanningFacilityView = true
+                            })  {
+                                Text("\(facility.name!) - \(facility.worldMapFilename ?? "NO World Map Filename")")
+                            }
+                        }
+                        .onDelete(perform: deleteFacilities)
                     }
-                }
-                .onDelete(perform: deleteFacilities)
-            }
-            .navigationBarTitle("All Areas", displayMode: .inline)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: {
-                        self.selectedFacility = nil
-//                        self.showPickModuleTypeView = true
-                    }) {
-                        Label("Add Item", systemImage: "plus")
+                    .navigationBarTitle("All Areas", displayMode: .inline)
+                    .toolbar {
+                        ToolbarItem {
+                            Button(action: {
+                                self.selectedFacility = nil
+                                self.showScanningFacilityView = true
+                            }) {
+                                Label("Add Item", systemImage: "plus")
+                            }
+                        }
                     }
-                }
-            }
-            
-            Spacer()
-        }// VStack
-        
+                    
+                    Spacer()
+                }// VStack
+            }// NavigationView
+        }// else
     }// body: View
     
     func deleteFacilities(offsets: IndexSet) {
