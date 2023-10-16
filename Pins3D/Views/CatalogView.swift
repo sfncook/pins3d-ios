@@ -51,7 +51,12 @@ struct CatalogView: View {
     }
     
     var body: some View {
-        if(self.showAnnotatingMachineView) {
+        if(self.showScanningFacilityView) {
+            ScanningAndAnnotatingFacilityView(
+                facility: self.selectedFacility!,
+                showScanningFacilityView: $showScanningFacilityView
+            )
+        } else if(self.showAnnotatingMachineView) {
             AnnotatingMachineView(
                 self.selectedMachine!,
                 showAnnotatingMachineView: $showAnnotatingMachineView
@@ -61,20 +66,25 @@ struct CatalogView: View {
                 
                 List {
                     ForEach(facilities) { facility in
-                        NavigationLink {
-                            Text(facility.name!)
-                        } label: {
+                        Button(action: {
+                            self.selectedFacility = facility
+                            self.showScanningFacilityView = true
+                            self.showAnnotatingMachineView = false
+                            self.showScanningMachineView = false
+                        })  {
                             Text(facility.name!)
                         }
                     }
-                    .onDelete(perform: deleteItems)
+                    .onDelete(perform: deleteFacilities)
                 }
                 
                 List {
                     ForEach(machines) { machine in
                         Button(action: {
                             self.selectedMachine = machine
+                            self.showScanningFacilityView = false
                             self.showAnnotatingMachineView = true
+                            self.showScanningMachineView = false
                         })  {
                             Text("\(machine.name!) \(machine.arFilename ?? "NO AR Filename")")
                         }

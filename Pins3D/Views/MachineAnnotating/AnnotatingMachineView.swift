@@ -7,7 +7,6 @@ struct AnnotatingMachineView: View {
     @State var createdPin: TextPin? = nil
     
     init(_ machine: Machine, showAnnotatingMachineView: Binding<Bool>) {
-        print("AnnotatingMachineView.init")
         _viewModel = StateObject(wrappedValue: AnnotatingMachineViewModel(machine: machine))
         self._showAnnotatingMachineView = showAnnotatingMachineView
     }
