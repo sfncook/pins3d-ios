@@ -54,7 +54,8 @@ struct CatalogView: View {
         if(self.showScanningFacilityView) {
             ScanningAndAnnotatingFacilityView(
                 facility: self.selectedFacility!,
-                showScanningFacilityView: $showScanningFacilityView
+                showScanningFacilityView: $showScanningFacilityView,
+                viewContext: viewContext
             )
         } else if(self.showAnnotatingMachineView) {
             AnnotatingMachineView(

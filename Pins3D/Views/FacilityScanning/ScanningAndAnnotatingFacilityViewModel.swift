@@ -1,5 +1,6 @@
 import SwiftUI
 import ARKit
+import CoreData
 
 class ScanningAndAnnotatingFacilityViewModel: ObservableObject, AddPinCallback, WorldMapReadyCallback {
     
@@ -16,12 +17,19 @@ class ScanningAndAnnotatingFacilityViewModel: ObservableObject, AddPinCallback, 
     @Published var hasWorldMapLoaded: Bool = false
     
     var facility: Facility
+    var viewContext: NSManagedObjectContext
     
-    init(_ facility: Facility) {
+    init(facility: Facility, viewContext: NSManagedObjectContext) {
+        print("ScanningAndAnnotatingFacilityViewModel.init")
         self.facility = facility
+        self.viewContext = viewContext
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.facilityCameraTrackingStateChanged(_:)),
                                                name: FacilityScanningCoordinator.facilityCameraTrackingStateChangedNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.fetchPin(_:)),
+                                               name: FacilityScanningCoordinator.fetchPinNotification,
                                                object: nil)
     }
     
@@ -54,10 +62,30 @@ class ScanningAndAnnotatingFacilityViewModel: ObservableObject, AddPinCallback, 
     private func facilityCameraTrackingStateChanged(_ notification: Notification) {
         guard let facilityCameraTrackingState = notification.userInfo?[FacilityScanningCoordinator.facilityCameraTrackingStateKey] as? ARCamera.TrackingState else { return }
         print("facilityCameraTrackingStateChanged state:\(facilityCameraTrackingState)")
-        let initVal = self.hasWorldMapLoaded
-        self.hasWorldMapLoaded = facilityCameraTrackingState == .normal
-        if(!initVal && self.hasWorldMapLoaded) {
-//            loadWorldMap()
+        if(!self.hasWorldMapLoaded && facilityCameraTrackingState == .normal) {
+            self.hasWorldMapLoaded = true
+            loadWorldMap()
+        }
+    }
+    
+    @objc
+    private func fetchPin(_ notification: Notification) {
+        guard let pinReadyCallback = notification.userInfo?[FacilityScanningCoordinator.pinReadyCallbackKey] as? PinReadyCallback else { return }
+        guard let pinId = notification.userInfo?[FacilityScanningCoordinator.pinIdKey] as? String else { return }
+        guard let node = notification.userInfo?[FacilityScanningCoordinator.nodeKey] as? SCNNode else { return }
+        
+        let fetchRequest: NSFetchRequest<TextPin> = TextPin.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", pinId as CVarArg)
+
+        do {
+            let results = try viewContext.fetch(fetchRequest)
+            if let foundTextPin = results.first {
+                pinReadyCallback.pinReady(pin: foundTextPin, node: node)
+            } else {
+                print("No TextPin with the given id was found.")
+            }
+        } catch {
+            print("Failed to fetch TextPin with error: \(error)")
         }
     }
     

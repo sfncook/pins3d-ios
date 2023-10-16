@@ -1,9 +1,13 @@
 import SwiftUI
 import ARKit
 
-class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
+class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate, PinReadyCallback {
     static let facilityCameraTrackingStateChangedNotification = Notification.Name("facilityCameraTrackingStateChangedNotification")
     static let facilityCameraTrackingStateKey = "facilityCameraTrackingStateKey"
+    static let fetchPinNotification = Notification.Name("fetchPinNotification")
+    static let pinReadyCallbackKey = "pinReadyCallbackKey"
+    static let pinIdKey = "pinIdKey"
+    static let nodeKey = "nodeKey"
     
     private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.005))
     var pinDictionary: [String: Pin] = [:]
@@ -56,11 +60,24 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
                 node.addChildNode(textPinNode)
             } else {
                 print("Pin not found.")
+                NotificationCenter.default.post(name: FacilityScanningCoordinator.fetchPinNotification,
+                                                object: self,
+                                                userInfo: [
+                                                    FacilityScanningCoordinator.pinReadyCallbackKey: self,
+                                                    FacilityScanningCoordinator.pinIdKey: pinId,
+                                                    FacilityScanningCoordinator.nodeKey: node
+                                                ])
             }
             
         } else {
             print("The string does not start with the prefix 'textpin_'.")
         }
+    }
+    
+    func pinReady(pin: Pin, node: SCNNode) {
+        print("FacilityScanningCoordinator.pinReady: \(pin.id!)")
+        let textPinNode = TextPinNode(pin as! TextPin)
+        node.addChildNode(textPinNode)
     }
     
     // MARK: - ARSessionDelegate
@@ -127,3 +144,8 @@ class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegat
 
     }
 }
+
+protocol PinReadyCallback {
+    func pinReady(pin: Pin, node: SCNNode)
+}
+

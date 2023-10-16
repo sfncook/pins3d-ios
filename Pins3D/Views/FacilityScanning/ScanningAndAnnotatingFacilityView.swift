@@ -1,13 +1,16 @@
 import SwiftUI
 import ARKit
+import CoreData
 
 struct ScanningAndAnnotatingFacilityView: View {
     @StateObject var viewModel: ScanningAndAnnotatingFacilityViewModel
     @Binding var showScanningFacilityView: Bool
     @State var createdPin: TextPin? = nil
     
-    init(facility: Facility, showScanningFacilityView: Binding<Bool>) {
-        _viewModel = StateObject(wrappedValue: ScanningAndAnnotatingFacilityViewModel(facility))
+    init(facility: Facility, showScanningFacilityView: Binding<Bool>, viewContext: NSManagedObjectContext) {
+        _viewModel = StateObject(wrappedValue:
+                                    ScanningAndAnnotatingFacilityViewModel(facility: facility, viewContext: viewContext)
+        )
         self._showScanningFacilityView = showScanningFacilityView
     }
     

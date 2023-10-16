@@ -10,7 +10,10 @@ extension ScanningAndAnnotatingFacilityViewModel {
 //        self.isModelLoading = true
         
         // Load referenceObject w/out annotations - WORKING
-        let worldMapFilename = facility.worldMapFilename!
+        guard let worldMapFilename = facility.worldMapFilename else {
+            print("ScanningAndAnnotatingFacilityViewModel.loadWorldMap facility.worldMapFilename is nil")
+            return
+        }
         let urlStr = "https://us-central1-cook-250617.cloudfunctions.net/ar-model/\(worldMapFilename)"
         let url = URL(string: urlStr)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
