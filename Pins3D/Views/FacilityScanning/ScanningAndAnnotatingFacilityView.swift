@@ -14,7 +14,6 @@ struct ScanningAndAnnotatingFacilityView: View {
     var body: some View {
         ZStack {
             FacilityScanningARViewContainer()
-
             VStack {
                 infoMessageContent
                     .padding()
@@ -24,7 +23,7 @@ struct ScanningAndAnnotatingFacilityView: View {
                 Spacer()
                 
                 Button(action: {
-//                    viewModel.onDropPin()
+                    viewModel.onDropPin()
                 }) {
                     Text("Drop Pin")
                         .padding()

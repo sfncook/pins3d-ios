@@ -3,7 +3,25 @@ import ARKit
 
 class FacilityScanningCoordinator: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     
+    private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.005))
+    
     // MARK: - ARSCNViewDelegate
+    
+    // Update On Every Frame
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        if sphereNode.parent == nil {
+            ARSCNView.sceneView!.scene.rootNode.addChildNode(sphereNode)
+        }
+        DispatchQueue.main.async {
+            let scnView = ARSCNView.sceneView!
+            let screenPos = CGPoint(x: scnView.bounds.midX, y: scnView.bounds.midY)
+            let hitResults = scnView.hitTest(screenPos, types: [.featurePoint])
+            if !hitResults.isEmpty {
+                let hit = hitResults[0]
+                self.sphereNode.simdWorldPosition = hit.worldTransform.position
+            }
+        }
+    }
     
     /// - Tag: RestoreVirtualContent
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
