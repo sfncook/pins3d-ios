@@ -20,11 +20,72 @@ extension ScanningFacilityViewModel {
         return nil
     }
     
+    func fetchProcedurePin(pinId: String) -> ProcedurePin? {
+        let fetchRequest: NSFetchRequest<ProcedurePin> = ProcedurePin.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", pinId as CVarArg)
+        
+        do {
+            let results = try viewContext.fetch(fetchRequest)
+            if let foundPin = results.first {
+                return foundPin
+            } else {
+                print("No ProcedurePin with the given id was found.")
+            }
+        } catch {
+            print("Failed to fetch ProcedurePin with error: \(error)")
+        }
+        return nil
+    }
+    
+    /* This method does two things that results in a new pin:
+     *  1.) It captures the current 3D position of the pin cursor in the environment
+     *  2.) It opens the "CreatePinTypeFragment" - which is another class and that class
+     *      is what actually creates the pin.  That fragment shares THIS view model and will
+     *      call addTextPin() or addProcedurePin() (see below)
+     *  NOTE: The addTextPin and addProcedurePin functions (below) call the coordinator to add the pin node
+     */
     func dropPin() {
         pinCursorLocationWhenDropped = coordinator.getPinCursorLocation()
         withAnimation {
             // Show
             showCreatePinTypeFragment.toggle()
+        }
+    }
+    
+    func addTextPin(pinText: String) {
+        guard let pinCursorLocationWhenDropped = self.pinCursorLocationWhenDropped else {
+            print("Unable to retrieve pinCursorLocationWhenDropped, perhaps it's nil")
+            return
+        }
+        let textPin = createAndSaveNewTextPin(pinText: pinText)
+        coordinator.addPin(pin: textPin, transform: pinCursorLocationWhenDropped)
+    }
+    
+    func addProcedurePin(pinText: String) {
+        guard let pinCursorLocationWhenDropped = self.pinCursorLocationWhenDropped else {
+            print("Unable to retrieve pinCursorLocationWhenDropped, perhaps it's nil")
+            return
+        }
+        let procedurePin = createAndSaveNewProcedurePin(pinText: pinText)
+        
+        // Add pin to scene
+        coordinator.addPin(pin: procedurePin, transform: pinCursorLocationWhenDropped)
+        
+        // Now that we have created the procedure and added the ProcedurePin to the scene
+        //   let's go back to the ARView and start adding StepPins for this procedure
+        let procedure = Procedure(context: viewContext)
+        procedure.id = UUID()
+        procedure.name = pinText
+
+        do {
+            try viewContext.save()
+            self.creatingProcedure = procedure
+            self.creatingStepNumber += 1
+            self.isPlacingStepPin = true
+            print("Procedure saved:\(procedure.name ?? "NOT_SET")")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Create Procedure unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
@@ -43,16 +104,18 @@ extension ScanningFacilityViewModel {
         return textPin
     }
     
-    func addTextPin(pinText: String) {
-        guard let pinCursorLocationWhenDropped = self.pinCursorLocationWhenDropped else {
-            print("Unable to retrieve pinCursorLocationWhenDropped, perhaps it's nil")
-            return
+    func createAndSaveNewProcedurePin(pinText: String) -> ProcedurePin {
+        let procedurePin = ProcedurePin(context: viewContext)
+        procedurePin.id = UUID()
+        procedurePin.text = pinText
+
+        do {
+            try viewContext.save()
+            print("Pin saved text:\(procedurePin.text ?? "NOT_SET")")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Create Pin unresolved error \(nsError), \(nsError.userInfo)")
         }
-        let textPin = createAndSaveNewTextPin(pinText: pinText)
-        coordinator.addPin(pin: textPin, transform: pinCursorLocationWhenDropped)
-    }
-    
-    func addProcedurePin(pinTest: String) {
-        // TODO: Create ProcedurePin, add to scene
+        return procedurePin
     }
 }

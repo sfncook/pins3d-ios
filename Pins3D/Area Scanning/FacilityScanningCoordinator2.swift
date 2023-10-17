@@ -36,12 +36,6 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
         }
     }
     
-    func pinReady(pin: Pin, node: SCNNode) {
-        print("FacilityScanningCoordinator.pinReady: \(pin.id!)")
-        let textPinNode = TextPinNode(pin as! TextPin)
-        node.addChildNode(textPinNode)
-    }
-    
     // MARK: - ARSessionDelegate
     // On Camera Tracking State change
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
@@ -52,6 +46,7 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     
     /// - Tag: CheckMappingStatus
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        // TODO: Add user info for session tracking status
         // Enable Save button only when the mapping status is good and an object has been placed
 //        switch frame.worldMappingStatus {
 //            case .extending, .mapped:

@@ -29,7 +29,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StepPin" inverseName="procedure" inverseEntity="StepPin"/>
     </entity>
-    <entity name="ProcedurePin" representedClassName="ProcedurePin" syncable="YES" codeGenerationType="class">
+    <entity name="ProcedurePin" representedClassName="ProcedurePin" parentEntity="TextPin" syncable="YES" codeGenerationType="class">
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure"/>
     </entity>
     <entity name="StepPin" representedClassName="StepPin" parentEntity="TextPin" syncable="YES" codeGenerationType="class">

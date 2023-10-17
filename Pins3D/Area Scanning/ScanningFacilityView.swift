@@ -55,7 +55,7 @@ struct ScanningFacilityView: View {
                         .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment)
                 )
             }// ZStack
-            .navigationBarTitle($viewModel.facility.wrappedValue?.name ?? "Scanning New Area", displayMode: .inline)
+            .navigationBarTitle(contextualBarTitle(), displayMode: .inline)
             
             .sheet(isPresented: $viewModel.showCreateAreaFragment) {
                 CreateAreaFragment(viewModel: viewModel)
@@ -67,7 +67,17 @@ struct ScanningFacilityView: View {
         }// NavigationView {
     }// body
     
+    func contextualBarTitle() -> String {
+        if viewModel.isPlacingStepPin {
+            return viewModel.creatingProcedure?.name ?? "Creating Nameless Procedure"
+        }
+        return $viewModel.facility.wrappedValue?.name ?? "Scanning New Area"
+    }
+    
     var infoMessageContent: Text? {
+        if viewModel.isPlacingStepPin {
+            return Text("Place Step #\(viewModel.creatingStepNumber)")
+        }
         return nil
     }
 }

@@ -6,7 +6,9 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId {
     
     @Published var showCreateAreaFragment: Bool = false
     @Published var showCreatePinTypeFragment: Bool = false
-    @Published var isPlacingPin: Bool = false
+    @Published var isPlacingStepPin: Bool = false
+    @Published var creatingStepNumber: Int = 0
+    @Published var creatingProcedure: Procedure?
     
     var facility: Facility? = nil
     let viewContext: NSManagedObjectContext

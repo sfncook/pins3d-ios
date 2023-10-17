@@ -2,10 +2,10 @@ import SceneKit
 
 class ProcedurePinNode: SCNNode {
     
-    private let textPin: TextPin
+    private let procedurePin: ProcedurePin
     
-    init(_ textPin: TextPin) {
-        self.textPin = textPin
+    init(_ procedurePin: ProcedurePin) {
+        self.procedurePin = procedurePin
         super.init()
         setup()
     }
@@ -15,7 +15,7 @@ class ProcedurePinNode: SCNNode {
     }
     
     private func setup() {
-        let annotationTextGeometry = SCNText(string: self.textPin.text, extrusionDepth: 1)
+        let annotationTextGeometry = SCNText(string: "(P) \(self.procedurePin.text ?? "NOT SET")", extrusionDepth: 1)
         annotationTextGeometry.font = UIFont.systemFont(ofSize: 2)
         annotationTextGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
         let annotationTextNode = SCNNode(geometry: annotationTextGeometry)
@@ -42,3 +42,4 @@ class ProcedurePinNode: SCNNode {
     }
     
 }
+

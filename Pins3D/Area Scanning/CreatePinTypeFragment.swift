@@ -29,7 +29,7 @@ struct CreatePinTypeFragment: View {
             .padding(.horizontal)
             
             Button(action: {
-                viewModel.addProcedurePin(pinTest: pinText)
+                viewModel.addProcedurePin(pinText: pinText)
                 UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
             }) {
                 Text("Procedure Pin")
