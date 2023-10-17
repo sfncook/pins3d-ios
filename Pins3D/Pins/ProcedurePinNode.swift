@@ -2,7 +2,7 @@ import SceneKit
 
 class ProcedurePinNode: SCNNode {
     static let typeName = "ProcedurePinNode"
-    private let procedurePin: ProcedurePin
+    let procedurePin: ProcedurePin
     var backgroundNode: SCNNode?
     
     init(_ procedurePin: ProcedurePin) {

@@ -2,7 +2,7 @@ import SwiftUI
 import ARKit
 import CoreData
 
-class ScanningFacilityViewModel: ObservableObject, FetchPinWithId {
+class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions {
     
     @Published var showCreateAreaFragment: Bool = false
     @Published var showCreatePinTypeFragment: Bool = false
@@ -14,7 +14,9 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId {
     var facility: Facility? = nil
     let viewContext: NSManagedObjectContext
     var coordinator: FacilityScanningCoordinator2!
+    
     var pinCursorLocationWhenDropped: simd_float4x4?
+    @Published var cursorOverProcedure: Procedure?
     
     init(facility: Facility?, viewContext: NSManagedObjectContext) {
         print("ScanningAndAnnotatingFacilityViewModel.init")
@@ -22,7 +24,7 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId {
         self.viewContext = viewContext
         
         // Initialize the coordinator before using 'self' in any closure or method
-        coordinator = FacilityScanningCoordinator2(fetchPinWithId: self)
+        coordinator = FacilityScanningCoordinator2(fetchPinWithId: self, cursorActionsDelegate: self)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if self.facility == nil {

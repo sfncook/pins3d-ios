@@ -11,12 +11,14 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.01))
     var pinCurorWorldTransform: simd_float4x4?
     let fetchPinWithId: FetchPinWithId
+    let cursorActionsDelegate: CursorActions
     var nodeTypesToShow: [String] = [ProcedurePinNode.typeName, TextPinNode.typeName]
     var stepPinsToShow: [StepPin] = []
     var procedurePinNodes: [ProcedurePinNode] = []
     
-    init(fetchPinWithId: FetchPinWithId) {
+    init(fetchPinWithId: FetchPinWithId, cursorActionsDelegate: CursorActions) {
         self.fetchPinWithId = fetchPinWithId
+        self.cursorActionsDelegate = cursorActionsDelegate
         super.init()
     }
     
@@ -51,6 +53,11 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
 
             if let hitNode = hitProcedurePinBackgroundNode {
                 hitNode.addHighlight()
+                if let hitProcedure = hitNode.procedurePin.procedure {
+                    self.cursorActionsDelegate.onCursorOverProcedurePin(procedure: hitProcedure)
+                }
+            } else {
+                self.cursorActionsDelegate.onCursorOutProcedurePin()
             }
             for procedurePinNode in self.procedurePinNodes {
                 if procedurePinNode != hitProcedurePinBackgroundNode {
@@ -121,4 +128,5 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
 
 protocol CursorActions {
     func onCursorOverProcedurePin(procedure: Procedure)
+    func onCursorOutProcedurePin()
 }
