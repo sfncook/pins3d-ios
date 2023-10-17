@@ -26,7 +26,6 @@
 		D473ED842ADE0F3C00883157 /* CreateAreaFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED832ADE0F3C00883157 /* CreateAreaFragment.swift */; };
 		D473ED862ADE142600883157 /* FacilityScanningCoordinator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */; };
 		D473ED882ADE144F00883157 /* FacilityScanningARViewContainer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */; };
-		D473ED8A2ADE185400883157 /* PinCursorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED892ADE185400883157 /* PinCursorNode.swift */; };
 		D473ED8C2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED8B2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift */; };
 		D473ED8E2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */; };
 		D473ED902ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED8F2ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift */; };
@@ -35,6 +34,8 @@
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
 		D49F2BBE2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F2BBD2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift */; };
 		D49F2BC02ADED29C00A74E79 /* ProcedurePinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F2BBF2ADED29C00A74E79 /* ProcedurePinNode.swift */; };
+		D49F2BC22ADEEAD000A74E79 /* CreateStepFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F2BC12ADEEAD000A74E79 /* CreateStepFragment.swift */; };
+		D49F2BC52ADEF42300A74E79 /* StepPinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F2BC42ADEF42300A74E79 /* StepPinNode.swift */; };
 		D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */; };
 		D4B22D6A2AD6FF8700F3882B /* ScanningMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */; };
 		D4B22D6C2AD7010400F3882B /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */; };
@@ -95,7 +96,6 @@
 		D473ED832ADE0F3C00883157 /* CreateAreaFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAreaFragment.swift; sourceTree = "<group>"; };
 		D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityScanningCoordinator2.swift; sourceTree = "<group>"; };
 		D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityScanningARViewContainer2.swift; sourceTree = "<group>"; };
-		D473ED892ADE185400883157 /* PinCursorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCursorNode.swift; sourceTree = "<group>"; };
 		D473ED8B2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningFacilityViewModel+PinData.swift"; sourceTree = "<group>"; };
 		D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacilityScanningCoordinator2+Pins.swift"; sourceTree = "<group>"; };
 		D473ED8F2ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningFacilityViewModel+LoadWorldMap.swift"; sourceTree = "<group>"; };
@@ -104,6 +104,8 @@
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
 		D49F2BBD2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningFacilityViewModel+SaveWorldMap.swift"; sourceTree = "<group>"; };
 		D49F2BBF2ADED29C00A74E79 /* ProcedurePinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedurePinNode.swift; sourceTree = "<group>"; };
+		D49F2BC12ADEEAD000A74E79 /* CreateStepFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStepFragment.swift; sourceTree = "<group>"; };
+		D49F2BC42ADEF42300A74E79 /* StepPinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPinNode.swift; sourceTree = "<group>"; };
 		D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMachineView.swift; sourceTree = "<group>"; };
 		D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningMachineView.swift; sourceTree = "<group>"; };
 		D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */,
 				D49F2BBF2ADED29C00A74E79 /* ProcedurePinNode.swift */,
+				D49F2BC42ADEF42300A74E79 /* StepPinNode.swift */,
 			);
 			path = Pins;
 			sourceTree = "<group>";
@@ -192,20 +195,28 @@
 		D473ED7A2ADDEB6B00883157 /* Area Scanning */ = {
 			isa = PBXGroup;
 			children = (
+				D49F2BC32ADEEAD500A74E79 /* Fragments */,
 				D473ED7B2ADDEBB700883157 /* AreasListView.swift */,
 				D473ED7D2ADDEDB600883157 /* ScanningFacilityView.swift */,
 				D473ED7F2ADDEE2400883157 /* ScanningFacilityViewModel.swift */,
 				D473ED8B2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift */,
 				D473ED8F2ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift */,
 				D49F2BBD2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift */,
-				D473ED812ADDF22200883157 /* CreatePinTypeFragment.swift */,
-				D473ED832ADE0F3C00883157 /* CreateAreaFragment.swift */,
 				D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */,
 				D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */,
 				D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */,
-				D473ED892ADE185400883157 /* PinCursorNode.swift */,
 			);
 			path = "Area Scanning";
+			sourceTree = "<group>";
+		};
+		D49F2BC32ADEEAD500A74E79 /* Fragments */ = {
+			isa = PBXGroup;
+			children = (
+				D473ED832ADE0F3C00883157 /* CreateAreaFragment.swift */,
+				D473ED812ADDF22200883157 /* CreatePinTypeFragment.swift */,
+				D49F2BC12ADEEAD000A74E79 /* CreateStepFragment.swift */,
+			);
+			path = Fragments;
 			sourceTree = "<group>";
 		};
 		D4B22D6D2AD717A600F3882B /* MachineScanning */ = {
@@ -435,6 +446,7 @@
 				D43819F22ADCE7A0002C08B5 /* AddPinCallback.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D473ED8C2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift in Sources */,
+				D49F2BC22ADEEAD000A74E79 /* CreateStepFragment.swift in Sources */,
 				D49F2BC02ADED29C00A74E79 /* ProcedurePinNode.swift in Sources */,
 				D473ED862ADE142600883157 /* FacilityScanningCoordinator2.swift in Sources */,
 				D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */,
@@ -449,7 +461,6 @@
 				D49F2BBE2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift in Sources */,
 				D4B22D732AD7559000F3882B /* ScanningMachineViewModel.swift in Sources */,
 				D473ED882ADE144F00883157 /* FacilityScanningARViewContainer2.swift in Sources */,
-				D473ED8A2ADE185400883157 /* PinCursorNode.swift in Sources */,
 				D4B22D902AD75E9800F3882B /* BoundingBox.swift in Sources */,
 				D4B22D8F2AD75E9800F3882B /* Snapping.swift in Sources */,
 				D4B22D712AD750FF00F3882B /* Coordinator.swift in Sources */,
@@ -465,6 +476,7 @@
 				D473ED842ADE0F3C00883157 /* CreateAreaFragment.swift in Sources */,
 				D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */,
 				D4B22D942AD75E9800F3882B /* PointCloud+CreateVisualization.swift in Sources */,
+				D49F2BC52ADEF42300A74E79 /* StepPinNode.swift in Sources */,
 				D4F582E12AD8B52800FFADBB /* AnnotatingMachineViewModel.swift in Sources */,
 				D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */,
 				D4FFF1BA2AD6F15500812341 /* PickModuleTypeView.swift in Sources */,
@@ -618,7 +630,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -650,7 +662,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -27,16 +27,22 @@
     <entity name="Procedure" representedClassName="Procedure" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StepPin" inverseName="procedure" inverseEntity="StepPin"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Step"/>
     </entity>
     <entity name="ProcedurePin" representedClassName="ProcedurePin" parentEntity="TextPin" syncable="YES" codeGenerationType="class">
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure"/>
+    </entity>
+    <entity name="Step" representedClassName="Step" syncable="YES" codeGenerationType="class">
+        <attribute name="details" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String"/>
     </entity>
     <entity name="StepPin" representedClassName="StepPin" parentEntity="TextPin" syncable="YES" codeGenerationType="class">
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="imageFilename" optional="YES" attributeType="String"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure" inverseName="steps" inverseEntity="Procedure"/>
+        <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Procedure"/>
     </entity>
     <entity name="TextPin" representedClassName="TextPin" parentEntity="Pin" syncable="YES" codeGenerationType="class">
         <attribute name="text" optional="YES" attributeType="String"/>

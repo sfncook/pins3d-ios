@@ -24,8 +24,16 @@ extension FacilityScanningCoordinator2 {
             } else {
                 print("Could not find pin with id: \(pinId)")
             }
+        } else if anchorName.hasPrefix("stepPin_") {
+            let pinId = String(anchorName.dropFirst("stepPin_".count))
+            if let stepPin = fetchPinWithId.fetchStepPin(pinId: pinId) {
+                let stepPinNode = StepPinNode(stepPin)
+                node.addChildNode(stepPinNode)
+            } else {
+                print("Could not find pin with id: \(pinId)")
+            }
         } else {
-            print("The string does not start with the prefix 'textpin_'.")
+            print("Unknown pin type w/ anchorname:\(anchorName)")
         }
     }
     
@@ -34,7 +42,11 @@ extension FacilityScanningCoordinator2 {
     }
     
     func addPin(pin: Pin, transform: simd_float4x4) {
-        if let procedurePin = pin as? ProcedurePin {
+        if let stepPin = pin as? StepPin {
+            print("Adding StepPin to scene")
+            let anchor = ARAnchor(name: "stepPin_\(stepPin.id!)", transform: transform)
+            ARSCNView.sceneView!.session.add(anchor: anchor)
+        } else if let procedurePin = pin as? ProcedurePin {
             print("Adding ProcedurePin to scene")
             let anchor = ARAnchor(name: "procedurePin_\(procedurePin.id!)", transform: transform)
             ARSCNView.sceneView!.session.add(anchor: anchor)
@@ -45,12 +57,20 @@ extension FacilityScanningCoordinator2 {
         } else {
             print("This pin is not a TextPin nor ProcedurePin")
         }
-
+    }
+    
+    // The "nodeName" is defined in TextPinNode and ProcedurePinNode class files
+    func showPinNodes(withName nodeName: String) {
+        ARSCNView.sceneView!.scene.rootNode.enumerateChildNodes { (node, stop) in
+            if let name = node.name {
+                node.isHidden = name != nodeName
+            }
+        }
     }
 }
-
 
 protocol FetchPinWithId {
     func fetchTextPin(pinId: String) -> TextPin?
     func fetchProcedurePin(pinId: String) -> ProcedurePin?
+    func fetchStepPin(pinId: String) -> StepPin?
 }

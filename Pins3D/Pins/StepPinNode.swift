@@ -1,11 +1,11 @@
 import SceneKit
 
-class ProcedurePinNode: SCNNode {
-    static let typeName = "ProcedurePinNode"
-    private let procedurePin: ProcedurePin
+class StepPinNode: SCNNode {
+    static let typeName = "StepPinNode"
+    private let stepPin: StepPin
     
-    init(_ procedurePin: ProcedurePin) {
-        self.procedurePin = procedurePin
+    init(_ stepPin: StepPin) {
+        self.stepPin = stepPin
         super.init()
         setup()
     }
@@ -15,11 +15,11 @@ class ProcedurePinNode: SCNNode {
     }
     
     private func setup() {
-        let annotationTextGeometry = SCNText(string: "(P) \(self.procedurePin.text ?? "NOT SET")", extrusionDepth: 1)
+        let annotationTextGeometry = SCNText(string: "(\(self.stepPin.number)) \(self.stepPin.text ?? "NOT SET")", extrusionDepth: 1)
         annotationTextGeometry.font = UIFont.systemFont(ofSize: 2)
         annotationTextGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
         let annotationTextNode = SCNNode(geometry: annotationTextGeometry)
-        annotationTextNode.name = ProcedurePinNode.typeName
+        annotationTextNode.name = StepPinNode.typeName
         
         let width = CGFloat((annotationTextGeometry.boundingBox.max.x - annotationTextGeometry.boundingBox.min.x) + 2)
         let height = CGFloat((annotationTextGeometry.boundingBox.max.y - annotationTextGeometry.boundingBox.min.y) + 2)
