@@ -1,4 +1,3 @@
-import SwiftUI
 import ARKit
 
 class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelegate {
@@ -10,19 +9,15 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     static let nodeKey = "nodeKey"
     
     private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.01))
-//    private var sphereNode = PinCursorNode()
-    var pinDictionary: [String: Pin] = [:]
     var pinCurorWorldTransform: simd_float4x4?
+    let fetchPinWithId: FetchPinWithId
     
-    override init() {
+    init(fetchPinWithId: FetchPinWithId) {
+        self.fetchPinWithId = fetchPinWithId
         super.init()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.saveFacility(_:)),
                                                name: ScanningAndAnnotatingFacilityViewModel.getWorldMapNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.addPin(_:)),
-                                               name: ScanningAndAnnotatingFacilityViewModel.addPinToFacilityNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.loadWorldMap(_:)),
@@ -46,34 +41,6 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
                 self.pinCurorWorldTransform = hit.worldTransform
                 self.sphereNode.simdWorldPosition = hit.worldTransform.position
             }
-        }
-    }
-    
-    // On Anchor added
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        guard let anchorName = anchor.name
-            else { return }
-        
-        print("FacilityScanningCoordinator anchor/pin added:\(anchorName)")
-        if anchorName.hasPrefix("textpin_") {
-            let pinId = String(anchorName.dropFirst("textpin_".count))
-            if let textPin = pinDictionary[pinId] as? TextPin {
-                print("Found this fucking pin: \(pinId)")
-                let textPinNode = TextPinNode(textPin)
-                node.addChildNode(textPinNode)
-            } else {
-                print("Pin not found.")
-                NotificationCenter.default.post(name: FacilityScanningCoordinator.fetchPinNotification,
-                                                object: self,
-                                                userInfo: [
-                                                    FacilityScanningCoordinator.pinReadyCallbackKey: self,
-                                                    FacilityScanningCoordinator.pinIdKey: pinId,
-                                                    FacilityScanningCoordinator.nodeKey: node
-                                                ])
-            }
-            
-        } else {
-            print("The string does not start with the prefix 'textpin_'.")
         }
     }
     
@@ -129,22 +96,4 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
         configuration.initialWorldMap = worldMap
         ARSCNView.sceneView!.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
-    
-    @objc
-    private func addPin(_ notification: Notification) {
-        guard let pin = notification.userInfo?[ScanningAndAnnotatingFacilityViewModel.pinFacilityKey] as? Pin else { return }
-        let targetPosition = SCNVector3(x: pin.x, y: pin.y, z: pin.z)
-        var transform = matrix_identity_float4x4
-        transform.columns.3 = SIMD4<Float>(targetPosition.x, targetPosition.y, targetPosition.z, 1.0)
-        if let textPin = pin as? TextPin {
-            let textPinNode = TextPinNode(textPin)
-            pinDictionary["\(pin.id!)"] = textPin
-            let anchor = ARAnchor(name: "textpin_\(pin.id!)", transform: transform)
-            ARSCNView.sceneView!.session.add(anchor: anchor)
-        } else {
-            print("This pin is not a TextPin")
-        }
-
-    }
 }
-

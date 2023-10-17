@@ -2,7 +2,7 @@ import SwiftUI
 import ARKit
 import CoreData
 
-class ScanningFacilityViewModel: ObservableObject {
+class ScanningFacilityViewModel: ObservableObject, FetchPinWithId {
     
     @Published var showCreateAreaFragment: Bool = false
     @Published var showCreatePinTypeFragment: Bool = false
@@ -10,12 +10,17 @@ class ScanningFacilityViewModel: ObservableObject {
     
     var facility: Facility? = nil
     let viewContext: NSManagedObjectContext
-    let coordinator = FacilityScanningCoordinator2()
+    var coordinator: FacilityScanningCoordinator2!
+    var pinCursorLocationWhenDropped: simd_float4x4?
     
     init(facility: Facility?, viewContext: NSManagedObjectContext) {
         print("ScanningAndAnnotatingFacilityViewModel.init")
         self.facility = facility
         self.viewContext = viewContext
+        
+        // Initialize the coordinator before using 'self' in any closure or method
+        coordinator = FacilityScanningCoordinator2(fetchPinWithId: self)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.showCreateAreaFragment = self.facility == nil
         }
@@ -38,20 +43,5 @@ class ScanningFacilityViewModel: ObservableObject {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
-    }
-    
-    func dropPin() {
-        // TODO: Get pin-cursor location
-        withAnimation {
-            showCreateAreaFragment.toggle()
-        }
-    }
-    
-    func addTextPin(pinTest: String) {
-        // TODO: Create TextPin, add to scene
-    }
-    
-    func addProcedurePin(pinTest: String) {
-        // TODO: Create ProcedurePin, add to scene
     }
 }

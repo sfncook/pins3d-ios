@@ -2,36 +2,21 @@ import SwiftUI
 
 struct CreateAreaFragment: View {
     let viewModel: ScanningFacilityViewModel
-    @State private var pinText: String = ""
+    @State private var facilityName: String = ""
     
     var body: some View {
         VStack {
-            Text("What type of pin?")
-            
-            TextField("Pin text", text: $pinText)
+            TextField("Enter area name", text: $facilityName)
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(8)
                 .padding(.horizontal)
             
             Button(action: {
-                viewModel.addTextPin(pinTest: pinText)
+                viewModel.createNewFacility(facilityName: facilityName)
                 UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
             }) {
-                Text("Text Pin")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
-            .padding(.horizontal)
-            
-            Button(action: {
-                viewModel.addProcedurePin(pinTest: pinText)
-                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
-            }) {
-                Text("Procedure Pin")
+                Text("Create")
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.blue)
