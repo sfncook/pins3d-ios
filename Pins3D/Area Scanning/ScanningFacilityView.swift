@@ -90,7 +90,29 @@ struct ScanningFacilityView: View {
     }
     
     func dropPinButton() -> some View {
-        if viewModel.isPlacingStepPin {
+        if let cursorOverProcedure = viewModel.cursorOverProcedure {
+            return AnyView(
+                Button(action: {
+                    print("Click start procedure")
+                }) {
+                    HStack {
+                        Image(systemName: "play.circle")
+                            .font(.system(size: 40))
+                            .foregroundColor(Color(uiColor: ScanningFacilityView.darkPurple))
+                        
+                        Text("Start Procedure")
+                            .font(.system(size: 20)) // Increased font size
+                    }
+                    .padding() // Padding around the VStack to create some space for the border
+                    .background(Color.white) // White background for the VStack
+                    .cornerRadius(20) // Rounded corners for the background
+                    .overlay( // Overlay used to apply the border around the VStack
+                        RoundedRectangle(cornerRadius: 20) // The same corner radius as the background
+                            .stroke(Color.blue, lineWidth: 2) // Blue border with a width of 2
+                    )
+                }
+            )
+        } else if viewModel.isPlacingStepPin {
             return AnyView(
                 Button(action: {
                     viewModel.dropPin()

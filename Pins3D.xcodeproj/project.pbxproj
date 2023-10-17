@@ -204,10 +204,10 @@
 				D473ED8B2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift */,
 				D473ED8F2ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift */,
 				D49F2BBD2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift */,
+				D401C2E32ADF4388004257D8 /* ScanningFacilityViewModel+CursorActions.swift */,
 				D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */,
 				D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */,
 				D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */,
-				D401C2E32ADF4388004257D8 /* ScanningFacilityViewModel+CursorActions.swift */,
 			);
 			path = "Area Scanning";
 			sourceTree = "<group>";
