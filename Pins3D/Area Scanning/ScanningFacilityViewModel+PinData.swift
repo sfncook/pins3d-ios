@@ -102,24 +102,31 @@ extension ScanningFacilityViewModel {
             print("Unable to retrieve pinCursorLocationWhenDropped, perhaps it's nil")
             return
         }
-        let procedurePin = createAndSaveNewProcedurePin(pinText: pinText)
-        
-        // Add pin to scene
-        coordinator.addPin(pin: procedurePin, transform: pinCursorLocationWhenDropped)
         
         // Now that we have created the procedure and added the ProcedurePin to the scene
         //   let's go back to the ARView and start adding StepPins for this procedure
         let procedure = Procedure(context: viewContext)
         procedure.id = UUID()
         procedure.name = pinText
+        
+//        let procedurePin = createAndSaveNewProcedurePin(pinText: pinText)
+        let procedurePin = ProcedurePin(context: viewContext)
+        procedurePin.id = UUID()
+        procedurePin.text = pinText
+        procedurePin.procedure = procedure
+        procedure.pin = procedurePin
 
         do {
             try viewContext.save()
+            print("Pin saved text:\(procedurePin.text ?? "NOT_SET")")
+            
+            // Add pin to scene
+            coordinator.addPin(pin: procedurePin, transform: pinCursorLocationWhenDropped)
+            
             startAddingStepPinsForProcedure(procedure)
-            print("Procedure saved:\(procedure.name ?? "NOT_SET")")
         } catch {
             let nsError = error as NSError
-            fatalError("Create Procedure unresolved error \(nsError), \(nsError.userInfo)")
+            fatalError("Create Pin unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     

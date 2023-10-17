@@ -118,3 +118,7 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
         ARSCNView.sceneView!.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
 }
+
+protocol CursorActions {
+    func onCursorOverProcedurePin(procedure: Procedure)
+}
