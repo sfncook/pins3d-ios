@@ -9,8 +9,10 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     static let pinIdKey = "pinIdKey"
     static let nodeKey = "nodeKey"
     
-    private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.005))
+    private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.01))
+//    private var sphereNode = PinCursorNode()
     var pinDictionary: [String: Pin] = [:]
+    var pinCurorWorldTransform: simd_float4x4?
     
     override init() {
         super.init()
@@ -41,6 +43,7 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
             let hitResults = scnView.hitTest(screenPos, types: [.featurePoint])
             if !hitResults.isEmpty {
                 let hit = hitResults[0]
+                self.pinCurorWorldTransform = hit.worldTransform
                 self.sphereNode.simdWorldPosition = hit.worldTransform.position
             }
         }

@@ -26,6 +26,7 @@
 		D473ED842ADE0F3C00883157 /* CreatePinTypeFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED832ADE0F3C00883157 /* CreatePinTypeFragment.swift */; };
 		D473ED862ADE142600883157 /* FacilityScanningCoordinator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */; };
 		D473ED882ADE144F00883157 /* FacilityScanningARViewContainer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */; };
+		D473ED8A2ADE185400883157 /* PinCursorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED892ADE185400883157 /* PinCursorNode.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
@@ -89,6 +90,7 @@
 		D473ED832ADE0F3C00883157 /* CreatePinTypeFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinTypeFragment.swift; sourceTree = "<group>"; };
 		D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityScanningCoordinator2.swift; sourceTree = "<group>"; };
 		D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityScanningARViewContainer2.swift; sourceTree = "<group>"; };
+		D473ED892ADE185400883157 /* PinCursorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCursorNode.swift; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				D473ED832ADE0F3C00883157 /* CreatePinTypeFragment.swift */,
 				D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */,
 				D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */,
+				D473ED892ADE185400883157 /* PinCursorNode.swift */,
 			);
 			path = "Area Scanning";
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				D43819EA2ADCD8DC002C08B5 /* ScanningAndAnnotatingFacilityView.swift in Sources */,
 				D4B22D732AD7559000F3882B /* ScanningMachineViewModel.swift in Sources */,
 				D473ED882ADE144F00883157 /* FacilityScanningARViewContainer2.swift in Sources */,
+				D473ED8A2ADE185400883157 /* PinCursorNode.swift in Sources */,
 				D4B22D902AD75E9800F3882B /* BoundingBox.swift in Sources */,
 				D4B22D8F2AD75E9800F3882B /* Snapping.swift in Sources */,
 				D4B22D712AD750FF00F3882B /* Coordinator.swift in Sources */,
