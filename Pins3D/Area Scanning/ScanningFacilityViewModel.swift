@@ -44,4 +44,12 @@ class ScanningFacilityViewModel: ObservableObject {
             showCreateAreaFragment.toggle()
         }
     }
+    
+    func addTextPin(pinTest: String) {
+        
+    }
+    
+    func addProcedurePin(pinTest: String) {
+        
+    }
 }
