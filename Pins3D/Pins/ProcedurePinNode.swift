@@ -3,6 +3,7 @@ import SceneKit
 class ProcedurePinNode: SCNNode {
     static let typeName = "ProcedurePinNode"
     private let procedurePin: ProcedurePin
+    var backgroundNode: SCNNode?
     
     init(_ procedurePin: ProcedurePin) {
         self.procedurePin = procedurePin
@@ -40,6 +41,27 @@ class ProcedurePinNode: SCNNode {
         self.constraints = [billboardConstraint]
         
         self.name = ProcedurePinNode.typeName
+        self.backgroundNode = backgroundNode
+    }
+    
+    func addHighlight() {
+        // Increase the border width by scaling the node down slightly
+        backgroundNode?.scale = SCNVector3(0.9, 0.9, 1.0)
+        
+        // Change the color to make it stand out more (optional)
+        if let geometry = backgroundNode?.geometry as? SCNPlane {
+            geometry.firstMaterial?.diffuse.contents = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0) // Setting to red for example
+        }
+    }
+
+    func removeHighlight() {
+        // Reset the scale to the original
+        backgroundNode?.scale = SCNVector3(1.0, 1.0, 1.0)
+        
+        // Reset the color to its original state
+        if let geometry = backgroundNode?.geometry as? SCNPlane {
+            geometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
+        }
     }
     
 }

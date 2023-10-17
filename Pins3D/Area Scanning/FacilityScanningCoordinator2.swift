@@ -13,6 +13,7 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     let fetchPinWithId: FetchPinWithId
     var nodeTypesToShow: [String] = [ProcedurePinNode.typeName, TextPinNode.typeName]
     var stepPinsToShow: [StepPin] = []
+    var procedurePinNodes: [ProcedurePinNode] = []
     
     init(fetchPinWithId: FetchPinWithId) {
         self.fetchPinWithId = fetchPinWithId
@@ -29,6 +30,34 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
         DispatchQueue.main.async {
             let scnView = ARSCNView.sceneView!
             let screenPos = CGPoint(x: scnView.bounds.midX, y: scnView.bounds.midY)
+            
+            var hitProcedurePinBackgroundNode: ProcedurePinNode? = nil
+
+            for procedurePinNode in self.procedurePinNodes {
+                let hitResults = scnView.hitTest(screenPos, options: [
+                    .rootNode: procedurePinNode.backgroundNode,
+                    .ignoreChildNodes: false,
+                    .ignoreHiddenNodes: false,
+                    .backFaceCulling: false,
+                    .boundingBoxOnly: false,
+                    .searchMode: SCNHitTestSearchMode.all.rawValue
+                ])
+                
+                if !hitResults.isEmpty {
+                    hitProcedurePinBackgroundNode = procedurePinNode
+                    break
+                }
+            }
+
+            if let hitNode = hitProcedurePinBackgroundNode {
+                hitNode.addHighlight()
+            }
+            for procedurePinNode in self.procedurePinNodes {
+                if procedurePinNode != hitProcedurePinBackgroundNode {
+                    procedurePinNode.removeHighlight()
+                }
+            }
+            
             let hitResults = scnView.hitTest(screenPos, types: [.featurePoint])
             if !hitResults.isEmpty {
                 let hit = hitResults[0]

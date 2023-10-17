@@ -13,6 +13,7 @@ extension FacilityScanningCoordinator2 {
             if let textPin = fetchPinWithId.fetchTextPin(pinId: pinId) {
                 let textPinNode = TextPinNode(textPin)
                 node.addChildNode(textPinNode)
+//                pinNodes.append(textPinNode)
             } else {
                 print("Could not find pin with id: \(pinId)")
             }
@@ -21,6 +22,7 @@ extension FacilityScanningCoordinator2 {
             if let procedurePin = fetchPinWithId.fetchProcedurePin(pinId: pinId) {
                 let procedurePinNode = ProcedurePinNode(procedurePin)
                 node.addChildNode(procedurePinNode)
+                procedurePinNodes.append(procedurePinNode)
             } else {
                 print("Could not find pin with id: \(pinId)")
             }
@@ -29,6 +31,7 @@ extension FacilityScanningCoordinator2 {
             if let stepPin = fetchPinWithId.fetchStepPin(pinId: pinId) {
                 let stepPinNode = StepPinNode(stepPin)
                 node.addChildNode(stepPinNode)
+//                pinNodes.append(stepPinNode)
             } else {
                 print("Could not find pin with id: \(pinId)")
             }
@@ -76,7 +79,7 @@ extension FacilityScanningCoordinator2 {
             if let name = node.name {
                 if nodeTypesToShow.contains(StepPinNode.typeName) {
                     if let stepPinNode = node as? StepPinNode {
-                        node.isHidden = !stepPinsToShow.contains(stepPinNode.stepPin)
+                        
                     } else {
                         // Not a stepPin so hide it
                         node.isHidden = true
