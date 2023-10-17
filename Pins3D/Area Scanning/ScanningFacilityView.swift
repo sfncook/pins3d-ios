@@ -47,7 +47,7 @@ struct ScanningFacilityView: View {
                             Text("Back")
                         }
                     },
-                    trailing: Button(action: {viewModel.saveFacility()}) {
+                    trailing: Button(action: {viewModel.saveWorldMap()}) {
                         HStack {
                             Text("Save")
                         }
