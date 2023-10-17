@@ -11,6 +11,8 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     private var sphereNode = SCNNode(geometry: SCNSphere(radius: 0.01))
     var pinCurorWorldTransform: simd_float4x4?
     let fetchPinWithId: FetchPinWithId
+    var nodeTypesToShow: [String] = [ProcedurePinNode.typeName, TextPinNode.typeName]
+    var stepPinsToShow: [StepPin] = []
     
     init(fetchPinWithId: FetchPinWithId) {
         self.fetchPinWithId = fetchPinWithId

@@ -71,6 +71,7 @@ struct ScanningFacilityView: View {
             return Button(action: {
                 //TODO: Set isPlacingStepPin = false, creatingProcedure=nil, and save pins and stuff
                 viewModel.isPlacingStepPin = false
+                viewModel.coordinator.showAllAreaPins()
                 viewModel.creatingProcedure = nil
             }) {
                 HStack {

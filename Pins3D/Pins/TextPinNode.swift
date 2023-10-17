@@ -19,7 +19,6 @@ class TextPinNode: SCNNode {
         annotationTextGeometry.font = UIFont.systemFont(ofSize: 2)
         annotationTextGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
         let annotationTextNode = SCNNode(geometry: annotationTextGeometry)
-        annotationTextNode.name = TextPinNode.typeName
         
         let width = CGFloat((annotationTextGeometry.boundingBox.max.x - annotationTextGeometry.boundingBox.min.x) + 2)
         let height = CGFloat((annotationTextGeometry.boundingBox.max.y - annotationTextGeometry.boundingBox.min.y) + 2)
@@ -39,6 +38,8 @@ class TextPinNode: SCNNode {
         let billboardConstraint = SCNBillboardConstraint()
         billboardConstraint.freeAxes = SCNBillboardAxis.all
         self.constraints = [billboardConstraint]
+        
+        self.name = TextPinNode.typeName
     }
     
 }

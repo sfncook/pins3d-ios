@@ -35,6 +35,7 @@ extension FacilityScanningCoordinator2 {
         } else {
             print("Unknown pin type w/ anchorname:\(anchorName)")
         }
+        updateShowHidePinNodes()
     }
     
     func getPinCursorLocation() -> simd_float4x4? {
@@ -59,11 +60,30 @@ extension FacilityScanningCoordinator2 {
         }
     }
     
-    // The "nodeName" is defined in TextPinNode and ProcedurePinNode class files
-    func showPinNodes(withName nodeName: String) {
+    func showAllAreaPins() {
+        nodeTypesToShow = [ProcedurePinNode.typeName, TextPinNode.typeName]
+        updateShowHidePinNodes()
+    }
+    
+    func showOnlyStepPinsForProcedure(procedure: Procedure) {
+        nodeTypesToShow = [StepPinNode.typeName]
+        stepPinsToShow = fetchPinWithId.fetchStepPinsForProcedure(procedure: procedure)
+        updateShowHidePinNodes()
+    }
+    
+    func updateShowHidePinNodes() {
         ARSCNView.sceneView!.scene.rootNode.enumerateChildNodes { (node, stop) in
             if let name = node.name {
-                node.isHidden = name != nodeName
+                if nodeTypesToShow.contains(StepPinNode.typeName) {
+                    if let stepPinNode = node as? StepPinNode {
+                        node.isHidden = !stepPinsToShow.contains(stepPinNode.stepPin)
+                    } else {
+                        // Not a stepPin so hide it
+                        node.isHidden = true
+                    }
+                } else {
+                    node.isHidden = !nodeTypesToShow.contains(name)
+                }
             }
         }
     }
@@ -73,4 +93,5 @@ protocol FetchPinWithId {
     func fetchTextPin(pinId: String) -> TextPin?
     func fetchProcedurePin(pinId: String) -> ProcedurePin?
     func fetchStepPin(pinId: String) -> StepPin?
+    func fetchStepPinsForProcedure(procedure: Procedure) -> [StepPin]
 }

@@ -54,6 +54,20 @@ extension ScanningFacilityViewModel {
         return nil
     }
     
+    func fetchStepPinsForProcedure(procedure: Procedure) -> [StepPin] {
+        let fetchRequest: NSFetchRequest<StepPin> = StepPin.fetchRequest()
+
+        // Set a predicate to fetch StepPin entities that are related to the given Procedure
+        fetchRequest.predicate = NSPredicate(format: "procedure == %@", procedure)
+
+        do {
+            let stepPins = try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Failed to fetch StepPin entities with error: \(error)")
+        }
+        return []
+    }
+    
     /* This method does two things that results in a new pin:
      *  1.) It captures the current 3D position of the pin cursor in the environment
      *  2.) It opens the "CreatePinTypeFragment" - which is another class and that class
@@ -101,13 +115,20 @@ extension ScanningFacilityViewModel {
 
         do {
             try viewContext.save()
-            self.creatingProcedure = procedure
-            self.creatingStepNumber = 1 // Initialize step number
-            self.isPlacingStepPin = true
+            startAddingStepPinsForProcedure(procedure)
             print("Procedure saved:\(procedure.name ?? "NOT_SET")")
         } catch {
             let nsError = error as NSError
             fatalError("Create Procedure unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
+    func startAddingStepPinsForProcedure(_ procedure: Procedure) {
+        self.creatingProcedure = procedure
+        self.creatingStepNumber = 1 // Initialize step number
+        self.isPlacingStepPin = true
+        if let creatingProcedure = self.creatingProcedure {
+            coordinator.showOnlyStepPinsForProcedure(procedure: creatingProcedure)
         }
     }
     
@@ -179,6 +200,7 @@ extension ScanningFacilityViewModel {
         stepPin.id = UUID()
         stepPin.text = stepSummary
         stepPin.number = Int16(creatingStepNumber)
+        stepPin.procedure = self.creatingProcedure
 
         do {
             try viewContext.save()
