@@ -34,6 +34,7 @@
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
 		D49F2BBE2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F2BBD2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift */; };
+		D49F2BC02ADED29C00A74E79 /* ProcedurePinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F2BBF2ADED29C00A74E79 /* ProcedurePinNode.swift */; };
 		D4B22D682AD6FC0000F3882B /* CreateMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */; };
 		D4B22D6A2AD6FF8700F3882B /* ScanningMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */; };
 		D4B22D6C2AD7010400F3882B /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */; };
@@ -102,6 +103,7 @@
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
 		D49F2BBD2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningFacilityViewModel+SaveWorldMap.swift"; sourceTree = "<group>"; };
+		D49F2BBF2ADED29C00A74E79 /* ProcedurePinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedurePinNode.swift; sourceTree = "<group>"; };
 		D4B22D672AD6FC0000F3882B /* CreateMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMachineView.swift; sourceTree = "<group>"; };
 		D4B22D692AD6FF8700F3882B /* ScanningMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningMachineView.swift; sourceTree = "<group>"; };
 		D4B22D6B2AD7010400F3882B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				D46EA9922ADC52D30055F3D5 /* TextPinNode.swift */,
+				D49F2BBF2ADED29C00A74E79 /* ProcedurePinNode.swift */,
 			);
 			path = Pins;
 			sourceTree = "<group>";
@@ -224,7 +227,6 @@
 		D4B22D782AD75E6B00F3882B /* 3DVisualizations */ = {
 			isa = PBXGroup;
 			children = (
-				D46EA9912ADC52C90055F3D5 /* Pins */,
 				D4B22D822AD75E9800F3882B /* BoundingBox.swift */,
 				D4B22D802AD75E9800F3882B /* BoundingBoxSide.swift */,
 				D4B22D7A2AD75E9800F3882B /* CubeNode.swift */,
@@ -286,6 +288,7 @@
 				D473ED792ADDEB4100883157 /* old */,
 				D4B22D9E2AD774B400F3882B /* Utility Extensions */,
 				D4DE514A2AD63E2E008E1F3C /* Data */,
+				D46EA9912ADC52C90055F3D5 /* Pins */,
 				D473ED7A2ADDEB6B00883157 /* Area Scanning */,
 				D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */,
 				D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */,
@@ -432,6 +435,7 @@
 				D43819F22ADCE7A0002C08B5 /* AddPinCallback.swift in Sources */,
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D473ED8C2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift in Sources */,
+				D49F2BC02ADED29C00A74E79 /* ProcedurePinNode.swift in Sources */,
 				D473ED862ADE142600883157 /* FacilityScanningCoordinator2.swift in Sources */,
 				D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */,
 				D473ED7E2ADDEDB600883157 /* ScanningFacilityView.swift in Sources */,
