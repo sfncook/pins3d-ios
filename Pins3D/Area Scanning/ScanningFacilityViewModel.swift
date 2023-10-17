@@ -10,6 +10,7 @@ class ScanningFacilityViewModel: ObservableObject {
     
     var facility: Facility? = nil
     let viewContext: NSManagedObjectContext
+    let coordinator = FacilityScanningCoordinator2()
     
     init(facility: Facility?, viewContext: NSManagedObjectContext) {
         print("ScanningAndAnnotatingFacilityViewModel.init")
@@ -40,16 +41,17 @@ class ScanningFacilityViewModel: ObservableObject {
     }
     
     func dropPin() {
+        // TODO: Get pin-cursor location
         withAnimation {
             showCreateAreaFragment.toggle()
         }
     }
     
     func addTextPin(pinTest: String) {
-        
+        // TODO: Create TextPin, add to scene
     }
     
     func addProcedurePin(pinTest: String) {
-        
+        // TODO: Create ProcedurePin, add to scene
     }
 }

@@ -17,7 +17,7 @@ struct ScanningFacilityView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                FacilityScanningARViewContainer()
+                FacilityScanningARViewContainer2(coordinator: viewModel.coordinator)
                 VStack {
                     infoMessageContent
                         .padding()
@@ -52,6 +52,7 @@ struct ScanningFacilityView: View {
                             Text("Save")
                         }
                     }
+                        .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment)
                 )
             }// ZStack
             .navigationBarTitle($viewModel.facility.wrappedValue?.name ?? "Scanning New Area", displayMode: .inline)
