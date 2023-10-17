@@ -23,6 +23,7 @@
 		D473ED7E2ADDEDB600883157 /* ScanningFacilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED7D2ADDEDB600883157 /* ScanningFacilityView.swift */; };
 		D473ED802ADDEE2400883157 /* ScanningFacilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED7F2ADDEE2400883157 /* ScanningFacilityViewModel.swift */; };
 		D473ED822ADDF22200883157 /* CreateAreaFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED812ADDF22200883157 /* CreateAreaFragment.swift */; };
+		D473ED842ADE0F3C00883157 /* CreatePinTypeFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED832ADE0F3C00883157 /* CreatePinTypeFragment.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
@@ -83,6 +84,7 @@
 		D473ED7D2ADDEDB600883157 /* ScanningFacilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningFacilityView.swift; sourceTree = "<group>"; };
 		D473ED7F2ADDEE2400883157 /* ScanningFacilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningFacilityViewModel.swift; sourceTree = "<group>"; };
 		D473ED812ADDF22200883157 /* CreateAreaFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAreaFragment.swift; sourceTree = "<group>"; };
+		D473ED832ADE0F3C00883157 /* CreatePinTypeFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinTypeFragment.swift; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				D473ED7D2ADDEDB600883157 /* ScanningFacilityView.swift */,
 				D473ED7F2ADDEE2400883157 /* ScanningFacilityViewModel.swift */,
 				D473ED812ADDF22200883157 /* CreateAreaFragment.swift */,
+				D473ED832ADE0F3C00883157 /* CreatePinTypeFragment.swift */,
 			);
 			path = "Area Scanning";
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				D4DE51492AD63DD1008E1F3C /* PickUserRoleView.swift in Sources */,
 				D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */,
 				D4B22D9B2AD773D500F3882B /* ThresholdRotationGestureRecognizer.swift in Sources */,
+				D473ED842ADE0F3C00883157 /* CreatePinTypeFragment.swift in Sources */,
 				D4DE515A2AD64291008E1F3C /* Model.xcdatamodeld in Sources */,
 				D4B22D942AD75E9800F3882B /* PointCloud+CreateVisualization.swift in Sources */,
 				D4F582E12AD8B52800FFADBB /* AnnotatingMachineViewModel.swift in Sources */,

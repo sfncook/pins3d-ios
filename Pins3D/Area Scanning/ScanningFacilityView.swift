@@ -5,6 +5,7 @@ import CoreData
 struct ScanningFacilityView: View {
     @StateObject var viewModel: ScanningFacilityViewModel
     @Binding var showThisView: Bool
+    static let darkPurple = UIColor(red: 0.412, green: 0.475, blue: 0.753, alpha: 1.0)
     
     init(facility: Facility?, showScanningFacilityView: Binding<Bool>, viewContext: NSManagedObjectContext) {
         _viewModel = StateObject(
@@ -27,37 +28,40 @@ struct ScanningFacilityView: View {
                     
                     HStack {
                         Button(action: {
-                            withAnimation {
-                                $viewModel.showCreateAreaFragment.wrappedValue.toggle()
-                            }
+                            viewModel.dropPin()
                         }) {
-                            Text("Drop Pin")
-                                .padding()
+                            Image(systemName: "plus.circle")
+                                .font(.system(size: 75))
                                 .background(Color.white)
-                                .foregroundColor(.blue)
-                                .cornerRadius(8)
+                                .clipShape(Circle())
+                                .foregroundColor(Color(uiColor: ScanningFacilityView.darkPurple))
                         }
-                    }
+                    }.padding(.bottom, 20)
                 }
                 .padding(.top, 10)
                 .navigationBarBackButtonHidden(true)
-                .navigationBarItems(leading:
-                                        Button(action: {
-                    self.showThisView = false
-                }) {
-                    HStack {
-                        Image(systemName: "arrow.left")
-                        Text("Back")
+                .navigationBarItems(
+                    leading: Button(action: {self.showThisView = false}) {
+                        HStack {
+                            Image(systemName: "arrow.left")
+                            Text("Back")
+                        }
+                    },
+                    trailing: Button(action: {viewModel.saveFacility()}) {
+                        HStack {
+                            Text("Save")
+                        }
                     }
-                }
                 )
             }// ZStack
             .navigationBarTitle($viewModel.facility.wrappedValue?.name ?? "Scanning New Area", displayMode: .inline)
             
-            .sheet(isPresented: $viewModel.showCreateAreaFragment, onDismiss: {
-                print("Dimiss showModal:\(viewModel.showCreateAreaFragment)")
-            }) {
+            .sheet(isPresented: $viewModel.showCreateAreaFragment) {
                 CreateAreaFragment(viewModel: viewModel)
+            }
+            
+            .sheet(isPresented: $viewModel.showCreatePinTypeFragment) {
+                CreatePinTypeFragment(viewModel: viewModel)
             }
         }// NavigationView {
     }// body
