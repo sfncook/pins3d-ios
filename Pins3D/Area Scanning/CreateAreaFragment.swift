@@ -1,18 +1,19 @@
 import SwiftUI
 
 struct CreateAreaFragment: View {
-    @State private var areaName: String = ""
+    let viewModel: ScanningFacilityViewModel
+    @State private var facilityName: String = ""
     
     var body: some View {
         VStack {
-            TextField("Enter area name", text: $areaName)
+            TextField("Enter area name", text: $facilityName)
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(8)
                 .padding(.horizontal)
             
             Button(action: {
-//                saveNewPin()
+                viewModel.createNewFacility(facilityName: facilityName)
                 UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
             }) {
                 Text("Create")

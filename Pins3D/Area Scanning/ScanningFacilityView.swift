@@ -57,7 +57,7 @@ struct ScanningFacilityView: View {
             .sheet(isPresented: $viewModel.showCreateAreaFragment, onDismiss: {
                 print("Dimiss showModal:\(viewModel.showCreateAreaFragment)")
             }) {
-                CreateAreaFragment()
+                CreateAreaFragment(viewModel: viewModel)
             }
         }// NavigationView {
     }// body
