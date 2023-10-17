@@ -22,7 +22,12 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId {
         coordinator = FacilityScanningCoordinator2(fetchPinWithId: self)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.showCreateAreaFragment = self.facility == nil
+            if self.facility == nil {
+                self.showCreateAreaFragment = self.facility == nil
+            } else {
+                self.loadWorldMap()
+            }
+            
         }
     }
     

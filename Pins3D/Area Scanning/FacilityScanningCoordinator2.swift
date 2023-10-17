@@ -19,10 +19,6 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
                                                selector: #selector(self.saveFacility(_:)),
                                                name: ScanningAndAnnotatingFacilityViewModel.getWorldMapNotification,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.loadWorldMap(_:)),
-                                               name: ScanningAndAnnotatingFacilityViewModel.loadWorldMapNotification,
-                                               object: nil)
     }
     
     // MARK: - ARSCNViewDelegate
@@ -88,11 +84,9 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
         }
     }
     
-    @objc
-    private func loadWorldMap(_ notification: Notification) {
+    func loadWorldMap(_ worldMap: ARWorldMap) {
         print("FacilityScanningCoordinator.loadWorldMap")
-        guard let worldMap = notification.userInfo?[ScanningAndAnnotatingFacilityViewModel.worldMapKey] as? ARWorldMap else { return }
-        let configuration = FacilityScanningARViewContainer.defaultConfiguration // this app's standard world tracking settings
+        let configuration = FacilityScanningARViewContainer.defaultConfiguration
         configuration.initialWorldMap = worldMap
         ARSCNView.sceneView!.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
