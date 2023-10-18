@@ -10,13 +10,30 @@ struct StepFragment: View {
                 Spacer()
                 Text("#\(String(describing: viewModel.executingStep?.number))")
             }
-            Text(viewModel.executingStep?.summary ?? "NOT SET")
-            Text(viewModel.executingStep?.details ?? "")
+            .padding(20)
+            
+            HStack {
+                Text(viewModel.executingStep?.summary ?? "NOT SET")
+                Spacer()
+            }
+            .padding(20)
+            
+            HStack {
+                Text(viewModel.executingStep?.details ?? "")
+                Spacer()
+            }
+            .padding(20)
+            
             HStack {
                 Button(action: {
                     print("Click previous")
                 }) {
                     Text("Prev")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                 }
                 
                 Spacer()
@@ -25,6 +42,11 @@ struct StepFragment: View {
                     print("Click Done")
                 }) {
                     Text("Done")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                 }
                 
                 Spacer()
@@ -33,17 +55,17 @@ struct StepFragment: View {
                     print("Click Next")
                 }) {
                     Text("Next")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                 }
             }
+            .padding(20)
         }
-//        .frame(
-//            minWidth: UIScreen.main.bounds.width,
-//            maxWidth: UIScreen.main.bounds.width,
-//            maxHeight: UIScreen.main.bounds.height,
-//            alignment: .top
-//        )
         .background(Color.white)
-        .cornerRadius(20)
-        .padding()
+        .cornerRadius(5)
+        .padding([.leading, .trailing], 20)
     }
 }

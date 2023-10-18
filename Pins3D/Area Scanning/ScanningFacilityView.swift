@@ -94,7 +94,9 @@ struct ScanningFacilityView: View {
     }
     
     func dropPinButton() -> some View {
-        if let cursorOverProcedure = viewModel.cursorOverProcedure {
+        if viewModel.executingStep != nil {
+            return AnyView(EmptyView())
+        } else if let cursorOverProcedure = viewModel.cursorOverProcedure {
             return AnyView(
                 Button(action: {
                     viewModel.startExecutingProcedure(procedure: cursorOverProcedure)

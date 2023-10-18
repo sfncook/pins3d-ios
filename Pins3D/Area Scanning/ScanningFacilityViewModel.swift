@@ -51,6 +51,7 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
             guard let firstStep = firstStep else {return}
             self.executingProcedure = procedure
             self.executingStep = firstStep
+            coordinator.showOnlySingleStepPin(step: firstStep, procedure: procedure)
         }
     }
 }
