@@ -53,8 +53,8 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
 
             if let hitNode = hitProcedurePinBackgroundNode {
                 hitNode.addHighlight()
-                if let hitProcedure = hitNode.procedurePin.procedure {
-                    self.cursorActionsDelegate.onCursorOverProcedurePin(procedure: hitProcedure)
+                if let hitProcedureId = hitNode.procedurePin.procedureId {
+                    self.cursorActionsDelegate.onCursorOverProcedurePin(procedureId: hitProcedureId)
                 }
             } else {
                 self.cursorActionsDelegate.onCursorOutProcedurePin()
@@ -127,6 +127,6 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
 }
 
 protocol CursorActions {
-    func onCursorOverProcedurePin(procedure: Procedure)
+    func onCursorOverProcedurePin(procedureId: UUID)
     func onCursorOutProcedurePin()
 }

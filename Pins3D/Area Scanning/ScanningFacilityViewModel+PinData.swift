@@ -65,6 +65,23 @@ extension ScanningFacilityViewModel {
         }
         return []
     }
+    
+    func fetchProcedure(procedureId: UUID) -> Procedure? {
+        let fetchRequest: NSFetchRequest<Procedure> = Procedure.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", procedureId as CVarArg)
+        
+        do {
+            let results = try viewContext.fetch(fetchRequest)
+            if let found = results.first {
+                return found
+            } else {
+                print("No Procedure with the given id was found.")
+            }
+        } catch {
+            print("Failed to fetch Procedure with error: \(error)")
+        }
+        return nil
+    }
 
     
     /* This method does two things that results in a new pin:
@@ -107,16 +124,29 @@ extension ScanningFacilityViewModel {
         let procedure = Procedure(context: viewContext)
         procedure.id = UUID()
         procedure.name = pinText
-        
-        let procedurePin = ProcedurePin(context: viewContext)
-        procedurePin.id = UUID()
-        procedurePin.text = pinText
-        procedurePin.procedure = procedure
-        procedure.pin = procedurePin
 
         do {
             try viewContext.save()
-            print("Pin saved text:\(procedurePin.text ?? "NOT_SET")")
+            
+            let procedurePin = ProcedurePin(context: viewContext)
+            procedurePin.id = UUID()
+            procedurePin.text = pinText
+            procedurePin.procedureId = procedure.id
+            procedurePin.procedure = procedure
+            procedure.pin = procedurePin
+
+            do {
+                try viewContext.save()
+                print("Pin saved text:\(procedurePin.text ?? "NOT_SET")")
+                
+                // Add pin to scene
+                coordinator.addPin(pin: procedurePin, transform: pinCursorLocationWhenDropped)
+                
+                startAddingStepPinsForProcedure(procedure)
+            } catch {
+                let nsError = error as NSError
+                fatalError("(2) Create Pin unresolved error \(nsError), \(nsError.userInfo)")
+            }
             
             // Add pin to scene
             coordinator.addPin(pin: procedurePin, transform: pinCursorLocationWhenDropped)
@@ -124,7 +154,7 @@ extension ScanningFacilityViewModel {
             startAddingStepPinsForProcedure(procedure)
         } catch {
             let nsError = error as NSError
-            fatalError("Create Pin unresolved error \(nsError), \(nsError.userInfo)")
+            fatalError("(1) Create Pin unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     

@@ -31,6 +31,7 @@
         <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Step" inverseName="procedure" inverseEntity="Step"/>
     </entity>
     <entity name="ProcedurePin" representedClassName="ProcedurePin" parentEntity="TextPin" syncable="YES" codeGenerationType="class">
+        <attribute name="procedureId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="procedure" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Procedure" inverseName="pin" inverseEntity="Procedure"/>
     </entity>
     <entity name="Step" representedClassName="Step" syncable="YES" codeGenerationType="class">

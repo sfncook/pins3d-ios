@@ -3,8 +3,8 @@ import ARKit
 import CoreData
 
 extension ScanningFacilityViewModel {
-    func onCursorOverProcedurePin(procedure: Procedure) {
-        cursorOverProcedure = procedure
+    func onCursorOverProcedurePin(procedureId: UUID) {
+        cursorOverProcedure = fetchProcedure(procedureId: procedureId)
     }
     
     func onCursorOutProcedurePin() {

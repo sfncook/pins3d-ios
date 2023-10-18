@@ -76,14 +76,14 @@ struct CreateStepFragment: View {
         }//Vstack
         .padding() // Add padding to the entire VStack
         
-        .frame(
-            minWidth: UIScreen.main.bounds.width,
-            maxWidth: UIScreen.main.bounds.width,
-            maxHeight: UIScreen.main.bounds.height,
-            alignment: .top
-        )
+//        .frame(
+//            minWidth: UIScreen.main.bounds.width,
+//            maxWidth: UIScreen.main.bounds.width,
+//            maxHeight: UIScreen.main.bounds.height,
+//            alignment: .top
+//        )
         .background(Color.white)
-        .cornerRadius(20)
+        .cornerRadius(5)
         .padding()
     }//body
 }
