@@ -74,6 +74,15 @@ extension FacilityScanningCoordinator2 {
         updateShowHidePinNodes()
     }
     
+    func showOnlySingleStepPin(step: Step, procedure: Procedure) {
+        guard let stepPin = step.pin else {
+            return
+        }
+        nodeTypesToShow = [StepPinNode.typeName]
+        stepPinsToShow = [stepPin]
+        updateShowHidePinNodes()
+    }
+    
     func updateShowHidePinNodes() {
         ARSCNView.sceneView!.scene.rootNode.enumerateChildNodes { (node, stop) in
             if let name = node.name {

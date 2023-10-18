@@ -30,6 +30,7 @@
 		D473ED8C2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED8B2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift */; };
 		D473ED8E2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */; };
 		D473ED902ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473ED8F2ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift */; };
+		D4857BD82ADF66C5009C10A6 /* StepFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4857BD72ADF66C5009C10A6 /* StepFragment.swift */; };
 		D48C55792AD9B54C00731F8F /* CatalogView+EntityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */; };
 		D48C557B2AD9D57400731F8F /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557A2AD9D57400731F8F /* TestRun.swift */; };
 		D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */; };
@@ -101,6 +102,7 @@
 		D473ED8B2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningFacilityViewModel+PinData.swift"; sourceTree = "<group>"; };
 		D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacilityScanningCoordinator2+Pins.swift"; sourceTree = "<group>"; };
 		D473ED8F2ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningFacilityViewModel+LoadWorldMap.swift"; sourceTree = "<group>"; };
+		D4857BD72ADF66C5009C10A6 /* StepFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFragment.swift; sourceTree = "<group>"; };
 		D48C55782AD9B54C00731F8F /* CatalogView+EntityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView+EntityFunctions.swift"; sourceTree = "<group>"; };
 		D48C557A2AD9D57400731F8F /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		D48C557C2AD9D5E000731F8F /* Coordinator+TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+TestRun.swift"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				D473ED832ADE0F3C00883157 /* CreateAreaFragment.swift */,
 				D473ED812ADDF22200883157 /* CreatePinTypeFragment.swift */,
 				D49F2BC12ADEEAD000A74E79 /* CreateStepFragment.swift */,
+				D4857BD72ADF66C5009C10A6 /* StepFragment.swift */,
 			);
 			path = Fragments;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				D4DE51642AD647C0008E1F3C /* CatalogView.swift in Sources */,
 				D473ED8C2ADE2B6E00883157 /* ScanningFacilityViewModel+PinData.swift in Sources */,
 				D49F2BC22ADEEAD000A74E79 /* CreateStepFragment.swift in Sources */,
+				D4857BD82ADF66C5009C10A6 /* StepFragment.swift in Sources */,
 				D49F2BC02ADED29C00A74E79 /* ProcedurePinNode.swift in Sources */,
 				D473ED862ADE142600883157 /* FacilityScanningCoordinator2.swift in Sources */,
 				D48C557D2AD9D5E000731F8F /* Coordinator+TestRun.swift in Sources */,

@@ -55,18 +55,17 @@ extension ScanningFacilityViewModel {
     }
     
     func fetchStepPinsForProcedure(procedure: Procedure) -> [StepPin] {
-        let fetchRequest: NSFetchRequest<StepPin> = StepPin.fetchRequest()
-
-        // Set a predicate to fetch StepPin entities that are related to the given Procedure
+        let fetchRequest: NSFetchRequest<Step> = Step.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "procedure == %@", procedure)
-
         do {
-            let stepPins = try viewContext.fetch(fetchRequest)
+            let steps = try viewContext.fetch(fetchRequest)
+            return steps.compactMap { $0.pin }
         } catch {
-            print("Failed to fetch StepPin entities with error: \(error)")
+            print("Failed to fetch Step entities with error: \(error)")
         }
         return []
     }
+
     
     /* This method does two things that results in a new pin:
      *  1.) It captures the current 3D position of the pin cursor in the environment
@@ -109,7 +108,6 @@ extension ScanningFacilityViewModel {
         procedure.id = UUID()
         procedure.name = pinText
         
-//        let procedurePin = createAndSaveNewProcedurePin(pinText: pinText)
         let procedurePin = ProcedurePin(context: viewContext)
         procedurePin.id = UUID()
         procedurePin.text = pinText
@@ -147,10 +145,9 @@ extension ScanningFacilityViewModel {
             print("Unable to retrieve pinCursorLocationWhenDropped, perhaps it's nil")
             return
         }
-        let stepPin = createAndSaveNewStepPin(stepSummary: stepSummary)
+//        let stepPin = createAndSaveNewStepPin(stepSummary: stepSummary)
         
-        // Add pin to scene
-        coordinator.addPin(pin: stepPin, transform: pinCursorLocationWhenDropped)
+        
         
         // Now that we have created the procedure and added the ProcedurePin to the scene
         //   let's go back to the ARView and start adding StepPins for this procedure
@@ -159,8 +156,17 @@ extension ScanningFacilityViewModel {
         step.summary = stepSummary
         step.details = stepDetails
         step.number = Int16(self.creatingStepNumber)
+        step.procedure = self.creatingProcedure
         
         self.creatingProcedure?.addToSteps(step)
+        
+        let stepPin = StepPin(context: viewContext)
+        stepPin.id = UUID()
+        stepPin.text = stepSummary
+        stepPin.number = Int16(creatingStepNumber)
+        stepPin.step = step
+        step.pin = stepPin
+
 
         do {
             try viewContext.save()
@@ -185,37 +191,5 @@ extension ScanningFacilityViewModel {
             fatalError("Create Pin unresolved error \(nsError), \(nsError.userInfo)")
         }
         return textPin
-    }
-    
-    func createAndSaveNewProcedurePin(pinText: String) -> ProcedurePin {
-        let procedurePin = ProcedurePin(context: viewContext)
-        procedurePin.id = UUID()
-        procedurePin.text = pinText
-
-        do {
-            try viewContext.save()
-            print("Pin saved text:\(procedurePin.text ?? "NOT_SET")")
-        } catch {
-            let nsError = error as NSError
-            fatalError("Create Pin unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        return procedurePin
-    }
-    
-    func createAndSaveNewStepPin(stepSummary: String) -> StepPin {
-        let stepPin = StepPin(context: viewContext)
-        stepPin.id = UUID()
-        stepPin.text = stepSummary
-        stepPin.number = Int16(creatingStepNumber)
-        stepPin.procedure = self.creatingProcedure
-
-        do {
-            try viewContext.save()
-            print("Pin saved text:\(stepPin.text ?? "NOT_SET")")
-        } catch {
-            let nsError = error as NSError
-            fatalError("Create Pin unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        return stepPin
     }
 }

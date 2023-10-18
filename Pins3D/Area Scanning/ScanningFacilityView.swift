@@ -36,6 +36,8 @@ struct ScanningFacilityView: View {
                     leading: leadingNavBarButton(),
                     trailing: trailingNavBarButton()
                 )
+                
+                procedureStepOverlay()
             }// ZStack
             .navigationBarTitle(contextualBarTitle(), displayMode: .inline)
             
@@ -67,8 +69,10 @@ struct ScanningFacilityView: View {
     }
     
     func trailingNavBarButton() -> some View {
-        if viewModel.isPlacingStepPin {
-            return Button(action: {
+        if viewModel.executingStep != nil {
+            return AnyView(EmptyView())
+        } else if viewModel.isPlacingStepPin {
+            return AnyView(Button(action: {
                 //TODO: Set isPlacingStepPin = false, creatingProcedure=nil, and save pins and stuff
                 viewModel.isPlacingStepPin = false
                 viewModel.coordinator.showAllAreaPins()
@@ -78,14 +82,14 @@ struct ScanningFacilityView: View {
                     Text("Done")
                 }
             }
-            .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment)
+            .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment))
         } else {
-            return Button(action: {viewModel.saveWorldMap()}) {
+            return AnyView(Button(action: {viewModel.saveWorldMap()}) {
                 HStack {
                     Text("Save")
                 }
             }
-            .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment)
+            .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment))
         }
     }
     
@@ -93,7 +97,7 @@ struct ScanningFacilityView: View {
         if let cursorOverProcedure = viewModel.cursorOverProcedure {
             return AnyView(
                 Button(action: {
-                    print("Click start procedure")
+                    viewModel.startExecutingProcedure(procedure: cursorOverProcedure)
                 }) {
                     HStack {
                         Image(systemName: "play.circle")
@@ -161,5 +165,16 @@ struct ScanningFacilityView: View {
             return Text("Place Step #\(viewModel.creatingStepNumber)")
         }
         return nil
+    }
+    
+    func procedureStepOverlay() -> some View {
+        if let executingStep = viewModel.executingStep, let executingProcedure = viewModel.executingProcedure {
+            return AnyView(VStack {
+                Spacer()
+                StepFragment(viewModel: viewModel)
+            })
+        } else {
+            return AnyView(EmptyView())
+        }
     }
 }

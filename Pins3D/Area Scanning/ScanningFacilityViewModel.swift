@@ -17,6 +17,8 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     
     var pinCursorLocationWhenDropped: simd_float4x4?
     @Published var cursorOverProcedure: Procedure?
+    @Published var executingProcedure: Procedure?
+    @Published var executingStep: Step?
     
     init(facility: Facility?, viewContext: NSManagedObjectContext) {
         print("ScanningAndAnnotatingFacilityViewModel.init")
@@ -41,5 +43,14 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
         facility!.id = UUID()
         facility!.name = facilityName
         saveFacility()
+    }
+    
+    func startExecutingProcedure(procedure: Procedure) {
+        if let stepsSet = procedure.steps as? Set<Step> {
+            let firstStep = stepsSet.min { $0.number < $1.number }
+            guard let firstStep = firstStep else {return}
+            self.executingProcedure = procedure
+            self.executingStep = firstStep
+        }
     }
 }
