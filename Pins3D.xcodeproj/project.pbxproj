@@ -64,6 +64,7 @@
 		D4B22D9D2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D9A2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift */; };
 		D4B22DA12AD774C700F3882B /* ARCameraTrackingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22D9F2AD774C700F3882B /* ARCameraTrackingState.swift */; };
 		D4B22DA22AD774C700F3882B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B22DA02AD774C700F3882B /* Utilities.swift */; };
+		D4CDA5F62ADF7437000BCF35 /* ScanningFacilityViewModel+StepExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDA5F52ADF7437000BCF35 /* ScanningFacilityViewModel+StepExecution.swift */; };
 		D4DE513A2AD63C9C008E1F3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */; };
 		D4DE513E2AD63C9C008E1F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */; };
 		D4DE51412AD63C9C008E1F3C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DE51402AD63C9C008E1F3C /* Preview Assets.xcassets */; };
@@ -136,6 +137,7 @@
 		D4B22D9A2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThresholdPinchGestureRecognizer.swift; sourceTree = "<group>"; };
 		D4B22D9F2AD774C700F3882B /* ARCameraTrackingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCameraTrackingState.swift; sourceTree = "<group>"; };
 		D4B22DA02AD774C700F3882B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		D4CDA5F52ADF7437000BCF35 /* ScanningFacilityViewModel+StepExecution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningFacilityViewModel+StepExecution.swift"; sourceTree = "<group>"; };
 		D4DE51362AD63C9C008E1F3C /* Pins3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pins3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DE51392AD63C9C008E1F3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DE513D2AD63C9C008E1F3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				D473ED8F2ADE390400883157 /* ScanningFacilityViewModel+LoadWorldMap.swift */,
 				D49F2BBD2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift */,
 				D401C2E32ADF4388004257D8 /* ScanningFacilityViewModel+CursorActions.swift */,
+				D4CDA5F52ADF7437000BCF35 /* ScanningFacilityViewModel+StepExecution.swift */,
 				D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */,
 				D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */,
 				D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */,
@@ -434,6 +437,7 @@
 				D43819F42ADCF0FD002C08B5 /* ScanningAndAnnotatingFacilityViewModel+SaveWorldMap.swift in Sources */,
 				D473ED782ADD97D000883157 /* ScanningAndAnnotatingFacilityViewModel+LoadWorldMap.swift in Sources */,
 				D4B22DA12AD774C700F3882B /* ARCameraTrackingState.swift in Sources */,
+				D4CDA5F62ADF7437000BCF35 /* ScanningFacilityViewModel+StepExecution.swift in Sources */,
 				D4E179172AD8559F00BBFB3C /* ScanningMachineViewModel+SaveModel.swift in Sources */,
 				D4B22D9D2AD773D500F3882B /* ThresholdPinchGestureRecognizer.swift in Sources */,
 				D4B22D872AD75E9800F3882B /* Wireframe.swift in Sources */,

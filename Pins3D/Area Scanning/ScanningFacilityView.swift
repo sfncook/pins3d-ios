@@ -173,7 +173,12 @@ struct ScanningFacilityView: View {
         if let executingStep = viewModel.executingStep, let executingProcedure = viewModel.executingProcedure {
             return AnyView(VStack {
                 Spacer()
-                StepFragment(viewModel: viewModel)
+                StepFragment(
+                    viewModel: viewModel,
+                    executingStep: $viewModel.executingStep,
+                    hasNextStep: $viewModel.hasNextStep,
+                    hasPrevStep: $viewModel.hasPrevStep
+                )
             })
         } else {
             return AnyView(EmptyView())

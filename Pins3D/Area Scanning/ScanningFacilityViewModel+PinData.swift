@@ -175,9 +175,6 @@ extension ScanningFacilityViewModel {
             print("Unable to retrieve pinCursorLocationWhenDropped, perhaps it's nil")
             return
         }
-//        let stepPin = createAndSaveNewStepPin(stepSummary: stepSummary)
-        
-        
         
         // Now that we have created the procedure and added the ProcedurePin to the scene
         //   let's go back to the ARView and start adding StepPins for this procedure
@@ -202,6 +199,7 @@ extension ScanningFacilityViewModel {
             try viewContext.save()
             self.creatingStepNumber += 1
             print("Step #\(step.number) saved")
+            coordinator.addPin(pin: stepPin, transform: pinCursorLocationWhenDropped)
         } catch {
             let nsError = error as NSError
             fatalError("Create Step unresolved error \(nsError), \(nsError.userInfo)")
