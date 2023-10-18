@@ -73,7 +73,6 @@ struct ScanningFacilityView: View {
             return AnyView(EmptyView())
         } else if viewModel.isPlacingStepPin {
             return AnyView(Button(action: {
-                //TODO: Set isPlacingStepPin = false, creatingProcedure=nil, and save pins and stuff
                 viewModel.isPlacingStepPin = false
                 viewModel.coordinator.showAllAreaPins()
                 viewModel.creatingProcedure = nil
@@ -163,8 +162,8 @@ struct ScanningFacilityView: View {
     }
     
     var infoMessageContent: Text? {
-        if viewModel.isPlacingStepPin {
-            return Text("Place Step #\(viewModel.creatingStepNumber)")
+        if let infoMsg = viewModel.infoMsg {
+            return Text(infoMsg)
         }
         return nil
     }

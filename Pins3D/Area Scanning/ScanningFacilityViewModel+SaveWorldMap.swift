@@ -59,6 +59,7 @@ extension ScanningFacilityViewModel {
     }
     
     func saveWorldMap() {
+        self.startTimerInfoMsg(infoMsg: "Saving Area Map")
         coordinator.getWorldMap { worldMap in
             guard let facility = self.facility else {
                 print("Error: Facility is nil, unable to save")
@@ -86,6 +87,7 @@ extension ScanningFacilityViewModel {
     //                    self.showAnnotatingMachineView = true
                     }
                     print("Done saving")
+                    self.startTimerInfoMsg(infoMsg: "Save Complete")
                 } catch {
                     print("ERROR saveMachineAndRefObjectFile Failed to save arFilename to machine: \(error)")
     //                self.savingMsg = "Error saving machine info"

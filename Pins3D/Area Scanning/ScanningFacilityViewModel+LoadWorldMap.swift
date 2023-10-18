@@ -3,6 +3,7 @@ import ARKit
 
 extension ScanningFacilityViewModel {
     func loadWorldMap() {
+        self.startTimerInfoMsg(infoMsg: "Loading Area Map")
         var msg = "ScanningAndAnnotatingFacilityViewModel.loadWorldMap"
         print(msg)
 //        self.loadingMsg = msg
@@ -46,7 +47,7 @@ extension ScanningFacilityViewModel {
                 }
                 
                 self.coordinator.loadWorldMap(worldMap)
-                
+                self.startTimerInfoMsg(infoMsg: "Searching for Anchors")
                 msg = "Done Loading"
                 print(msg)
 //                DispatchQueue.main.async {
@@ -64,5 +65,13 @@ extension ScanningFacilityViewModel {
         }
 
         task.resume()
+    }// loadWorldMap
+    
+    func loadAnchorsComplete() {
+        self.startTimerInfoMsg(infoMsg: "Load Complete")
     }
+}
+
+protocol LoadAnchorsCompleteCallback {
+    func loadAnchorsComplete()
 }

@@ -12,13 +12,16 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     var pinCurorWorldTransform: simd_float4x4?
     let fetchPinWithId: FetchPinWithId
     let cursorActionsDelegate: CursorActions
+    let loadAnchorsCompleteCallback: LoadAnchorsCompleteCallback
     var nodeTypesToShow: [String] = [ProcedurePinNode.typeName, TextPinNode.typeName]
     var stepPinsToShow: [StepPin] = []
     var procedurePinNodes: [ProcedurePinNode] = []
+    var firstAnchorLoaded: Bool = false
     
-    init(fetchPinWithId: FetchPinWithId, cursorActionsDelegate: CursorActions) {
+    init(fetchPinWithId: FetchPinWithId, cursorActionsDelegate: CursorActions, loadAnchorsCompleteCallback: LoadAnchorsCompleteCallback) {
         self.fetchPinWithId = fetchPinWithId
         self.cursorActionsDelegate = cursorActionsDelegate
+        self.loadAnchorsCompleteCallback = loadAnchorsCompleteCallback
         super.init()
     }
     

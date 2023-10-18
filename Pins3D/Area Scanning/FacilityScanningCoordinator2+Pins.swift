@@ -7,6 +7,10 @@ extension FacilityScanningCoordinator2 {
         guard let anchorName = anchor.name
             else { return }
         
+        if !self.firstAnchorLoaded {
+            self.loadAnchorsCompleteCallback.loadAnchorsComplete()
+            self.firstAnchorLoaded = true
+        }
         print("FacilityScanningCoordinator anchor/pin added:\(anchorName)")
         if anchorName.hasPrefix("textpin_") {
             let pinId = String(anchorName.dropFirst("textpin_".count))
