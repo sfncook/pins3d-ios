@@ -25,7 +25,8 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     
     @Published var infoMsg: String?
     var timerInfoMsg: Timer?
-    let semaphore = DispatchSemaphore(value: 1)
+    @Published var savingMsg: String?
+    var timerSavingMsg: Timer?
     
     init(facility: Facility?, viewContext: NSManagedObjectContext) {
         print("ScanningAndAnnotatingFacilityViewModel.init")
@@ -58,7 +59,7 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     
     func startTimerInfoMsg(infoMsg: String) {
         DispatchQueue.main.async {
-            self.timerInfoMsg?.invalidate()
+            self.clearTimerInfoMsg()
             self.infoMsg = infoMsg
             self.timerInfoMsg = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
                 self?.infoMsg = nil
@@ -69,5 +70,22 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     func clearTimerInfoMsg() {
         timerInfoMsg?.invalidate()
         timerInfoMsg = nil
+    }
+    
+    func setSavingMsg(savingMsg: String, withTimeout: Bool = false) {
+        DispatchQueue.main.async {
+            self.clearTimerSavingMsg()
+            self.savingMsg = savingMsg
+            if withTimeout {
+                self.timerSavingMsg = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
+                    self?.savingMsg = nil
+                }
+            }
+        }
+    }
+    
+    func clearTimerSavingMsg() {
+        timerSavingMsg?.invalidate()
+        timerSavingMsg = nil
     }
 }

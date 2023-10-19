@@ -19,10 +19,19 @@ struct ScanningFacilityView: View {
             ZStack {
                 FacilityScanningARViewContainer2(coordinator: viewModel.coordinator)
                 VStack {
-                    infoMessageContent
-                        .padding()
-                        .background(Color.white.opacity(0.5))
-                        .foregroundColor(.black)
+                    HStack {
+                        savingMessageContent
+                            .padding()
+                            .background(Color.white.opacity(0.5))
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                        
+                        infoMessageContent
+                            .padding()
+                            .background(Color.white.opacity(0.5))
+                            .foregroundColor(.black)
+                    }
                     
                     Spacer()
                     
@@ -181,6 +190,14 @@ struct ScanningFacilityView: View {
     var infoMessageContent: Text? {
         if let infoMsg = viewModel.infoMsg {
             return Text(infoMsg)
+        }
+        return nil
+    }
+    
+    
+    var savingMessageContent: Text? {
+        if let savingMsg = viewModel.savingMsg {
+            return Text(savingMsg)
         }
         return nil
     }

@@ -59,15 +59,17 @@ extension ScanningFacilityViewModel {
     }
     
     func saveWorldMap() {
-        self.startTimerInfoMsg(infoMsg: "Saving Area Map")
+        self.setSavingMsg(savingMsg: "Saving Area Map")
         coordinator.getWorldMap { worldMap in
             guard let facility = self.facility else {
                 print("Error: Facility is nil, unable to save")
+                self.setSavingMsg(savingMsg: "Unable to save (1)", withTimeout: true)
                 return
             }
             
             guard let worldMap = worldMap else {
                 print("Error: WorldMap nil, unable to save")
+                self.setSavingMsg(savingMsg: "Unable to save (2)", withTimeout: true)
                 return
             }
             
@@ -75,22 +77,15 @@ extension ScanningFacilityViewModel {
             self.uploadWorldMap(worldMapFilename: worldMapFilename, worldMap: worldMap) {
                 let msg = "Saving facility CoreData info..."
                 print(msg)
-                DispatchQueue.main.async {
-    //                self.savingMsg = msg
-                }
                 facility.worldMapFilename = worldMapFilename
                 let context = facility.managedObjectContext
                 do {
                     try context?.save()
-                    DispatchQueue.main.async {
-    //                    self.showScanningMachineView = false
-    //                    self.showAnnotatingMachineView = true
-                    }
                     print("Done saving")
-                    self.startTimerInfoMsg(infoMsg: "Save Complete")
+                    self.setSavingMsg(savingMsg: "Save Complete", withTimeout: true)
                 } catch {
                     print("ERROR saveMachineAndRefObjectFile Failed to save arFilename to machine: \(error)")
-    //                self.savingMsg = "Error saving machine info"
+                    self.setSavingMsg(savingMsg: "Unable to save (3)", withTimeout: true)
                 }
             }
         }
