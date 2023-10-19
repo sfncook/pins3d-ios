@@ -229,4 +229,8 @@ extension ScanningFacilityViewModel {
         }
         return textPin
     }
+    
+    func panCameraToSeeHighlightedPoint(_ direction: String) {
+        self.panCameraDirection = direction
+    }
 }

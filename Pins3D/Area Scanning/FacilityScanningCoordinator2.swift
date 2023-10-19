@@ -75,7 +75,9 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
                 self.pinCurorWorldTransform = hit.worldTransform
                 self.sphereNode.simdWorldPosition = hit.worldTransform.position
             }
-        }
+        }// Dispatch main.async
+        
+        findHighlightedPin(renderer: renderer)
     }
     
     // MARK: - ARSessionDelegate

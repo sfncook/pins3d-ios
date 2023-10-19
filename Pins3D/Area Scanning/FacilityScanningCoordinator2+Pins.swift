@@ -113,6 +113,45 @@ extension FacilityScanningCoordinator2 {
             }
         }
     }
+    
+    func findHighlightedPin(renderer: SCNSceneRenderer) {
+        guard let highlightStepPin = highlightStepPin else {return}
+        
+        // Find StepNode for hightlightStepPin
+        ARSCNView.sceneView!.scene.rootNode.enumerateChildNodes { (node, stop) in
+            if let specialNode = node as? StepPinNode {
+                if highlightStepPin == specialNode.stepPin {
+                    // Project the 3D position of the specialNode into the camera's 2D space
+                    let projectedPoint = renderer.projectPoint(specialNode.worldPosition)
+
+                    if let view = renderer as? SCNView {
+                        DispatchQueue.main.async {
+                            let size = view.bounds.size
+                            let normalizedPoint = CGPoint(x: CGFloat(projectedPoint.x) / size.width,
+                                                          y: CGFloat(projectedPoint.y) / size.height)
+                            
+                            // Check if the node is visible on the screen
+                            if (0...1).contains(normalizedPoint.x) && (0...1).contains(normalizedPoint.y) {
+                                //                            hideDirectionalArrow()
+                                self.fetchPinWithId.panCameraToSeeHighlightedPoint("On Screen")
+                            } else {
+                                // Determine and show the directional arrow
+                                if normalizedPoint.x < 0 {
+                                    self.fetchPinWithId.panCameraToSeeHighlightedPoint("left")
+                                } else if normalizedPoint.x > 1 {
+                                    self.fetchPinWithId.panCameraToSeeHighlightedPoint("right")
+                                } else if normalizedPoint.y < 0 {
+                                    self.fetchPinWithId.panCameraToSeeHighlightedPoint("up")
+                                } else if normalizedPoint.y > 1 {
+                                    self.fetchPinWithId.panCameraToSeeHighlightedPoint("down")
+                                }
+                            }
+                        }
+                    }
+                }//
+            }
+        }
+    }
 }
 
 protocol FetchPinWithId {
@@ -120,4 +159,5 @@ protocol FetchPinWithId {
     func fetchProcedurePin(pinId: String) -> ProcedurePin?
     func fetchStepPin(pinId: String) -> StepPin?
     func fetchStepPinsForProcedure(procedure: Procedure) -> [StepPin]
+    func panCameraToSeeHighlightedPoint(_ direction: String)
 }

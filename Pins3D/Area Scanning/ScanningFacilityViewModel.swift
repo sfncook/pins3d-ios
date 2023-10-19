@@ -22,6 +22,7 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     @Published var executingStep: Step?
     @Published var hasNextStep: Bool = false
     @Published var hasPrevStep: Bool = false
+    @Published var panCameraDirection: String?
     
     @Published var infoMsg: String?
     var timerInfoMsg: Timer?

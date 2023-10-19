@@ -46,7 +46,12 @@ struct ScanningFacilityView: View {
                     trailing: trailingNavBarButton()
                 )
                 
-                procedureStepOverlay()
+                VStack {
+                    Spacer()
+                    panCameraImage()
+                    Spacer()
+                    procedureStepOverlay()
+                }
             }// ZStack
             .navigationBarTitle(contextualBarTitle(), displayMode: .inline)
             
@@ -204,15 +209,33 @@ struct ScanningFacilityView: View {
     
     func procedureStepOverlay() -> some View {
         if let executingStep = viewModel.executingStep, let executingProcedure = viewModel.executingProcedure {
-            return AnyView(VStack {
-                Spacer()
+            return AnyView(
                 StepFragment(
                     viewModel: viewModel,
                     executingStep: $viewModel.executingStep,
                     hasNextStep: $viewModel.hasNextStep,
                     hasPrevStep: $viewModel.hasPrevStep
                 )
-            })
+            )
+        } else {
+            return AnyView(EmptyView())
+        }
+    }
+    
+    func panCameraImage() -> some View {
+        if let panCameraDirection = viewModel.panCameraDirection {
+            if panCameraDirection=="On Screen" {
+                return AnyView(EmptyView())
+            } else {
+                let systemName = "arrow.\(panCameraDirection)"
+                return AnyView(
+                    Image(systemName: systemName)
+                        .font(.system(size: 75))
+                        .background(Color.white)
+                        .clipShape(Circle())
+                        .foregroundColor(Color(uiColor: ScanningFacilityView.darkPurple))
+                )
+            }
         } else {
             return AnyView(EmptyView())
         }
