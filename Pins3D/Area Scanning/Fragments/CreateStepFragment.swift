@@ -101,8 +101,15 @@ struct CreateStepFragment: View {
         .background(Color.white)
         .cornerRadius(5)
         .padding()
-        .sheet(isPresented: $showImagePicker) {
-            ImagePicker(image: self.$image, sourceType: self.showCamera ? .camera : .photoLibrary)
+        .sheet(isPresented: $showImagePicker, onDismiss: {
+            scanningViewModel.resumeArSession()
+        }) {
+            imagePickerView
         }
     }//body
+    
+    var imagePickerView: some View {
+        scanningViewModel.pauseArSession()
+        return ImagePicker(image: self.$image, sourceType: self.showCamera ? .camera : .photoLibrary)
+    }
 }

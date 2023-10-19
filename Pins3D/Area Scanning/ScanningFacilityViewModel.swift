@@ -88,4 +88,12 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
         timerSavingMsg?.invalidate()
         timerSavingMsg = nil
     }
+    
+    func pauseArSession() {
+        coordinator.pauseArSession()
+    }
+    
+    func resumeArSession() {
+        coordinator.resumeArSession()
+    }
 }

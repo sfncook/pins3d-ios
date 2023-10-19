@@ -128,6 +128,15 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
         configuration.initialWorldMap = worldMap
         ARSCNView.sceneView!.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
+    
+    func pauseArSession() {
+        ARSCNView.sceneView!.session.pause()
+    }
+    
+    func resumeArSession() {
+        ARSCNView.sceneView!.session.run(FacilityScanningARViewContainer.defaultConfiguration)
+        ARSCNView.sceneView!.debugOptions = [ .showFeaturePoints ]
+    }
 }
 
 protocol CursorActions {
