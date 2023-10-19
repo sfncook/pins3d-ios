@@ -7,11 +7,24 @@ extension ScanningFacilityViewModel {
         if let stepsSet = procedure.steps as? Set<Step> {
             let firstStep = stepsSet.min { $0.number < $1.number }
             guard let firstStep = firstStep else {return}
+            self.previewingProcedure = nil
             self.executingProcedure = procedure
             self.executingStep = firstStep
             coordinator.showOnlySingleStepPin(step: firstStep, procedure: procedure)
             updateHasNextPrev()
         }
+    }
+    
+    func startPreviewingProcedure(procedure: Procedure) {
+        if let stepsSet = procedure.steps as? Set<Step> {
+            self.previewingProcedure = procedure
+            coordinator.showOnlyStepPinsForProcedure(procedure: procedure)
+        }
+    }
+    
+    func cancelPreviewingProcedure() {
+        self.previewingProcedure = nil
+        coordinator.showAllAreaPins()
     }
     
     func nextStep() {

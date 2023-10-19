@@ -17,6 +17,7 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     
     var pinCursorLocationWhenDropped: simd_float4x4?
     @Published var cursorOverProcedure: Procedure?
+    @Published var previewingProcedure: Procedure?
     @Published var executingProcedure: Procedure?
     @Published var executingStep: Step?
     @Published var hasNextStep: Bool = false

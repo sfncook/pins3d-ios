@@ -58,6 +58,12 @@ struct ScanningFacilityView: View {
     func leadingNavBarButton() -> some View {
         if viewModel.isPlacingStepPin {
             return AnyView(EmptyView())
+        } else if viewModel.previewingProcedure != nil {
+            return AnyView(Button(action: {
+                viewModel.cancelPreviewingProcedure()
+            }) {
+                Text("Cancel")
+            })
         } else {
             return AnyView(Button(action: {self.showThisView = false}) {
                 HStack {
@@ -71,6 +77,12 @@ struct ScanningFacilityView: View {
     func trailingNavBarButton() -> some View {
         if viewModel.executingStep != nil {
             return AnyView(EmptyView())
+        } else if let previewingProcedure = viewModel.previewingProcedure {
+            return AnyView(Button(action: {
+                viewModel.startExecutingProcedure(procedure: previewingProcedure)
+            }) {
+                Text("Start")
+            })
         } else if viewModel.isPlacingStepPin {
             return AnyView(Button(action: {
                 viewModel.isPlacingStepPin = false
@@ -95,10 +107,12 @@ struct ScanningFacilityView: View {
     func dropPinButton() -> some View {
         if viewModel.executingStep != nil {
             return AnyView(EmptyView())
-        } else if let cursorOverProcedure = viewModel.cursorOverProcedure {
+        } else if viewModel.previewingProcedure != nil {
+            return AnyView(EmptyView())
+        } else if viewModel.executingProcedure==nil, let cursorOverProcedure = viewModel.cursorOverProcedure {
             return AnyView(
                 Button(action: {
-                    viewModel.startExecutingProcedure(procedure: cursorOverProcedure)
+                    viewModel.startPreviewingProcedure(procedure: cursorOverProcedure)
                 }) {
                     HStack {
                         Image(systemName: "play.circle")
