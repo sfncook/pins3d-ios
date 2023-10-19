@@ -134,6 +134,8 @@ extension ScanningFacilityViewModel {
             procedurePin.procedureId = procedure.id
             procedurePin.procedure = procedure
             procedure.pin = procedurePin
+            
+            self.facility?.addToProcedures(procedure)
 
             do {
                 try viewContext.save()

@@ -5,6 +5,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="worldMapFilename" optional="YES" attributeType="String"/>
         <relationship name="pins" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Pin"/>
+        <relationship name="procedures" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Procedure"/>
     </entity>
     <entity name="Machine" representedClassName="Machine" syncable="YES" codeGenerationType="class">
         <attribute name="arFilename" optional="YES" attributeType="String"/>

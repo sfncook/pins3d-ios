@@ -57,7 +57,7 @@ extension ScanningFacilityViewModel {
                 return
             }
             
-            let worldMapFilename = self.convertToCamelCase(facility.name!)
+            let worldMapFilename = "area_\(self.convertToCamelCase(facility.name!))"
             self.uploadWorldMap(worldMapFilename: worldMapFilename, worldMap: worldMap) {
                 let msg = "Saving facility CoreData info..."
                 print(msg)

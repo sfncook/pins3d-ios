@@ -33,6 +33,10 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
         self.facility = facility
         self.viewContext = viewContext
         
+        if let facility = facility {
+            self.preloadAllImages(facility: facility)
+        }
+        
         // Initialize the coordinator before using 'self' in any closure or method
         coordinator = FacilityScanningCoordinator2(
             fetchPinWithId: self,
@@ -85,6 +89,7 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     }
     
     func clearTimerSavingMsg() {
+        self.savingMsg = nil
         timerSavingMsg?.invalidate()
         timerSavingMsg = nil
     }
@@ -98,18 +103,9 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     }
     
     func convertToCamelCase(_ input: String) -> String {
-        // Remove all non-alphanumeric characters
-        let alphanumericString = input.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
-        
-        // Convert string to a list of words
-        let words = alphanumericString.split(separator: " ")
-        
-        // Capitalize the first letter of each word except the first one and combine
-        var camelCaseString = words.first?.lowercased() ?? ""
-        for word in words.dropFirst() {
-            camelCaseString += word.capitalized
-        }
-        
-        return "facility_\(camelCaseString)"
+        return input.lowercased()
+            .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
+            .replacingOccurrences(of: "\\.", with: "", options: .regularExpression)
+
     }
 }

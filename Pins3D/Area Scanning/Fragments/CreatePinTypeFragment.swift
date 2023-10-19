@@ -15,7 +15,6 @@ struct CreatePinTypeFragment: View {
                 .padding(.horizontal)
             
             Button(action: {
-//                print("Click Text Pin")
                 viewModel.addTextPin(pinText: pinText)
                 UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
             }) {

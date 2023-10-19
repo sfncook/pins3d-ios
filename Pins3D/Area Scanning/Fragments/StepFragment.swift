@@ -10,32 +10,37 @@ struct StepFragment: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(viewModel.executingProcedure?.name ?? "NOT SET")
+            HStack{
+                VStack {
+                    HStack {
+                        Text(viewModel.executingProcedure?.name ?? "NOT SET")
+                        Spacer()
+                        Text("#\(viewModel.executingStep?.number ?? 0)")
+                    }
+                    
+                    HStack {
+                        Text(viewModel.executingStep?.summary ?? "NOT SET")
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Text(viewModel.executingStep?.details ?? "")
+                        Spacer()
+                    }
+                }//Vstack
+                .padding([.leading, .trailing], 10)
+                
                 Spacer()
-                Text("#\(viewModel.executingStep?.number ?? 0)")
-            }
-            .padding(20)
-            
-            // Display Image if it exists
-            if let image = stepImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .padding()
-            }
-            
-            HStack {
-                Text(viewModel.executingStep?.summary ?? "NOT SET")
+                
+                // Display Image if it exists
+                if let image = stepImage {
+                    Image(uiImage: image)
+                        .resizable()  // Make the image resizable
+                        .aspectRatio(contentMode: .fit) // Keep the aspect ratio
+                        .frame(height: UIScreen.main.bounds.height * 0.20) // Set the frame height to be 20% of the screen height
+                }
                 Spacer()
-            }
-            .padding(20)
-            
-            HStack {
-                Text(viewModel.executingStep?.details ?? "")
-                Spacer()
-            }
-            .padding(20)
+            }//HStack
             
             HStack {
                 prevButton
@@ -56,8 +61,8 @@ struct StepFragment: View {
                 
                 nextButton
             }
-            .padding(20)
-        }
+            .padding(5)
+        }//VStack
         .background(Color.white)
         .cornerRadius(5)
         .padding([.leading, .trailing], 20)
@@ -71,6 +76,7 @@ struct StepFragment: View {
         }
         return Button(action: {
             viewModel.nextStep()
+            loadImage()
         }) {
             Text("Next")
                 .frame(maxWidth: .infinity)
@@ -89,6 +95,7 @@ struct StepFragment: View {
         }
         return Button(action: {
             viewModel.prevStep()
+            loadImage()
         }) {
             Text("Prev")
                 .frame(maxWidth: .infinity)
@@ -102,9 +109,8 @@ struct StepFragment: View {
     
     func loadImage() {
         if let imageName = viewModel.executingStep?.imageFilename {
-            viewModel.loadStepImage(stepImageName: imageName) { stepImage in
-                self.stepImage = stepImage
-            }
+            stepImage = viewModel.cachedImage(for: imageName)
         }
     }
+
 }

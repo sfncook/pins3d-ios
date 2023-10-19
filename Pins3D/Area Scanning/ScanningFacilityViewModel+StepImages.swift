@@ -9,7 +9,7 @@ extension ScanningFacilityViewModel {
             return nil
         }
         let procedureNameId = procedure.name ?? "\(procedure.id!)"
-        return "stepimage_\(convertToCamelCase(procedureNameId))_\(stepSummaryId)"
+        return convertToCamelCase("stepimage_\(procedureNameId)_\(stepSummaryId)")
     }
     
     func saveStepImage(stepImageFilename: String, stepImage: UIImage) {
@@ -72,4 +72,41 @@ extension ScanningFacilityViewModel {
 
         task.resume()
     }// loadStepImage
+    
+    func preloadAllImages(facility: Facility) {
+        if let procedures = facility.procedures as? Set<Procedure> {
+            let allSteps = procedures.flatMap { $0.steps as? Set<Step> ?? [] }
+            for step in allSteps {
+                if let stepImageFilename = step.imageFilename {
+                    DispatchQueue.global(qos: .background).async {
+                        self.loadStepImage(stepImageName: stepImageFilename) { stepImage in
+                            self.cacheImage(image: stepImage, for: stepImageFilename)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func cacheImage(image: UIImage, for imageName: String) {
+        if let data = image.jpegData(compressionQuality: 1.0) {
+            let tmpDir = FileManager.default.temporaryDirectory
+            let filePath = tmpDir.appendingPathComponent(imageName)
+            try? data.write(to: filePath)
+        }
+    }
+    
+    func cachedImage(for imageName: String) -> UIImage? {
+        let tmpDir = FileManager.default.temporaryDirectory
+        let filePath = tmpDir.appendingPathComponent(imageName)
+        if let image = UIImage(contentsOfFile: filePath.path) {
+            return image
+        }
+        return nil
+    }
+
+    func captureSnapshotImage() -> UIImage? {
+        return coordinator.captureSnapshotImage()
+    }
+
 }

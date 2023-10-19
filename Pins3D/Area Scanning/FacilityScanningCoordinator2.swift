@@ -137,6 +137,22 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
         ARSCNView.sceneView!.session.run(FacilityScanningARViewContainer.defaultConfiguration)
         ARSCNView.sceneView!.debugOptions = [ .showFeaturePoints ]
     }
+    
+    func captureSnapshotImage() -> UIImage? {
+        guard let frame = ARSCNView.sceneView!.session.currentFrame
+            else { return nil }
+        
+        let image = CIImage(cvPixelBuffer: frame.capturedImage)
+        let orientation = CGImagePropertyOrientation(cameraOrientation: UIDevice.current.orientation)
+        
+        let context = CIContext(options: [.useSoftwareRenderer: false])
+        guard let data = context.jpegRepresentation(of: image.oriented(orientation),
+                                                    colorSpace: CGColorSpaceCreateDeviceRGB(),
+                                                    options: [kCGImageDestinationLossyCompressionQuality as CIImageRepresentationOption: 0.7])
+        else { return nil }
+        
+        return UIImage(data: data)
+    }
 }
 
 protocol CursorActions {

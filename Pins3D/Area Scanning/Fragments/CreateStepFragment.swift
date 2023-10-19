@@ -49,30 +49,30 @@ struct CreateStepFragment: View {
                     .border(Color.gray, width: 1)
                     .padding()
                 
-                Button(action: {
-                    self.showImageActionPicker.toggle()
-                }) {
-                    Text("Add Photo (optional)")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                .padding(.horizontal)
-                .actionSheet(isPresented: $showImageActionPicker) {
-                    ActionSheet(title: Text("Select a photo source"), buttons: [
-                        .default(Text("Photo Library")) {
-                            self.showCamera = false
-                            self.showImagePicker = true
-                        },
-                        .default(Text("Camera")) {
-                            self.showCamera = true
-                            self.showImagePicker = true
-                        },
-                        .cancel()
-                    ])
-                }
+//                Button(action: {
+//                    self.showImageActionPicker.toggle()
+//                }) {
+//                    Text("Add Photo (optional)")
+//                        .frame(maxWidth: .infinity)
+//                        .padding()
+//                        .background(Color.blue)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(8)
+//                }
+//                .padding(.horizontal)
+//                .actionSheet(isPresented: $showImageActionPicker) {
+//                    ActionSheet(title: Text("Select a photo source"), buttons: [
+//                        .default(Text("Photo Library")) {
+//                            self.showCamera = false
+//                            self.showImagePicker = true
+//                        },
+//                        .default(Text("Camera")) {
+//                            self.showCamera = true
+//                            self.showImagePicker = true
+//                        },
+//                        .cancel()
+//                    ])
+//                }
                 
                 stepImage.map {
                     Image(uiImage: $0)
@@ -102,6 +102,9 @@ struct CreateStepFragment: View {
         .background(Color.white)
         .cornerRadius(5)
         .padding()
+        .onAppear {
+            stepImage = scanningViewModel.captureSnapshotImage()
+        }
         .sheet(isPresented: $showImagePicker, onDismiss: {
             scanningViewModel.resumeArSession()
         }) {
