@@ -28,7 +28,7 @@ struct AreasListView: View {
                                 self.selectedFacility = facility
                                 self.showScanningFacilityView = true
                             })  {
-                                Text("\(facility.name!) - \(facility.worldMapFilename ?? "NO World Map Filename")")
+                                Text(facility.name ?? "(Area Name NOT SET)")
                             }
                         }
                         .onDelete(perform: deleteFacilities)
