@@ -3,22 +3,6 @@ import ARKit
 import CoreData
 
 extension ScanningFacilityViewModel {
-    func convertToCamelCase(_ input: String) -> String {
-        // Remove all non-alphanumeric characters
-        let alphanumericString = input.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
-        
-        // Convert string to a list of words
-        let words = alphanumericString.split(separator: " ")
-        
-        // Capitalize the first letter of each word except the first one and combine
-        var camelCaseString = words.first?.lowercased() ?? ""
-        for word in words.dropFirst() {
-            camelCaseString += word.capitalized
-        }
-        
-        return "facility_\(camelCaseString)"
-    }
-    
     func saveFacility() {
         do {
             try viewContext.save()

@@ -169,7 +169,8 @@ extension ScanningFacilityViewModel {
     
     func addStepPin(
         stepSummary: String,
-        stepDetails: String
+        stepDetails: String,
+        stepImage: UIImage?
     ) {
         guard let pinCursorLocationWhenDropped = self.pinCursorLocationWhenDropped else {
             print("Unable to retrieve pinCursorLocationWhenDropped, perhaps it's nil")
@@ -184,6 +185,12 @@ extension ScanningFacilityViewModel {
         step.details = stepDetails
         step.number = Int16(self.creatingStepNumber)
         step.procedure = self.creatingProcedure
+        if let stepImage = stepImage {
+            if let stepImageFilename = self.getStepImageFilename(step) {
+                self.uploadStepImage(stepImageFilename: stepImageFilename, stepImage: stepImage)
+                step.imageFilename = stepImageFilename
+            }
+        }
         
         self.creatingProcedure?.addToSteps(step)
         

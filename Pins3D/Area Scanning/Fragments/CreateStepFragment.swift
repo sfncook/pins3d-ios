@@ -4,11 +4,11 @@ struct CreateStepFragment: View {
     let scanningViewModel: ScanningFacilityViewModel
     @State private var stepSummary: String = ""
     @State private var stepDetails: String = ""
+    @State private var stepImage: UIImage?
     
     @State private var showImageActionPicker = false
     @State private var showImagePicker = false
     @State private var showCamera = false
-    @State private var image: UIImage?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -74,7 +74,7 @@ struct CreateStepFragment: View {
                     ])
                 }
                 
-                image.map {
+                stepImage.map {
                     Image(uiImage: $0)
                         .resizable()
                         .frame(width: 300, height: 300)
@@ -83,7 +83,8 @@ struct CreateStepFragment: View {
                 Button(action: {
                     scanningViewModel.addStepPin(
                         stepSummary: stepSummary,
-                        stepDetails: stepDetails
+                        stepDetails: stepDetails,
+                        stepImage: stepImage
                     )
                     UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
                 }) {
@@ -110,6 +111,6 @@ struct CreateStepFragment: View {
     
     var imagePickerView: some View {
         scanningViewModel.pauseArSession()
-        return ImagePicker(image: self.$image, sourceType: self.showCamera ? .camera : .photoLibrary)
+        return ImagePicker(image: self.$stepImage, sourceType: self.showCamera ? .camera : .photoLibrary)
     }
 }
