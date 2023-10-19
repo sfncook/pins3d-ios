@@ -69,21 +69,24 @@ extension FacilityScanningCoordinator2 {
     
     func showAllAreaPins() {
         nodeTypesToShow = [ProcedurePinNode.typeName, TextPinNode.typeName]
+        highlightStepPin = nil
         updateShowHidePinNodes()
     }
     
     func showOnlyStepPinsForProcedure(procedure: Procedure) {
         nodeTypesToShow = [StepPinNode.typeName]
         stepPinsToShow = fetchPinWithId.fetchStepPinsForProcedure(procedure: procedure)
+        highlightStepPin = nil
         updateShowHidePinNodes()
     }
     
-    func showOnlySingleStepPin(step: Step, procedure: Procedure) {
-        guard let stepPin = step.pin else {
+    func showAllStepPinsForProcedure(highlightStep: Step, procedure: Procedure) {
+        guard let highlightStepPin = highlightStep.pin else {
             return
         }
         nodeTypesToShow = [StepPinNode.typeName]
-        stepPinsToShow = [stepPin]
+        stepPinsToShow = fetchPinWithId.fetchStepPinsForProcedure(procedure: procedure)
+        self.highlightStepPin = highlightStepPin
         updateShowHidePinNodes()
     }
     
@@ -93,6 +96,13 @@ extension FacilityScanningCoordinator2 {
                 if nodeTypesToShow.contains(StepPinNode.typeName) {
                     if let stepPinNode = node as? StepPinNode {
                         node.isHidden = !stepPinsToShow.contains(stepPinNode.stepPin)
+                        if !node.isHidden {
+                            if self.highlightStepPin == stepPinNode.stepPin {
+                                stepPinNode.addHighlight()
+                            } else {
+                                stepPinNode.removeHighlight()
+                            }
+                        }
                     } else {
                         // Not a stepPin so hide it
                         node.isHidden = true

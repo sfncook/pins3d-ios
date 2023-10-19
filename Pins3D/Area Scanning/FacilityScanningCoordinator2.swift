@@ -15,6 +15,7 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     let loadAnchorsCompleteCallback: LoadAnchorsCompleteCallback
     var nodeTypesToShow: [String] = [ProcedurePinNode.typeName, TextPinNode.typeName]
     var stepPinsToShow: [StepPin] = []
+    var highlightStepPin: StepPin?
     var procedurePinNodes: [ProcedurePinNode] = []
     var firstAnchorLoaded: Bool = false
     

@@ -10,7 +10,7 @@ extension ScanningFacilityViewModel {
             self.previewingProcedure = nil
             self.executingProcedure = procedure
             self.executingStep = firstStep
-            coordinator.showOnlySingleStepPin(step: firstStep, procedure: procedure)
+            coordinator.showAllStepPinsForProcedure(highlightStep: firstStep, procedure: procedure)
             updateHasNextPrev()
         }
     }
@@ -40,7 +40,7 @@ extension ScanningFacilityViewModel {
             // TODO: End procedure
             return
         }
-        coordinator.showOnlySingleStepPin(step: nextStep, procedure: procedure)
+        coordinator.showAllStepPinsForProcedure(highlightStep: nextStep, procedure: procedure)
         self.executingStep = nextStep
         updateHasNextPrev()
     }
@@ -58,7 +58,7 @@ extension ScanningFacilityViewModel {
             // TODO: End procedure
             return
         }
-        coordinator.showOnlySingleStepPin(step: nextStep, procedure: procedure)
+        coordinator.showAllStepPinsForProcedure(highlightStep: nextStep, procedure: procedure)
         self.executingStep = nextStep
         updateHasNextPrev()
     }

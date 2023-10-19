@@ -88,6 +88,7 @@ struct ScanningFacilityView: View {
                 viewModel.isPlacingStepPin = false
                 viewModel.coordinator.showAllAreaPins()
                 viewModel.creatingProcedure = nil
+                viewModel.saveWorldMap()
             }) {
                 HStack {
                     Text("Done")
@@ -95,7 +96,9 @@ struct ScanningFacilityView: View {
             }
             .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment))
         } else {
-            return AnyView(Button(action: {viewModel.saveWorldMap()}) {
+            return AnyView(Button(action: {
+                viewModel.saveWorldMap()
+            }) {
                 HStack {
                     Text("Save")
                 }
