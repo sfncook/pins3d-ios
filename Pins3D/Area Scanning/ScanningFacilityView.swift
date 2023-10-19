@@ -59,7 +59,7 @@ struct ScanningFacilityView: View {
             }
             
             .sheet(isPresented: $viewModel.showCreateStepFragment) {
-                CreateStepFragment(viewModel: viewModel)
+                CreateStepFragment(scanningViewModel: viewModel)
             }
         }// NavigationView {
     }// body

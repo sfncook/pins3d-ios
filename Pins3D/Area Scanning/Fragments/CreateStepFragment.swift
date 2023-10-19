@@ -1,9 +1,14 @@
 import SwiftUI
 
 struct CreateStepFragment: View {
-    let viewModel: ScanningFacilityViewModel
+    let scanningViewModel: ScanningFacilityViewModel
     @State private var stepSummary: String = ""
     @State private var stepDetails: String = ""
+    
+    @State private var showImageActionPicker = false
+    @State private var showImagePicker = false
+    @State private var showCamera = false
+    @State private var image: UIImage?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -16,14 +21,14 @@ struct CreateStepFragment: View {
                 Text("Procedure Name")
                     .font(.caption)
                     .padding(.bottom, 2)
-                Text(viewModel.creatingProcedure?.name ?? "NOT SET")
+                Text(scanningViewModel.creatingProcedure?.name ?? "NOT SET")
                     .font(.headline)
                     .foregroundColor(.gray)
                 Spacer().frame(height: 16)
                 
                 Text("Step Number")
                     .font(.caption)
-                Text("\(viewModel.creatingStepNumber)")
+                Text("\(scanningViewModel.creatingStepNumber)")
                     .font(.headline)
                     .foregroundColor(.gray)
                 
@@ -45,20 +50,38 @@ struct CreateStepFragment: View {
                     .padding()
                 
                 Button(action: {
-                    // TODO
+                    self.showImageActionPicker.toggle()
                 }) {
                     Text("Add Photo (optional)")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue.opacity(0.5))
+                        .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
                 .padding(.horizontal)
-                .disabled(true)
+                .actionSheet(isPresented: $showImageActionPicker) {
+                    ActionSheet(title: Text("Select a photo source"), buttons: [
+                        .default(Text("Photo Library")) {
+                            self.showCamera = false
+                            self.showImagePicker = true
+                        },
+                        .default(Text("Camera")) {
+                            self.showCamera = true
+                            self.showImagePicker = true
+                        },
+                        .cancel()
+                    ])
+                }
+                
+                image.map {
+                    Image(uiImage: $0)
+                        .resizable()
+                        .frame(width: 300, height: 300)
+                }
                 
                 Button(action: {
-                    viewModel.addStepPin(
+                    scanningViewModel.addStepPin(
                         stepSummary: stepSummary,
                         stepDetails: stepDetails
                     )
@@ -74,16 +97,12 @@ struct CreateStepFragment: View {
                 .padding(.horizontal)
             }//ScrollView
         }//Vstack
-        .padding() // Add padding to the entire VStack
-        
-//        .frame(
-//            minWidth: UIScreen.main.bounds.width,
-//            maxWidth: UIScreen.main.bounds.width,
-//            maxHeight: UIScreen.main.bounds.height,
-//            alignment: .top
-//        )
+        .padding()
         .background(Color.white)
         .cornerRadius(5)
         .padding()
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(image: self.$image, sourceType: self.showCamera ? .camera : .photoLibrary)
+        }
     }//body
 }

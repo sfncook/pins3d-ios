@@ -10,6 +10,7 @@
 		D401C2E42ADF4388004257D8 /* ScanningFacilityViewModel+CursorActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D401C2E32ADF4388004257D8 /* ScanningFacilityViewModel+CursorActions.swift */; };
 		D4203F422ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */; };
 		D4203F442ADB3B7000422E86 /* CreatePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4203F432ADB3B7000422E86 /* CreatePinView.swift */; };
+		D42219822AE17B7C0082484C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42219812AE17B7C0082484C /* ImagePicker.swift */; };
 		D43819E82ADCD68F002C08B5 /* CreateFacilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819E72ADCD68F002C08B5 /* CreateFacilityView.swift */; };
 		D43819EA2ADCD8DC002C08B5 /* ScanningAndAnnotatingFacilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819E92ADCD8DC002C08B5 /* ScanningAndAnnotatingFacilityView.swift */; };
 		D43819EC2ADCD9B5002C08B5 /* FacilityScanningARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43819EB2ADCD9B5002C08B5 /* FacilityScanningARViewContainer.swift */; };
@@ -83,6 +84,7 @@
 		D401C2E32ADF4388004257D8 /* ScanningFacilityViewModel+CursorActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanningFacilityViewModel+CursorActions.swift"; sourceTree = "<group>"; };
 		D4203F412ADB22AD00422E86 /* AnnotatingMachineViewModel+LoadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnotatingMachineViewModel+LoadModel.swift"; sourceTree = "<group>"; };
 		D4203F432ADB3B7000422E86 /* CreatePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePinView.swift; sourceTree = "<group>"; };
+		D42219812AE17B7C0082484C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D43819E72ADCD68F002C08B5 /* CreateFacilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFacilityView.swift; sourceTree = "<group>"; };
 		D43819E92ADCD8DC002C08B5 /* ScanningAndAnnotatingFacilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningAndAnnotatingFacilityView.swift; sourceTree = "<group>"; };
 		D43819EB2ADCD9B5002C08B5 /* FacilityScanningARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityScanningARViewContainer.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */,
 				D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */,
 				D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */,
+				D42219812AE17B7C0082484C /* ImagePicker.swift */,
 			);
 			path = "Area Scanning";
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				D4B22D922AD75E9800F3882B /* ScannedObject.swift in Sources */,
 				D4B22D8B2AD75E9800F3882B /* ScannedPointCloud.swift in Sources */,
 				D473ED7C2ADDEBB700883157 /* AreasListView.swift in Sources */,
+				D42219822AE17B7C0082484C /* ImagePicker.swift in Sources */,
 				D43819EA2ADCD8DC002C08B5 /* ScanningAndAnnotatingFacilityView.swift in Sources */,
 				D49F2BBE2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift in Sources */,
 				D4B22D732AD7559000F3882B /* ScanningMachineViewModel.swift in Sources */,
