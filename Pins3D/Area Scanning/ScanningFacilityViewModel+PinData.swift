@@ -187,7 +187,7 @@ extension ScanningFacilityViewModel {
         step.procedure = self.creatingProcedure
         if let stepImage = stepImage {
             if let stepImageFilename = self.getStepImageFilename(step) {
-                self.uploadStepImage(stepImageFilename: stepImageFilename, stepImage: stepImage)
+                self.saveStepImage(stepImageFilename: stepImageFilename, stepImage: stepImage)
                 step.imageFilename = stepImageFilename
             }
         }

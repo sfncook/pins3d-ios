@@ -214,11 +214,11 @@
 				D49F2BBD2ADECD1A00A74E79 /* ScanningFacilityViewModel+SaveWorldMap.swift */,
 				D401C2E32ADF4388004257D8 /* ScanningFacilityViewModel+CursorActions.swift */,
 				D4CDA5F52ADF7437000BCF35 /* ScanningFacilityViewModel+StepExecution.swift */,
+				D42219852AE18A800082484C /* ScanningFacilityViewModel+SaveStepImage.swift */,
 				D473ED852ADE142600883157 /* FacilityScanningCoordinator2.swift */,
 				D473ED8D2ADE2EA600883157 /* FacilityScanningCoordinator2+Pins.swift */,
 				D473ED872ADE144F00883157 /* FacilityScanningARViewContainer2.swift */,
 				D42219812AE17B7C0082484C /* ImagePicker.swift */,
-				D42219852AE18A800082484C /* ScanningFacilityViewModel+SaveStepImage.swift */,
 			);
 			path = "Area Scanning";
 			sourceTree = "<group>";

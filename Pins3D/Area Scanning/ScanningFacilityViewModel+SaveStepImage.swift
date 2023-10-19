@@ -11,7 +11,8 @@ extension ScanningFacilityViewModel {
         let procedureNameId = procedure.name ?? "\(procedure.id!)"
         return "stepimage_\(convertToCamelCase(procedureNameId))_\(stepSummaryId)"
     }
-    func uploadStepImage(stepImageFilename: String, stepImage: UIImage) {
+    
+    func saveStepImage(stepImageFilename: String, stepImage: UIImage) {
         print("Uploading StepImage")
         self.setSavingMsg(savingMsg: "Uploading Image")
         
@@ -36,4 +37,39 @@ extension ScanningFacilityViewModel {
             self.setSavingMsg(savingMsg: "Error (StepImage-2)", withTimeout: true)
         }
     }
+    
+    func loadStepImage(stepImageName: String, completionHandler: @escaping (UIImage) -> Void) {
+        var msg = "loadStepImage"
+        print(msg)
+        
+        let urlStr = "https://us-central1-cook-250617.cloudfunctions.net/ar-model/\(stepImageName)"
+        let url = URL(string: urlStr)
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            guard error == nil else {
+                msg = "Error downloading step image: \(error!)"
+                print(msg)
+                return
+            }
+
+            guard let data = data else {
+                msg = "No data returned from the server!"
+                print(msg)
+                return
+            }
+
+            do {
+                guard let stepImage = try NSKeyedUnarchiver.unarchivedObject(ofClass: UIImage.self, from: data) else {
+                    msg = "No Step Image in archive."
+                    print(msg)
+                    return
+                }
+                completionHandler(stepImage)
+            } catch {
+                msg = "Error loading Step Image: \(error)"
+                print(msg)
+            }
+        }
+
+        task.resume()
+    }// loadStepImage
 }

@@ -6,6 +6,8 @@ struct StepFragment: View {
     @Binding var hasNextStep: Bool
     @Binding var hasPrevStep: Bool
     
+    @State private var stepImage: UIImage? = nil
+    
     var body: some View {
         VStack {
             HStack {
@@ -14,6 +16,14 @@ struct StepFragment: View {
                 Text("#\(viewModel.executingStep?.number ?? 0)")
             }
             .padding(20)
+            
+            // Display Image if it exists
+            if let image = stepImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+            }
             
             HStack {
                 Text(viewModel.executingStep?.summary ?? "NOT SET")
@@ -29,7 +39,6 @@ struct StepFragment: View {
             
             HStack {
                 prevButton
-                
                 Spacer()
                 
                 Button(action: {
@@ -52,6 +61,7 @@ struct StepFragment: View {
         .background(Color.white)
         .cornerRadius(5)
         .padding([.leading, .trailing], 20)
+        .onAppear(perform: loadImage)
     }
     
     var nextButton: some View {
@@ -88,5 +98,13 @@ struct StepFragment: View {
                 .cornerRadius(8)
         }
         .opacity(opacity)
+    }
+    
+    func loadImage() {
+        if let imageName = viewModel.executingStep?.imageFilename {
+            viewModel.loadStepImage(stepImageName: imageName) { stepImage in
+                self.stepImage = stepImage
+            }
+        }
     }
 }
