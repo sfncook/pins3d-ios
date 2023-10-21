@@ -81,12 +81,6 @@ struct ScanningFacilityView: View {
     func leadingNavBarButton() -> some View {
         if viewModel.isPlacingStepPin {
             return AnyView(EmptyView())
-        } else if viewModel.previewingProcedure != nil {
-            return AnyView(Button(action: {
-                viewModel.cancelPreviewingProcedure()
-            }) {
-                Text("Cancel")
-            })
         } else {
             return AnyView(Button(action: {self.showThisView = false}) {
                 HStack {
@@ -100,18 +94,9 @@ struct ScanningFacilityView: View {
     func trailingNavBarButton() -> some View {
         if viewModel.executingStep != nil {
             return AnyView(EmptyView())
-        } else if let previewingProcedure = viewModel.previewingProcedure {
-            return AnyView(Button(action: {
-                viewModel.startExecutingProcedure(procedure: previewingProcedure)
-            }) {
-                Text("Start")
-            })
         } else if viewModel.isPlacingStepPin {
             return AnyView(Button(action: {
-                viewModel.isPlacingStepPin = false
-                viewModel.coordinator.showAllAreaPins()
-                viewModel.creatingProcedure = nil
-                viewModel.saveWorldMap()
+                viewModel.doneCreatingStepsForProcedure()
             }) {
                 HStack {
                     Text("Done")
@@ -139,7 +124,6 @@ struct ScanningFacilityView: View {
     
     func dropPinButton() -> some View {
         if viewModel.executingStep != nil ||
-            viewModel.previewingProcedure != nil ||
             viewModel.scanningMode
         {
             return AnyView(EmptyView())
@@ -168,7 +152,7 @@ struct ScanningFacilityView: View {
         } else if viewModel.executingProcedure==nil, let cursorOverProcedure = viewModel.cursorOverProcedure {
             return AnyView(
                 Button(action: {
-                    viewModel.startPreviewingProcedure(procedure: cursorOverProcedure)
+                    viewModel.startExecutingProcedure(procedure: cursorOverProcedure)
                 }) {
                     HStack {
                         Image(systemName: "play.circle")
@@ -248,7 +232,7 @@ struct ScanningFacilityView: View {
     }
     
     func panCameraImage() -> some View {
-        if let panCameraDirection = viewModel.panCameraDirection {
+        if viewModel.executingStep != nil, let panCameraDirection = viewModel.panCameraDirection {
             if panCameraDirection=="On Screen" {
                 return AnyView(EmptyView())
             } else {

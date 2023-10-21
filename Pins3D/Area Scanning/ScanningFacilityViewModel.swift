@@ -31,7 +31,6 @@ class ScanningFacilityViewModel:
     
     var pinCursorLocationWhenDropped: simd_float4x4?
     @Published var cursorOverProcedure: Procedure?
-    @Published var previewingProcedure: Procedure?
     @Published var executingProcedure: Procedure?
     @Published var executingStep: Step?
     @Published var hasNextStep: Bool = false
@@ -47,10 +46,6 @@ class ScanningFacilityViewModel:
         print("ScanningAndAnnotatingFacilityViewModel.init")
         self.facility = facility
         self.viewContext = viewContext
-        
-        if let facility = facility {
-            self.preloadAllImages(facility: facility)
-        }
         
         // Initialize the coordinator before using 'self' in any closure or method
         coordinator = FacilityScanningCoordinator2(

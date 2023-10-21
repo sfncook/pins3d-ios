@@ -52,6 +52,9 @@ extension ScanningFacilityViewModel {
                     self.startTimerInfoMsg(infoMsg: "Searching for Anchors")
                     self.initializing = false
                 }
+                if let facility = self.facility {
+                    self.preloadAllImages(facility: facility)
+                }
             } catch {
                 msg = "Error unarchiving ARReferenceObject: \(error)"
                 print(msg)

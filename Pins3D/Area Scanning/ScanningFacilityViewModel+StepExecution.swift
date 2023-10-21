@@ -7,24 +7,11 @@ extension ScanningFacilityViewModel {
         if let stepsSet = procedure.steps as? Set<Step> {
             let firstStep = stepsSet.min { $0.number < $1.number }
             guard let firstStep = firstStep else {return}
-            self.previewingProcedure = nil
             self.executingProcedure = procedure
             self.executingStep = firstStep
             coordinator.showAllStepPinsForProcedure(highlightStep: firstStep, procedure: procedure)
             updateHasNextPrev()
         }
-    }
-    
-    func startPreviewingProcedure(procedure: Procedure) {
-        if let stepsSet = procedure.steps as? Set<Step> {
-            self.previewingProcedure = procedure
-            coordinator.showOnlyStepPinsForProcedure(procedure: procedure)
-        }
-    }
-    
-    func cancelPreviewingProcedure() {
-        self.previewingProcedure = nil
-        coordinator.showAllAreaPins()
     }
     
     func nextStep() {
@@ -75,6 +62,19 @@ extension ScanningFacilityViewModel {
     func stopExecutingProcedure() {
         self.executingProcedure = nil
         self.executingStep = nil
+        self.panCameraDirection = nil
         coordinator.showAllAreaPins()
+    }
+    
+    func doneCreatingStepsForProcedure() {
+        DispatchQueue.main.async {
+            self.isPlacingStepPin = false
+            self.coordinator.showAllAreaPins()
+            self.creatingProcedure = nil
+            self.saveWorldMap()
+            if let facility = self.facility {
+                self.preloadAllImages(facility: facility)
+            }
+        }
     }
 }
