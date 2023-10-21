@@ -3,8 +3,22 @@ import SceneKit
 class StepPinNode: SCNNode {
     static let typeName = "StepPinNode"
     let stepPin: StepPin
+    
+    var numberTextGeometry: SCNText?
     var numberBackgroundNode: SCNNode?
-    var backgroundNode: SCNNode?
+    var summaryTextGeometry: SCNText?
+    var textBackgroundNode: SCNNode?
+    var outlineNode: SCNNode?
+    
+    private let defaultNumberTextColor = UIColor.white
+    private let defaultNumberBgColor = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
+    private let defaultSummaryTextColor = UIColor.white
+    private let defaultSummaryBgColor = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
+    
+    private let highlightNumberTextColor = UIColor(red: 0.9765, green: 0.9020, blue: 0.6902, alpha: 1.0)
+    private let highlightNumberBgColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.9)
+    private let highlightSummaryTextColor = UIColor.darkGray
+    private let highlightSummaryBgColor = UIColor(red: 0.9765, green: 0.9020, blue: 0.6902, alpha: 1.0)
     
     init(_ stepPin: StepPin) {
         self.stepPin = stepPin
@@ -17,47 +31,62 @@ class StepPinNode: SCNNode {
     }
     
     private func setup() {
-        // Number annotation
-        let numberAnnotationGeometry = SCNText(string: "\(self.stepPin.number)", extrusionDepth: 1)
-        numberAnnotationGeometry.font = UIFont.systemFont(ofSize: 2)
-        numberAnnotationGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
-        let numberAnnotationNode = SCNNode(geometry: numberAnnotationGeometry)
+        let stepNumberStr = String(format: "%02d", self.stepPin.number)
+        
+        // Number text
+        numberTextGeometry = SCNText(string: "\(stepNumberStr)", extrusionDepth: 1)
+        numberTextGeometry!.font = UIFont.systemFont(ofSize: 3)
+        numberTextGeometry!.firstMaterial?.diffuse.contents = defaultNumberTextColor
+        let numberTextNode = SCNNode(geometry: numberTextGeometry!)
 
-        let numberWidth = CGFloat((numberAnnotationNode.boundingBox.max.x - numberAnnotationNode.boundingBox.min.x) + 2)
-        let numberHeight = CGFloat((numberAnnotationNode.boundingBox.max.y - numberAnnotationNode.boundingBox.min.y) + 2)
+        // Number background
+        let numberWidth = CGFloat((numberTextNode.boundingBox.max.x - numberTextNode.boundingBox.min.x) + 3)
+        let numberHeight = CGFloat((numberTextNode.boundingBox.max.y - numberTextNode.boundingBox.min.y) + 3)
         let numberBackgroundGeometry = SCNPlane(width: numberWidth, height: numberHeight)
-        numberBackgroundGeometry.cornerRadius = 0.5
-        numberBackgroundGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
-        let numberBackgroundNode = SCNNode(geometry: numberBackgroundGeometry)
+        numberBackgroundGeometry.cornerRadius = max(numberWidth, numberHeight)/2.0
+        numberBackgroundGeometry.firstMaterial?.diffuse.contents = defaultNumberBgColor
+        numberBackgroundNode = SCNNode(geometry: numberBackgroundGeometry)
+        // Center background behind text
+        numberBackgroundNode!.position = SCNVector3((numberWidth/2.0)-1.3, (numberHeight/2.0)-0.6, -0.1)
+        numberTextNode.addChildNode(numberBackgroundNode!)
         
-        numberBackgroundNode.position = SCNVector3((numberWidth/2.0)-1.0, (numberHeight/2.0), -0.1)
-        numberAnnotationNode.addChildNode(numberBackgroundNode)
+        // Number outline
+        let outlineWidth = numberWidth + 0.1
+        let outlineHeight = numberHeight + 0.1
+        let outlineGeometry = SCNPlane(width: outlineWidth, height: outlineHeight)
+        outlineGeometry.cornerRadius = max(outlineWidth, outlineHeight) / 2.0
+        outlineGeometry.firstMaterial?.diffuse.contents = UIColor.white
+        outlineNode = SCNNode(geometry: outlineGeometry)
+        guard let outlineNode = outlineNode else {return}
+        numberBackgroundNode!.addChildNode(outlineNode)
+        outlineNode.position.z = -0.01 // Adjust the z position so that the outline
         
-        // Text annotation
-        let textAnnotationGeometry = SCNText(string: self.stepPin.text ?? "NOT SET", extrusionDepth: 0.2)
-        textAnnotationGeometry.font = UIFont.systemFont(ofSize: 2)
-        textAnnotationGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.2588, green: 0.2824, blue: 0.4549, alpha: 1.0)
-        let textAnnotationNode = SCNNode(geometry: textAnnotationGeometry)
+        // Summary text
+        summaryTextGeometry = SCNText(string: self.stepPin.text ?? "NOT SET", extrusionDepth: 0.2)
+        summaryTextGeometry!.font = UIFont.systemFont(ofSize: 1.5)
+        summaryTextGeometry!.firstMaterial?.diffuse.contents = defaultSummaryTextColor
+        let summaryTextNode = SCNNode(geometry: summaryTextGeometry)
         
-        let textWidth = CGFloat((textAnnotationGeometry.boundingBox.max.x - textAnnotationGeometry.boundingBox.min.x) + 2)
-        let textHeight = CGFloat((textAnnotationGeometry.boundingBox.max.y - textAnnotationGeometry.boundingBox.min.y) + 2)
+        // Summary background
+        let textWidth = CGFloat((summaryTextGeometry!.boundingBox.max.x - summaryTextGeometry!.boundingBox.min.x) + 4)
+        let textHeight = CGFloat((summaryTextGeometry!.boundingBox.max.y - summaryTextGeometry!.boundingBox.min.y) + 2)
         let textBackgroundGeometry = SCNPlane(width: textWidth, height: textHeight)
-        textBackgroundGeometry.cornerRadius = 0.5
-        textBackgroundGeometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
-        let textBackgroundNode = SCNNode(geometry: textBackgroundGeometry)
-        
-        textBackgroundNode.position = SCNVector3((textWidth/2.0)-1.0, (textHeight/2.0), -0.1)
-        textAnnotationNode.addChildNode(textBackgroundNode)
+        textBackgroundGeometry.cornerRadius = max(textWidth, textHeight) / 2.0
+        textBackgroundGeometry.firstMaterial?.diffuse.contents = defaultSummaryBgColor
+        textBackgroundNode = SCNNode(geometry: textBackgroundGeometry)
+        // Center background behind text
+        textBackgroundNode!.position = SCNVector3((textWidth/2.0)-2.0, (textHeight/2.0), -0.1)
+        summaryTextNode.addChildNode(textBackgroundNode!)
         
         // Position both nodes around self
-        numberAnnotationNode.position = SCNVector3(-(numberWidth/2.0), ((numberHeight/2.0) + 0.25), 0)
-        textAnnotationNode.position = SCNVector3(-(textWidth/2.0), -((textHeight/2.0) + 0.25), 0)
+        numberTextNode.position = SCNVector3(-(numberWidth/2.0), ((numberHeight/2.0) + 0.25), 0)
+        summaryTextNode.position = SCNVector3(-(textWidth/2.0), -((textHeight/2.0) + 0.25), 0)
         
 //        let sphereNode = SCNNode(geometry: SCNSphere(radius: 1))
 //        self.addChildNode(sphereNode)
         
-        self.addChildNode(numberAnnotationNode)
-        self.addChildNode(textAnnotationNode)
+        self.addChildNode(numberTextNode)
+        self.addChildNode(summaryTextNode)
         self.scale = SCNVector3(0.02, 0.02, 0.02)
         
         let billboardConstraint = SCNBillboardConstraint()
@@ -65,31 +94,40 @@ class StepPinNode: SCNNode {
         self.constraints = [billboardConstraint]
         
         self.name = StepPinNode.typeName
-        self.numberBackgroundNode = numberBackgroundNode
-        self.backgroundNode = textBackgroundNode
+//        self.numberBackgroundNode = numberBackgroundNode
+//        self.textBackgroundNode = textBackgroundNode
     }
-
     
     func addHighlight() {
-        // Change the color to make it stand out more (optional)
+        if let geometry = numberTextGeometry {
+            geometry.firstMaterial?.diffuse.contents = highlightNumberTextColor
+        }
         if let geometry = numberBackgroundNode?.geometry as? SCNPlane {
-            geometry.firstMaterial?.diffuse.contents = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0) // Setting to red for example
+            geometry.firstMaterial?.diffuse.contents = highlightNumberBgColor
         }
-        // Change the color to make it stand out more (optional)
-        if let geometry = backgroundNode?.geometry as? SCNPlane {
-            geometry.firstMaterial?.diffuse.contents = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0) // Setting to red for example
+        if let geometry = summaryTextGeometry {
+            geometry.firstMaterial?.diffuse.contents = UIColor.black
         }
+        if let geometry = textBackgroundNode?.geometry as? SCNPlane {
+            geometry.firstMaterial?.diffuse.contents = highlightSummaryBgColor
+        }
+        outlineNode?.isHidden = false
     }
 
     func removeHighlight() {
-        // Reset the color to its original state
+        if let geometry = numberTextGeometry {
+            geometry.firstMaterial?.diffuse.contents = defaultNumberTextColor
+        }
         if let geometry = numberBackgroundNode?.geometry as? SCNPlane {
-            geometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
+            geometry.firstMaterial?.diffuse.contents = defaultNumberBgColor
         }
-        // Reset the color to its original state
-        if let geometry = backgroundNode?.geometry as? SCNPlane {
-            geometry.firstMaterial?.diffuse.contents = UIColor(red: 0.8627, green: 0.8392, blue: 0.9686, alpha: 1.0)
+        if let geometry = summaryTextGeometry {
+            geometry.firstMaterial?.diffuse.contents = defaultSummaryTextColor
         }
+        if let geometry = textBackgroundNode?.geometry as? SCNPlane {
+            geometry.firstMaterial?.diffuse.contents = defaultSummaryBgColor
+        }
+        outlineNode?.isHidden = true
     }
     
 }

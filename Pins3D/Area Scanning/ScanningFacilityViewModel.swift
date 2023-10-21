@@ -123,9 +123,7 @@ class ScanningFacilityViewModel:
     
     func convertToCamelCase(_ input: String) -> String {
         return input.lowercased()
-            .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
-            .replacingOccurrences(of: "\\.", with: "", options: .regularExpression)
-
+            .replacingOccurrences(of: "[^a-zA-Z0-9_]", with: "", options: .regularExpression)
     }
     
     func startScanningAnimation() {

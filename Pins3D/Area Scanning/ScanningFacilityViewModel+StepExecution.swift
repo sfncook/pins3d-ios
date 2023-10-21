@@ -63,6 +63,7 @@ extension ScanningFacilityViewModel {
         self.executingProcedure = nil
         self.executingStep = nil
         self.panCameraDirection = nil
+        self.pinDropMode = true
         coordinator.showAllAreaPins()
     }
     
