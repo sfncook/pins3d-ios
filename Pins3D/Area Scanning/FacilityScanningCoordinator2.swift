@@ -18,11 +18,18 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     var highlightStepPin: StepPin?
     var procedurePinNodes: [ProcedurePinNode] = []
     var firstAnchorLoaded: Bool = false
+    var updateWorldTrackingStatusDelegate: UpdateWorldTrackingStatus
     
-    init(fetchPinWithId: FetchPinWithId, cursorActionsDelegate: CursorActions, loadAnchorsCompleteCallback: LoadAnchorsCompleteCallback) {
+    init(
+        fetchPinWithId: FetchPinWithId,
+        cursorActionsDelegate: CursorActions,
+        loadAnchorsCompleteCallback: LoadAnchorsCompleteCallback,
+        updateWorldTrackingStatusDelegate: UpdateWorldTrackingStatus
+    ) {
         self.fetchPinWithId = fetchPinWithId
         self.cursorActionsDelegate = cursorActionsDelegate
         self.loadAnchorsCompleteCallback = loadAnchorsCompleteCallback
+        self.updateWorldTrackingStatusDelegate = updateWorldTrackingStatusDelegate
         super.init()
     }
     
@@ -90,20 +97,14 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
     
     /// - Tag: CheckMappingStatus
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        // TODO: Add user info for session tracking status
-        // Enable Save button only when the mapping status is good and an object has been placed
-//        switch frame.worldMappingStatus {
-//            case .extending, .mapped:
-//                saveExperienceButton.isEnabled =
-//                    virtualObjectAnchor != nil && frame.anchors.contains(virtualObjectAnchor!)
-//            default:
-//                saveExperienceButton.isEnabled = false
-//        }
-//        statusLabel.text = """
-//        Mapping: \(frame.worldMappingStatus.description)
-//        Tracking: \(frame.camera.trackingState.description)
-//        """
-//        updateSessionInfoLabel(for: frame, trackingState: frame.camera.trackingState)
+        switch frame.worldMappingStatus {
+        case .extending:
+            updateWorldTrackingStatusDelegate.setExtending()
+        case .mapped:
+            updateWorldTrackingStatusDelegate.setMapped()
+        default:
+            break
+        }
     }
     
     func getWorldMap(completionHandler: @escaping (ARWorldMap?) -> Void) {
@@ -160,4 +161,9 @@ class FacilityScanningCoordinator2: NSObject, ARSCNViewDelegate, ARSessionDelega
 protocol CursorActions {
     func onCursorOverProcedurePin(procedureId: UUID)
     func onCursorOutProcedurePin()
+}
+
+protocol UpdateWorldTrackingStatus {
+    func setExtending()
+    func setMapped()
 }

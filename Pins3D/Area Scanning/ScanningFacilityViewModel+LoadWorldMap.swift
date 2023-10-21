@@ -45,15 +45,13 @@ extension ScanningFacilityViewModel {
 //                    }
                     return
                 }
-                
-                self.coordinator.loadWorldMap(worldMap)
-                self.startTimerInfoMsg(infoMsg: "Searching for Anchors")
                 msg = "Done Loading"
                 print(msg)
-//                DispatchQueue.main.async {
-//                    self.loadingMsg = msg
-//                    self.hasModelBeenLoaded = true
-//                }
+                DispatchQueue.main.async {
+                    self.coordinator.loadWorldMap(worldMap)
+                    self.startTimerInfoMsg(infoMsg: "Searching for Anchors")
+                    self.initializing = false
+                }
             } catch {
                 msg = "Error unarchiving ARReferenceObject: \(error)"
                 print(msg)

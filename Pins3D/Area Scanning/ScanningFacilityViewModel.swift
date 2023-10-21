@@ -1,9 +1,16 @@
 import SwiftUI
 import ARKit
 import CoreData
+import Combine
 
-class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions, LoadAnchorsCompleteCallback {
+class ScanningFacilityViewModel: 
+    ObservableObject,
+        FetchPinWithId,
+        CursorActions,
+        LoadAnchorsCompleteCallback,
+        UpdateWorldTrackingStatus {
     
+    @Published var initializing: Bool = true
     @Published var showCreateAreaFragment: Bool = false
     @Published var showCreatePinTypeFragment: Bool = false
     @Published var showCreateStepFragment: Bool = false
@@ -14,6 +21,13 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
     var facility: Facility? = nil
     let viewContext: NSManagedObjectContext
     var coordinator: FacilityScanningCoordinator2!
+    
+    @Published var scanningMode: Bool = false
+    @Published var hasEnoughMapPoints: Bool = false
+    @Published var scanningAnimated: String? = "Scanning."
+    private var timer: Timer?
+    private var cancellable: AnyCancellable?
+    @Published var pinDropMode: Bool = false
     
     var pinCursorLocationWhenDropped: simd_float4x4?
     @Published var cursorOverProcedure: Procedure?
@@ -42,7 +56,8 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
         coordinator = FacilityScanningCoordinator2(
             fetchPinWithId: self,
             cursorActionsDelegate: self,
-            loadAnchorsCompleteCallback: self
+            loadAnchorsCompleteCallback: self,
+            updateWorldTrackingStatusDelegate: self
         )
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -53,13 +68,21 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
             }
             
         }
+    }//init
+    
+    deinit {
+        stopScanningAnimation()
     }
     
     func createNewFacility(facilityName: String) {
         facility = Facility(context: viewContext)
         facility!.id = UUID()
         facility!.name = facilityName
-        saveFacility()
+        DispatchQueue.main.async {
+            self.scanningMode = true
+            self.startScanningAnimation()
+            self.initializing = false
+        }
     }
     
     func startTimerInfoMsg(infoMsg: String) {
@@ -108,5 +131,46 @@ class ScanningFacilityViewModel: ObservableObject, FetchPinWithId, CursorActions
             .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
             .replacingOccurrences(of: "\\.", with: "", options: .regularExpression)
 
+    }
+    
+    func startScanningAnimation() {
+        timer?.invalidate() // Invalidate any existing timer
+        
+        // Schedule a new timer
+        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+
+            switch self.scanningAnimated {
+            case "Scanning.":
+                self.scanningAnimated = "Scanning.."
+            case "Scanning..":
+                self.scanningAnimated = "Scanning..."
+            default:
+                self.scanningAnimated = "Scanning."
+            }
+        }
+        
+        // Ensure the timer works in common modes like when user interacts with UI
+        RunLoop.current.add(timer!, forMode: .common)
+        
+        // Handle deallocation
+        cancellable = AnyCancellable {
+            self.timer?.invalidate()
+        }
+    }
+    
+    func stopScanningAnimation() {
+        timer?.invalidate()
+        timer = nil
+        cancellable?.cancel()
+        cancellable = nil
+    }
+    
+    func setExtending() {
+        self.hasEnoughMapPoints = true
+    }
+    
+    func setMapped() {
+        self.hasEnoughMapPoints = true
     }
 }

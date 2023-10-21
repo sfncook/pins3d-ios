@@ -3,15 +3,6 @@ import ARKit
 import CoreData
 
 extension ScanningFacilityViewModel {
-    func saveFacility() {
-        do {
-            try viewContext.save()
-            print("Facility saved \(self.facility?.name! ?? "Facility Name NOT SET")")
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
     
     func uploadWorldMap(worldMapFilename: String, worldMap: ARWorldMap, completionHandler: @escaping () -> Void) {
 //        self.displayInstruction(Message("Saving..."))
@@ -43,6 +34,8 @@ extension ScanningFacilityViewModel {
     }
     
     func saveWorldMap() {
+        self.scanningMode = false
+        self.stopScanningAnimation()
         self.setSavingMsg(savingMsg: "Saving Area Map")
         coordinator.getWorldMap { worldMap in
             guard let facility = self.facility else {
@@ -67,6 +60,7 @@ extension ScanningFacilityViewModel {
                     try context?.save()
                     print("Done saving")
                     self.setSavingMsg(savingMsg: "Save Complete", withTimeout: true)
+                    self.pinDropMode = true
                 } catch {
                     print("ERROR saveMachineAndRefObjectFile Failed to save arFilename to machine: \(error)")
                     self.setSavingMsg(savingMsg: "Unable to save (3)", withTimeout: true)

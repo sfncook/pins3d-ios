@@ -33,6 +33,11 @@ struct ScanningFacilityView: View {
                             .foregroundColor(.black)
                     }
                     
+                    scanningMessageContent
+                        .padding()
+                        .background(Color.white.opacity(0.5))
+                        .foregroundColor(.black)
+                    
                     Spacer()
                     
                     HStack {
@@ -55,7 +60,11 @@ struct ScanningFacilityView: View {
             }// ZStack
             .navigationBarTitle(contextualBarTitle(), displayMode: .inline)
             
-            .sheet(isPresented: $viewModel.showCreateAreaFragment) {
+            .sheet(isPresented: $viewModel.showCreateAreaFragment, onDismiss: {
+                if viewModel.facility == nil {
+                    self.showThisView = false
+                }
+            }) {
                 CreateAreaFragment(viewModel: viewModel)
             }
             
@@ -109,7 +118,7 @@ struct ScanningFacilityView: View {
                 }
             }
             .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment))
-        } else {
+        } else if $viewModel.scanningMode.wrappedValue {
             return AnyView(Button(action: {
                 viewModel.saveWorldMap()
             }) {
@@ -117,14 +126,22 @@ struct ScanningFacilityView: View {
                     Text("Save")
                 }
             }
-            .disabled(viewModel.showCreatePinTypeFragment || viewModel.showCreateAreaFragment))
+            .disabled(
+                viewModel.initializing ||
+                viewModel.showCreatePinTypeFragment ||
+                viewModel.showCreateAreaFragment ||
+                !viewModel.hasEnoughMapPoints
+            ))
+        } else {
+            return AnyView(EmptyView())
         }
     }
     
     func dropPinButton() -> some View {
-        if viewModel.executingStep != nil {
-            return AnyView(EmptyView())
-        } else if viewModel.previewingProcedure != nil {
+        if viewModel.executingStep != nil ||
+            viewModel.previewingProcedure != nil ||
+            viewModel.scanningMode
+        {
             return AnyView(EmptyView())
         } else if viewModel.isPlacingStepPin {
             return AnyView(
@@ -170,7 +187,7 @@ struct ScanningFacilityView: View {
                     )
                 }
             )
-        } else {
+        } else if $viewModel.pinDropMode.wrappedValue {
             return AnyView(
                 Button(action: {
                     viewModel.dropPin()
@@ -182,6 +199,8 @@ struct ScanningFacilityView: View {
                         .foregroundColor(Color(uiColor: ScanningFacilityView.darkPurple))
                 }
             )
+        } else {
+            return AnyView(EmptyView())
         }
     }
     
@@ -199,10 +218,16 @@ struct ScanningFacilityView: View {
         return nil
     }
     
-    
     var savingMessageContent: Text? {
         if let savingMsg = viewModel.savingMsg {
             return Text(savingMsg)
+        }
+        return nil
+    }
+    
+    var scanningMessageContent: Text? {
+        if viewModel.scanningMode, let scanningAnimated = viewModel.scanningAnimated {
+            return Text(scanningAnimated)
         }
         return nil
     }
